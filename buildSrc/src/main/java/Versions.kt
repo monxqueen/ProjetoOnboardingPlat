@@ -18,4 +18,5 @@ object Versions {
 
     const val rxJava = "2.2.19"
     const val rxAndroid = "2.1.1"
+
 }
