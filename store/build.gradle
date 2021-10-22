@@ -36,5 +36,4 @@ dependencies {
     implementation Libs.rxJava
     implementation Libs.okhttp
     implementation Libs.kotlinSerialization
-    implementation Libs.gson
 }
