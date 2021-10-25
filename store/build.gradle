@@ -39,9 +39,7 @@ dependencies {
 
     //retrofit
     implementation Libs.retrofit
-    implementation Libs.gson
     implementation Libs.retrofitRxJava2Adapter
-    //implementation Libs.retrofitGsonConverter
 
     implementation Libs.kotlinSerialization
     implementation Libs.kotlinSerializationConverter

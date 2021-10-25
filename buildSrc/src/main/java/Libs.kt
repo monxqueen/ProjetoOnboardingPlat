@@ -8,10 +8,7 @@ object Libs {
     const val testExtJunit = "androidx.test.ext:junit:${Versions.testExtJunit}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val gson = "com.google.code.gson:gson:${Versions.gson}"
-    //const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGsonConverter}"
     const val retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitRxJava2Adapter}"
-
     const val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     const val kotlinSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinSerializationConverter}"
 
