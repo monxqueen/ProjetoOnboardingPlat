@@ -32,8 +32,28 @@ android {
 }
 
 dependencies {
+
+    implementation Libs.coreKtx
+    implementation Libs.appCompat
+    implementation Libs.material
+
+    //retrofit
     implementation Libs.retrofit
-    implementation Libs.rxJava
-    implementation Libs.okhttp
+    implementation Libs.gson
+    implementation Libs.retrofitRxJava2Adapter
+    //implementation Libs.retrofitGsonConverter
+
     implementation Libs.kotlinSerialization
+    implementation Libs.kotlinSerializationConverter
+
+    implementation Libs.okhttp
+    implementation Libs.okhttpLoggingInterceptor
+
+    implementation Libs.rxJava
+    implementation Libs.rxAndroid
+
+    //testes
+    testImplementation Libs.junit
+    androidTestImplementation Libs.testExtJunit
+    androidTestImplementation Libs.espresso
 }

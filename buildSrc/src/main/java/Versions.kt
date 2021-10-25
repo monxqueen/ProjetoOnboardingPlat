@@ -8,8 +8,6 @@ object Versions {
     const val testExtJunit = "1.1.3"
 
     const val retrofit = "2.9.0"
-    const val gson = "2.8.8"
-    const val retrofitGsonConverter = "2.9.0"
     const val retrofitRxJava2Adapter = "2.9.0"
 
     const val kotlinSerialization = "1.3.0"
