@@ -14,11 +14,11 @@ object Versions {
     // Retrofit
     const val retrofitVersion = "2.9.0"
     const val retrofitRxJava2AdapterVersion = "2.9.0"
-    const val kotlinSerializationConverterVersion = "0.8.0"
+    const val retrofitSerializationConverterVersion = "0.8.0"
 
     // OkHttp
-    const val okhttpVersion = ""
-    const val okhttpLoggingInterceptorVersion = "3.12.1"
+    const val okhttpVersion = "4.9.0"
+    const val okhttpLoggingInterceptorVersion = "4.9.0"
 
     // RxJava
     const val rxJavaVersion = "2.2.19"
