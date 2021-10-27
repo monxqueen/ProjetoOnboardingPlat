@@ -1,2 +1,0 @@
-/Users/rayssadasilva/Documents/dev/ProjetoOnboardingPlat/buildSrc/src/main/java/Versions.kt
-/Users/rayssadasilva/Documents/dev/ProjetoOnboardingPlat/buildSrc/src/main/java/Libs.kt
