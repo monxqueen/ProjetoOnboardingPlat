@@ -9,12 +9,11 @@ object Versions {
     const val coreVersion = "1.6.0"
     const val appCompatVersion = "1.3.1"
     const val materialDesignVersion = "1.4.0"
-    const val recyclerViewVersion = "1.2.1"
 
     // Retrofit
     const val retrofitVersion = "2.9.0"
     const val retrofitRxJava2AdapterVersion = "2.9.0"
-    const val retrofitSerializationConverterVersion = "0.8.0"
+    const val kotlinSerializationConverterVersion = "0.8.0"
 
     // OkHttp
     const val okhttpVersion = "4.9.0"

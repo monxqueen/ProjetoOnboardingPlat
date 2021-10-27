@@ -34,11 +34,12 @@ android {
 dependencies {
     implementation project(':favorite')
     implementation project(':nearby')
+
     implementation Libs.coreKtx
     implementation Libs.appCompat
-    implementation Libs.material
     implementation Libs.constraintLayout
-    testImplementation Libs.junit
-    androidTestImplementation Libs.testExtJunit
+
+    testImplementation Libs.jUnit
+    androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
 }

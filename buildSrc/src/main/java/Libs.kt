@@ -6,15 +6,14 @@ object Libs {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
 
     // Support
-    const val core = "androidx.core:core-ktx:${Versions.coreVersion}"
+    const val coreKtx = "androidx.core:core-ktx:${Versions.coreVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesignVersion}"
-    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
 
     // Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitRxJava2AdapterVersion}"
-    const val retrofitSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitSerializationConverterVersion}"
+    const val kotlinSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinSerializationConverterVersion}"
 
     // OkHttp
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttpVersion}"

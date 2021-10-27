@@ -35,9 +35,8 @@ dependencies {
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
-    implementation Libs.material
+    implementation Libs.materialDesign
 
-    //retrofit
     implementation Libs.retrofit
     implementation Libs.retrofitRxJava2Adapter
 
@@ -50,8 +49,7 @@ dependencies {
     implementation Libs.rxJava
     implementation Libs.rxAndroid
 
-    //testes
-    testImplementation Libs.junit
-    androidTestImplementation Libs.testExtJunit
+    testImplementation Libs.jUnit
+    androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
 }

@@ -33,11 +33,11 @@ android {
 
 dependencies {
     implementation project(':store')
+
     implementation Libs.coreKtx
     implementation Libs.appCompat
-    implementation Libs.material
-    testImplementation Libs.junit
-    androidTestImplementation Libs.testExtJunit
+    implementation Libs.materialDesign
+    testImplementation Libs.jUnit
+    androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
-
 }
