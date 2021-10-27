@@ -1,5 +1,6 @@
 package com.example.store.data.remote
 
+import com.example.store.data.remote.api.StoresService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
@@ -14,7 +15,7 @@ private const val baseUrl = "http://0.0.0.0:8080/"
 object Network {
 
     @Suppress("EXPERIMENTAL_API_USAGE")
-    fun getService(): ApiService {
+    fun getService(): StoresService {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -29,6 +30,6 @@ object Network {
             .addConverterFactory(Json.asConverterFactory(contentType))
             .build()
 
-        return retrofit.create(ApiService::class.java)
+        return retrofit.create(StoresService::class.java)
     }
 }
