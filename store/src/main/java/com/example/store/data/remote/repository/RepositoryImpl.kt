@@ -9,7 +9,7 @@ import io.reactivex.Single
 class RepositoryImpl(private val storesMapper: StoresMapper) : Repository {
 
     override fun getStores() : Single<List<Store>> {
-        return Network.getService().getStoresList().map { storesListResponse ->
+        return Network.retrofitService.getStoresList().map { storesListResponse ->
             storesMapper.mapStoresListToDomain(storesListResponse) }
     }
 }

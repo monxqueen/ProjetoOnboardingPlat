@@ -32,12 +32,13 @@ android {
 }
 
 dependencies {
-    implementation project(':favorite')
-    implementation project(':nearby')
+    implementation project(':features:favorite')
+    implementation project(':features:nearby')
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.constraintLayout
+    implementation Libs.materialDesign
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
