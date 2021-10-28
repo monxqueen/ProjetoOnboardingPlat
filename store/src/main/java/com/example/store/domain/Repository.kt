@@ -1,8 +1,8 @@
 package com.example.store.domain
 
-import com.example.store.domain.model.Store
+import com.example.store.domain.entity.Store
 import io.reactivex.Single
 
-interface StoresRepository {
+interface Repository {
     fun getStores(): Single<List<Store>>
 }
