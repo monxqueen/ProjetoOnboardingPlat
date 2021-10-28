@@ -8,7 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "StoreApp"
 include ':app'
-include ':remote'
-include ':favorite'
-include ':nearby'
+include ':features:favorite'
+include ':features:nearby'
 include ':store'
