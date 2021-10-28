@@ -1,1 +1,1 @@
-/Users/marianadeoliveira/Documents/Desafio/StoreApp/ProjetoOnboardingPlat/buildSrc/build/classes/kotlin/main/Libs.class:/Users/marianadeoliveira/Documents/Desafio/StoreApp/ProjetoOnboardingPlat/buildSrc/build/classes/kotlin/main/Versions.class
+/Users/gloriadasilva/Documents/Desafio/StoreApp/buildSrc/build/classes/kotlin/main/Libs.class:/Users/gloriadasilva/Documents/Desafio/StoreApp/buildSrc/build/classes/kotlin/main/Versions.class

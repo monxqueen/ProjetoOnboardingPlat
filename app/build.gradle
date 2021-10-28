@@ -34,6 +34,8 @@ android {
 dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
+    implementation project(':store')
+    //TODO: remover linha 37
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
