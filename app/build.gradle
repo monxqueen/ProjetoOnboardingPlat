@@ -38,6 +38,7 @@ dependencies {
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.constraintLayout
+    implementation Libs.materialDesign
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
