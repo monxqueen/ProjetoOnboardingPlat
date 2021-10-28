@@ -13,22 +13,30 @@ private const val BASE_URL = "http://0.0.0.0:8080/"
 
 object Network {
 
-    @Suppress("EXPERIMENTAL_API_USAGE")
-    fun getService(): StoreService {
+    private fun getLoggingInterceptor(): OkHttpClient.Builder {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(logging)
 
+        return httpClient
+    }
+
+    @Suppress("EXPERIMENTAL_API_USAGE")
+    private fun buildRetrofit(): Retrofit {
         val contentType = JSON_MEDIA_TYPE.toMediaType()
 
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(getLoggingInterceptor().build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(Json.asConverterFactory(contentType))
             .build()
+    }
 
-        return retrofit.create(StoreService::class.java)
+    val retrofitService : StoreService by lazy {
+        buildRetrofit().create(StoreService::class.java)
     }
 }
+
