@@ -6,7 +6,7 @@ import com.example.store.domain.Repository
 import com.example.store.domain.entity.Store
 import io.reactivex.Single
 
-class RepositoryImpl(private val storesMapper: StoresMapper = StoresMapper()) : Repository {
+class RepositoryImpl(private val storesMapper: StoresMapper) : Repository {
 
     override fun getStores() : Single<List<Store>> {
         return Network.retrofitService.getStoresList().map { storesListResponse ->

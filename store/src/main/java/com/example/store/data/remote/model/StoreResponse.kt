@@ -1,6 +1,8 @@
 package com.example.store.data.remote.model
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class StoreResponse(
 
     @SerialName("id")
