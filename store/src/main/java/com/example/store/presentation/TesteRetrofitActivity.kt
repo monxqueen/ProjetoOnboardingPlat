@@ -30,7 +30,7 @@ class TesteRetrofitActivity : AppCompatActivity() {
     }
 
     private fun getStoreList() {
-            useCase.getList()
+            val service = useCase.getList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe (

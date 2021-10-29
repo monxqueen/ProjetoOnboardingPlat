@@ -27,12 +27,14 @@ object Network {
     private fun buildRetrofit(): Retrofit {
         val contentType = JSON_MEDIA_TYPE.toMediaType()
 
-        return Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(getLoggingInterceptor().build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(Json.asConverterFactory(contentType))
             .build()
+
+        return retrofit
     }
 
     val retrofitService : StoreService by lazy {
