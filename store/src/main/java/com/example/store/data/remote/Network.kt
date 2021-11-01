@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
-private const val BASE_URL = "http://0.0.0.0:8080/"
+private const val BASE_URL = "http://0.0.0.0:8080/store/"
 
 object Network {
 

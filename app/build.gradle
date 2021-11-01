@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -36,7 +36,9 @@ dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
     implementation project(':store')
-    //TODO: remover linha 37
+
+    implementation Libs.kotlinSerialization
+    implementation Libs.kotlinSerializationConverter
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
@@ -46,6 +48,4 @@ dependencies {
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
-
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 }
