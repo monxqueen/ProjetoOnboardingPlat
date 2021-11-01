@@ -8,12 +8,15 @@ import com.example.store.data.remote.mapper.StoresMapper
 import com.example.store.data.remote.repository.RepositoryImpl
 import com.example.store.domain.GetStoreListUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class TesteRetrofitActivity : AppCompatActivity() {
 
     private lateinit var rvAdapter: StoresAdapter
     private val useCase = GetStoreListUseCase(RepositoryImpl(StoresMapper()))
+    private val disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,7 @@ class TesteRetrofitActivity : AppCompatActivity() {
     }
 
     private fun getStoreList() {
-            val service = useCase.getList()
+            useCase.getList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe (
@@ -39,6 +42,13 @@ class TesteRetrofitActivity : AppCompatActivity() {
                 },
                 {
                 }
-            ).dispose()
+            ).handleDisposable()
+    }
+
+    private fun Disposable.handleDisposable(): Disposable = apply { disposable.add(this) }
+
+    override fun onDestroy() {
+        disposable.dispose()
+        super.onDestroy()
     }
 }

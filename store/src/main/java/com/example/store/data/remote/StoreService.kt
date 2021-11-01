@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface StoreService {
 
-    @GET("list")
+    @GET("store/list")
     fun getStoresList(): Single<List<StoreResponse>>
 }

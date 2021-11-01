@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
-private const val BASE_URL = "http://0.0.0.0:8080/store/"
+private const val BASE_URL = "http://:8080/"
 
 object Network {
 
@@ -27,14 +27,12 @@ object Network {
     private fun buildRetrofit(): Retrofit {
         val contentType = JSON_MEDIA_TYPE.toMediaType()
 
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(getLoggingInterceptor().build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(Json.asConverterFactory(contentType))
+            .client(getLoggingInterceptor().build())
             .build()
-
-        return retrofit
     }
 
     val retrofitService : StoreService by lazy {
