@@ -12,9 +12,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/favorite" />
-            <option value="$PROJECT_DIR$/nearby" />
-            <option value="$PROJECT_DIR$/remote" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/favorite" />
+            <option value="$PROJECT_DIR$/features/nearby" />
             <option value="$PROJECT_DIR$/store" />
           </set>
         </option>

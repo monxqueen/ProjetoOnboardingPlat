@@ -1,7 +1,7 @@
 object Versions {
 
     // Kotlin
-    const val kotlinVersion = "1.5.21"
+    const val kotlinVersion = "1.5.31"
     const val constraintLayoutVersion = "2.1.1"
     const val kotlinSerializationVersion = "1.3.0"
 

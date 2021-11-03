@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -34,6 +35,9 @@ android {
 dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
+
+    implementation Libs.kotlinSerialization
+    implementation Libs.kotlinSerializationConverter
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
