@@ -35,7 +35,6 @@ android {
 dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
-    implementation project(':store')
 
     implementation Libs.kotlinSerialization
     implementation Libs.kotlinSerializationConverter
