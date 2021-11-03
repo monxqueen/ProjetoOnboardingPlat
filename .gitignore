@@ -87,3 +87,6 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+# Constants
+store/src/main/java/com/example/store/data/remote/model/Constants.kt

@@ -34,10 +34,6 @@ android {
 
 dependencies {
 
-    implementation Libs.coreKtx
-    implementation Libs.appCompat
-    implementation Libs.materialDesign
-
     implementation Libs.retrofit
     implementation Libs.retrofitRxJava2Adapter
 
@@ -50,12 +46,11 @@ dependencies {
     implementation Libs.rxJava
     implementation Libs.rxAndroid
 
-    //TODO: verificar se essas libs serão utilizadas
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+
+    //    implementation Libs.coreKtx
+    //    implementation Libs.appCompat
+    //    implementation Libs.materialDesign
 }

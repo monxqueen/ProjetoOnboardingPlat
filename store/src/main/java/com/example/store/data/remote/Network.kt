@@ -1,5 +1,6 @@
 package com.example.store.data.remote
 
+import com.example.store.data.remote.model.Constants
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -9,9 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
-private const val BASE_URL = "http://:8080/"
 
 object Network {
+
+    private val LOCAL_IP = Constants.LOCAL_IP.value
+    private val BASE_URL = "http://$LOCAL_IP:8080/"
 
     private fun getLoggingInterceptor(): OkHttpClient.Builder {
         val logging = HttpLoggingInterceptor()
