@@ -27,5 +27,6 @@ object Libs {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroidVersion}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
-
+    const val mockito = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+    const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
 }
