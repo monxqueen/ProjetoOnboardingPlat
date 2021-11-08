@@ -2,26 +2,23 @@ package com.example.store
 
 import com.example.store.data.remote.mapper.StoresMapper
 import com.example.store.data.remote.model.StoreResponse
-import com.example.store.data.remote.repository.RepositoryImpl
+import com.example.store.domain.Repository
 import com.example.store.domain.entity.Store
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
-import org.junit.Assert
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 class StoreTest {
 
-    @Mock
-    private val repository: RepositoryImpl = mock(RepositoryImpl::class.java)
+    private val repository: Repository = mock(Repository::class.java)
     private val mapper = StoresMapper()
 
     @Test
     fun `when call getStoresList should return an expected list`() {
         //given
-        val listStore = STORES_LIST
+        val listStore = getStoresList()
 
         `when`(repository.getStores()).thenReturn(Single.just(listStore))
 
@@ -46,7 +43,7 @@ class StoreTest {
     @Test
     fun `when call getStoresList should return an empty list`() {
         //given
-        val listStore = EMPTY_LIST
+        val listStore = getEmptyList()
 
         `when`(repository.getStores()).thenReturn(Single.just(listStore))
 
@@ -104,35 +101,20 @@ class StoreTest {
 
     @Test
     fun `when call mapStoresListToDomain with different attribute type should return an error`(){
-        
+        //TODO: Implementar essa função de teste
     }
 
-
-    companion object {
-        //val STORE = Store(1, "Lojas Americanas", "icone.jpg", -141545.05264, -2545875.56450)
-
-        val EMPTY_LIST = emptyList<Store>()
-
-        val STORES_LIST =
-            listOf(
-                Store(
-                    2,
-                    "Lojas Americanas",
-                    "icone.jpg",
-                    -141545.05264,
-                    -2545875.56450
-                )
+    private fun getStoresList() =
+        listOf(
+            Store(
+                2,
+                "Lojas Americanas",
+                "icone.jpg",
+                -141545.05264,
+                -2545875.56450
             )
+        )
 
-        val STORE_RESPONSE_LIST =
-            listOf(
-                StoreResponse(
-                    2,
-                    "Lojas Americanas",
-                    "icone.jpg",
-                    -141545.05264,
-                    -2545875.56450
-                )
-            )
-    }
+    private fun getEmptyList() = emptyList<Store>()
+
 }
