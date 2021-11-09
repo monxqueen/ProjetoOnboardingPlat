@@ -1,9 +1,9 @@
 package com.example.store.data.remote.repository
 
-import com.example.store.data.remote.Network
-import com.example.store.data.remote.mapper.StoresMapper
-import com.example.store.domain.Repository
-import com.example.store.domain.entity.Store
+import com.example.data.data.remote.Network
+import com.example.data.data.remote.mapper.StoresMapper
+import com.example.data.domain.Repository
+import com.example.data.domain.entity.Store
 import io.reactivex.Single
 
 class RepositoryImpl(private val storesMapper: StoresMapper) : Repository {
