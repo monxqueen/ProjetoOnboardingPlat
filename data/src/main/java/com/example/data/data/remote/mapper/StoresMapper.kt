@@ -1,7 +1,7 @@
 package com.example.data.data.remote.mapper
 
-import com.example.store.data.remote.model.StoreResponse
-import com.example.store.domain.entity.Store
+import com.example.data.data.remote.model.StoreResponse
+import com.example.data.domain.entity.Store
 
 class StoresMapper {
 
