@@ -89,7 +89,7 @@ lint/tmp/
 *.hprof
 
 # Constants
-store/src/main/java/com/example/store/data/remote/model/Constants.kt
+data/src/main/java/com/example/data/data/remote/model/Constants.kt
 
 # BuildSrc Build
 buildSrc/build

@@ -34,12 +34,13 @@ android {
 dependencies {
     implementation project(':data')
 
+    implementation Libs.rxJava
+    implementation Libs.rxAndroid
+
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.materialDesign
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
-    implementation Libs.rxJava
-    implementation Libs.rxAndroid
 }

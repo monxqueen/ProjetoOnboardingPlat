@@ -1,4 +1,4 @@
-package com.example.store.data.remote.mapper
+package com.example.data.data.remote.mapper
 
 import com.example.store.data.remote.model.StoreResponse
 import com.example.store.domain.entity.Store

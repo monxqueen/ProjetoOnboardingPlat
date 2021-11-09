@@ -1,4 +1,4 @@
-package com.example.store.domain.entity
+package com.example.data.domain.entity
 
 data class Store(
     val id: Int,

@@ -1,6 +1,6 @@
-package com.example.store.domain
+package com.example.data.domain
 
-import com.example.store.domain.entity.Store
+import com.example.data.domain.entity.Store
 import io.reactivex.Single
 
 interface GetStoreListUseCase {

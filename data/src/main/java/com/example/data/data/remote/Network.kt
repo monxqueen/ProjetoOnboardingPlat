@@ -1,6 +1,6 @@
-package com.example.store.data.remote
+package com.example.data.data.remote
 
-import com.example.store.data.remote.model.Constants
+import com.example.data.data.remote.model.Constants
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

@@ -1,6 +1,6 @@
-package com.example.store.data.remote
+package com.example.data.data.remote
 
-import com.example.store.data.remote.model.StoreResponse
+import com.example.data.data.remote.model.StoreResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 
