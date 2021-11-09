@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation project(':store')
+    implementation project(':data')
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
@@ -40,4 +40,6 @@ dependencies {
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    implementation Libs.rxJava
+    implementation Libs.rxAndroid
 }

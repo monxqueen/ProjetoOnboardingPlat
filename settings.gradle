@@ -17,4 +17,4 @@ rootProject.name = "StoreApp"
 include ':app'
 include ':features:favorite'
 include ':features:nearby'
-include ':store'
+include ':data'
