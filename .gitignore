@@ -19,7 +19,7 @@ out/
 
 # Gradle files
 .gradle/
-build/
+/build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -92,4 +92,4 @@ lint/tmp/
 data/src/main/java/com/example/data/data/remote/model/Constants.kt
 
 # BuildSrc Build
-buildSrc/build
+/buildSrc/build/
