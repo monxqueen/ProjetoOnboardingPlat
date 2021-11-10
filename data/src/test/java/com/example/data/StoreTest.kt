@@ -17,6 +17,7 @@ class StoreTest {
 
     @Test
     fun `when call getStoresList should return an expected list`() {
+
         //given
         val listStore = getStoresList()
 
@@ -42,6 +43,7 @@ class StoreTest {
 
     @Test
     fun `when call getStoresList should return an empty list`() {
+
         //given
         val listStore = getEmptyList()
 
@@ -58,6 +60,7 @@ class StoreTest {
 
     @Test
     fun `when call mapStoresListToDomain should return a Store-typed list`() {
+
         //given
         val expected = listOf(
             Store(
@@ -116,5 +119,4 @@ class StoreTest {
         )
 
     private fun getEmptyList() = emptyList<Store>()
-
 }
