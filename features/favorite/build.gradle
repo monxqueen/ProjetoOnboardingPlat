@@ -40,7 +40,10 @@ dependencies {
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.materialDesign
+    
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    testImplementation Libs.mockito
+    testImplementation Libs.mockitoInline
 }

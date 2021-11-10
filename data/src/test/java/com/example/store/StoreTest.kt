@@ -1,9 +1,9 @@
-package com.example.store
+package com.example.data
 
-import com.example.store.data.remote.mapper.StoresMapper
-import com.example.store.data.remote.model.StoreResponse
-import com.example.store.domain.Repository
-import com.example.store.domain.entity.Store
+import com.example.data.data.remote.mapper.StoresMapper
+import com.example.data.data.remote.model.StoreResponse
+import com.example.data.domain.Repository
+import com.example.data.domain.entity.Store
 import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Test

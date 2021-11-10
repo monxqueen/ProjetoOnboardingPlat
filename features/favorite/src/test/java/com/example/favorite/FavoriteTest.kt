@@ -1,26 +1,53 @@
 package com.example.favorite
 
-import com.example.store.data.remote.mapper.StoresMapper
-import com.example.store.data.remote.model.StoreResponse
-import com.example.store.domain.Repository
-import com.example.store.domain.entity.Store
+import com.example.data.domain.entity.Store
+import com.example.favorite.domain.GetFavoriteListUseCase
+import com.example.favorite.domain.entity.FavoriteStore
+import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import io.reactivex.Single
-import junit.framework.Assert.assertEquals
+import junit.framework.Assert
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 class FavoriteTest {
 
+    private val getFavoriteListUseCase: GetFavoriteListUseCase = mock(GetFavoriteListUseCase::class.java)
+    private val favoriteStoresMapper = FavoriteStoresMapper()
 
     @Test
-    fun `when call getStoresList should return an expected list`() {
+    fun `when call getFavoriteList should return an expected list`() {
         //given
-        val listStore = getStoresList()
+        val favoriteList = fetchFavoriteList()
 
-        `when`(repository.getStores()).thenReturn(Single.just(listStore))
+        `when`(getFavoriteListUseCase.getFavoriteList()).thenReturn(Single.just(favoriteList))
 
         val expected = listOf(
+            FavoriteStore(
+                2,
+                "Lojas Americanas",
+                "icone.jpg"
+            )
+        )
+
+        //when
+        val result = getFavoriteListUseCase.getFavoriteList()
+
+        //then
+        result.test().assertNoErrors().assertValue(expected)
+    }
+
+    @Test
+    fun `when call mapStoresListToDomain should return a FavoriteStore-typed list`() {
+        //given
+        val expected = listOf(
+            FavoriteStore(
+                2,
+                "Lojas Americanas",
+                "icone.jpg"
+            )
+        )
+        val storeList = listOf(
             Store(
                 2,
                 "Lojas Americanas",
@@ -31,26 +58,21 @@ class FavoriteTest {
         )
 
         //when
-        val result = repository.getStores()
-
+        val result = favoriteStoresMapper.mapStoresListToDomain(storeList)
 
         //then
-        result.test().assertNoErrors().assertValue(expected)
+        Assert.assertEquals(expected, result)
     }
 
-
-
-    private fun getStoresList() =
+    private fun fetchFavoriteList() =
         listOf(
-            Store(
+            FavoriteStore(
                 2,
                 "Lojas Americanas",
-                "icone.jpg",
-                -141545.05264,
-                -2545875.56450
+                "icone.jpg"
             )
         )
 
-    private fun getEmptyList() = emptyList<Store>()
+    private fun getEmptyList() = emptyList<FavoriteStore>()
 
 }

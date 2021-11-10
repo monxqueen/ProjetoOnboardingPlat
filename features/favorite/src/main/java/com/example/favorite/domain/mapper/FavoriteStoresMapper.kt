@@ -1,7 +1,7 @@
 package com.example.favorite.domain.mapper
 
+import com.example.data.domain.entity.Store
 import com.example.favorite.domain.entity.FavoriteStore
-import com.example.store.domain.entity.Store
 
 class FavoriteStoresMapper {
 
