@@ -1,4 +1,4 @@
-package com.example.store.data.remote.repository
+package com.example.data.data.remote.repository
 
 import com.example.data.data.remote.Network
 import com.example.data.data.remote.mapper.StoresMapper

@@ -5,7 +5,7 @@ import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import io.reactivex.Single
-import junit.framework.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
@@ -39,6 +39,7 @@ class FavoriteTest {
 
     @Test
     fun `when call mapStoresListToDomain should return a FavoriteStore-typed list`() {
+
         //given
         val expected = listOf(
             FavoriteStore(
@@ -61,7 +62,7 @@ class FavoriteTest {
         val result = favoriteStoresMapper.mapStoresListToDomain(storeList)
 
         //then
-        Assert.assertEquals(expected, result)
+        assertEquals(expected, result)
     }
 
     private fun fetchFavoriteList() =
@@ -74,5 +75,4 @@ class FavoriteTest {
         )
 
     private fun getEmptyList() = emptyList<FavoriteStore>()
-
 }
