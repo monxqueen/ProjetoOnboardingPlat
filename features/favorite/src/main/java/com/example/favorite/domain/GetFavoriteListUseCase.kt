@@ -1,10 +1,8 @@
 package com.example.favorite.domain
 
-import com.example.favorite.domain.mapper.FavoriteStoresMapper
-import com.example.data.domain.GetStoreListUseCase
+import com.example.favorite.domain.entity.FavoriteStore
+import io.reactivex.Single
 
-class GetFavoriteListUseCase(private val storeListUseCase: GetStoreListUseCase, private val favoriteStoresMapper: FavoriteStoresMapper ) {
-    fun getFavoriteList() = storeListUseCase.getList().map { storeList ->
-        favoriteStoresMapper.mapStoresListToDomain(storeList)
-    }
+interface GetFavoriteListUseCase {
+    operator fun invoke() : Single<List<FavoriteStore>>
 }

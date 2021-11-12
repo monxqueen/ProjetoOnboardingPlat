@@ -5,13 +5,14 @@ import com.example.data.data.remote.model.StoreResponse
 import com.example.data.domain.Repository
 import com.example.data.domain.entity.Store
 import io.reactivex.Single
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
-class StoreTest {
+class StoreDomainTest {
 
+    //TODO: Corrigir a metodologia do teste conforme foi feito para o módulo de Favorite
     private val repository: Repository = mock(Repository::class.java)
     private val mapper = StoresMapper()
 

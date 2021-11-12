@@ -1,26 +1,28 @@
-package com.example.favorite
+package com.example.favorite.domain
 
+import com.example.data.domain.GetStoreListUseCase
 import com.example.data.domain.entity.Store
-import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
-class FavoriteTest {
+class FavoriteDomainTest {
 
-    private val getFavoriteListUseCase: GetFavoriteListUseCase = mock(GetFavoriteListUseCase::class.java)
     private val favoriteStoresMapper = FavoriteStoresMapper()
+    private val getStoreListUseCase : GetStoreListUseCase = mock()
+    private val getFavoriteListUseCase = GetFavoriteListUseCaseImpl(getStoreListUseCase, favoriteStoresMapper)
 
     @Test
     fun `when call getFavoriteList should return an expected list`() {
-        //given
-        val favoriteList = fetchFavoriteList()
 
-        `when`(getFavoriteListUseCase.getFavoriteList()).thenReturn(Single.just(favoriteList))
+        //given
+        val storeList = fetchStoreList()
+
+        whenever(getStoreListUseCase.getList()).thenReturn(Single.just(storeList))
 
         val expected = listOf(
             FavoriteStore(
@@ -31,7 +33,7 @@ class FavoriteTest {
         )
 
         //when
-        val result = getFavoriteListUseCase.getFavoriteList()
+        val result = getFavoriteListUseCase.invoke()
 
         //then
         result.test().assertNoErrors().assertValue(expected)
@@ -65,14 +67,16 @@ class FavoriteTest {
         assertEquals(expected, result)
     }
 
-    private fun fetchFavoriteList() =
+    private fun fetchStoreList() =
         listOf(
-            FavoriteStore(
-                2,
-                "Lojas Americanas",
-                "icone.jpg"
-            )
+        Store(
+            2,
+            "Lojas Americanas",
+            "icone.jpg",
+            -141545.05264,
+            -2545875.56450
         )
+    )
 
-    private fun getEmptyList() = emptyList<FavoriteStore>()
+    private fun fetchEmptyList() = emptyList<FavoriteStore>()
 }

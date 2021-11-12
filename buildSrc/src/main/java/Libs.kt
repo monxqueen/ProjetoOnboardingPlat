@@ -29,4 +29,6 @@ object Libs {
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockitoVersion}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
+    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+    const val arcCore = "androidx.arch.core:core-testing:${Versions.androidCoreVersion}"
 }
