@@ -10,9 +10,9 @@ import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
-class StoreDomainTest {
+class DataTest {
 
-    //TODO: Corrigir a metodologia do teste conforme foi feito para o módulo de Favorite
+    //TODO: Verificar como testar o repositoryImpl sem precisar fazer chamada no Retrofit
     private val repository: Repository = mock(Repository::class.java)
     private val mapper = StoresMapper()
 
