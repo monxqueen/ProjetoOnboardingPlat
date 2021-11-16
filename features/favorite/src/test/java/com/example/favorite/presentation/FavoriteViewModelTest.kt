@@ -26,7 +26,6 @@ class FavoriteViewModelTest {
 
     @Test
     fun `when call getFavoriteList should return an expected list`() {
-
         //given
         val favoriteList = fetchFavoriteList()
 
