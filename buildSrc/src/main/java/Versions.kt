@@ -9,6 +9,7 @@ object Versions {
     const val coreVersion = "1.6.0"
     const val appCompatVersion = "1.3.1"
     const val materialDesignVersion = "1.4.0"
+    const val glideVersion = "4.12.0"
 
     // Retrofit
     const val retrofitVersion = "2.9.0"

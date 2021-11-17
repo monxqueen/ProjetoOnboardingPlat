@@ -9,6 +9,7 @@ object Libs {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesignVersion}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
 
     // Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
