@@ -1,11 +1,9 @@
 package com.example.data
 
-import com.example.data.data.remote.Network
 import com.example.data.data.remote.StoreService
 import com.example.data.data.remote.mapper.StoresMapper
 import com.example.data.data.remote.model.StoreResponse
 import com.example.data.data.remote.repository.RepositoryImpl
-import com.example.data.domain.Repository
 import com.example.data.domain.entity.Store
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
@@ -112,4 +110,6 @@ class DataTest {
                 -2545875.56450
             )
         )
+
+
 }
