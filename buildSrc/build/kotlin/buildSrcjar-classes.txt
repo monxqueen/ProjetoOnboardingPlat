@@ -1,1 +1,0 @@
-/Users/marianadeoliveira/Documents/Desafio/StoreApp/ProjetoOnboardingPlat/buildSrc/build/classes/kotlin/main/Libs.class:/Users/marianadeoliveira/Documents/Desafio/StoreApp/ProjetoOnboardingPlat/buildSrc/build/classes/kotlin/main/Versions.class

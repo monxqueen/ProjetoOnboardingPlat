@@ -29,5 +29,6 @@ object Versions {
     const val espressoVersion = "3.4.0"
     const val mockitoVersion = "3.9.0"
     const val mockitoInlineVersion = "3.3.3"
-
+    const val mockitoKotlinVersion = "3.2.0"
+    const val androidCoreVersion = "2.1.0"
 }

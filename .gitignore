@@ -19,7 +19,7 @@ out/
 
 # Gradle files
 .gradle/
-build/
+/build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -64,32 +64,32 @@ captures/
 # google-services.json
 
 # Freeline
-freeline.py
-freeline/
-freeline_project_description.json
+# freeline.py
+# freeline/
+# freeline_project_description.json
 
 # fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
-fastlane/readme.md
+# fastlane/report.xml
+# fastlane/Preview.html
+# fastlane/screenshots
+# fastlane/test_output
+# fastlane/readme.md
 
 # Version control
 vcs.xml
 
 # lint
-lint/intermediates/
-lint/generated/
-lint/outputs/
-lint/tmp/
+# lint/intermediates/
+# lint/generated/
+# lint/outputs/
+# lint/tmp/
 # lint/reports/
 
 # Android Profiling
 *.hprof
 
 # Constants
-store/src/main/java/com/example/store/data/remote/model/Constants.kt
+data/src/main/java/com/example/data/data/remote/model/Constants.kt
 
 # BuildSrc Build
-buildSrc/build
+/buildSrc/build/
