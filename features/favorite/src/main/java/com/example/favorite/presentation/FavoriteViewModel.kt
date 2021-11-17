@@ -1,5 +1,6 @@
 package com.example.favorite.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.favorite.domain.GetFavoriteListUseCase
@@ -13,6 +14,9 @@ class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCa
     private val _storeLiveData = MutableLiveData<List<FavoriteStore>>()
     val storeLiveData : LiveData<List<FavoriteStore>> = _storeLiveData
 
+    private val _errorStateLiveData = MutableLiveData<Throwable>()
+    val errorStateLiveData : LiveData<Throwable> = _errorStateLiveData
+
     fun getFavoriteList() {
         getFavoriteListUseCase.invoke()
             .subscribeOn(Schedulers.io())
@@ -22,7 +26,8 @@ class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCa
                     _storeLiveData.value = it
                 },
                 {
-                    // TODO: implementar o cenário infeliz
+                    Log.e("ErroReq", "erro: " + it.cause)
+                    _errorStateLiveData.value = it
                 }
             ).handleDisposable()
     }
