@@ -2,6 +2,7 @@ package com.example.favorite.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.data.remote.mapper.StoresMapper
@@ -29,6 +30,7 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.getFavoriteList()
         setupFavoriteStoresRecyclerView()
         observeFavoriteList()
+        observeErrorState()
     }
 
     private fun setupFavoriteStoresRecyclerView() {
@@ -47,6 +49,13 @@ class FavoriteActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun observeErrorState() {
+        favoriteViewModel.errorStateLiveData.observe(this, { error ->
+            Toast.makeText(this, "Ocorreu um erro :(", Toast.LENGTH_SHORT).show()
+        })
+
     }
 
 }
