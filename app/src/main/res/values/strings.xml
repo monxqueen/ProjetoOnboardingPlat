@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StoreApp</string>
+    <string name="favoritas">Favoritas</string>
+    <string name="proximas">Próximas</string>
 </resources>

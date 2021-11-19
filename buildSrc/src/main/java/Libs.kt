@@ -3,13 +3,10 @@ object Libs {
     // Kotlin
     const val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializationVersion}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
 
     // Support
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
-    const val materialDesign = "com.google.android.material:material:${Versions.materialDesignVersion}"
-    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
 
     // Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
@@ -32,4 +29,10 @@ object Libs {
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
     const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val arcCore = "androidx.arch.core:core-testing:${Versions.androidCoreVersion}"
+
+    // Layout
+    const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2Version}"
+    const val materialDesign = "com.google.android.material:material:${Versions.materialDesignVersion}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
 }

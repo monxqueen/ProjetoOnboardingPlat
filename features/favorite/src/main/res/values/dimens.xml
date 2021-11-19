@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xsmall_dp">8dp</dimen>
+    <dimen name="small_dp">16dp</dimen>
+    <dimen name="medium_dp">24dp</dimen>
+    <dimen name="large_dp">32dp</dimen>
+    <dimen name="xlarge_dp">40dp</dimen>
+    <dimen name="xxlarge_dp">48dp</dimen>
+    <dimen name="xxsmall_sp">5sp</dimen>
+    <dimen name="xsmall_sp">8sp</dimen>
+    <dimen name="spcsmall_sp">12sp</dimen>
+    <dimen name="small_sp">16sp</dimen>
+    <dimen name="xmedium_sp">18sp</dimen>
+    <dimen name="medium_sp">24sp</dimen>
+    <dimen name="large_sp">32sp</dimen>
+    <dimen name="xlarge_sp">40sp</dimen>
+    <dimen name="xxlarge_sp">48sp</dimen>
+</resources>

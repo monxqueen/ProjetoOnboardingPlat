@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdk 31
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         minSdk 23
         targetSdk 31
@@ -42,6 +46,7 @@ dependencies {
     implementation Libs.constraintLayout
     implementation Libs.materialDesign
     implementation Libs.glide
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid

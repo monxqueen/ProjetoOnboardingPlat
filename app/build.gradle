@@ -7,6 +7,10 @@ plugins {
 android {
     compileSdk 31
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.storeapp"
         minSdk 23
@@ -43,8 +47,11 @@ dependencies {
     implementation Libs.appCompat
     implementation Libs.constraintLayout
     implementation Libs.materialDesign
+    implementation Libs.viewPager2
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+
+
 }

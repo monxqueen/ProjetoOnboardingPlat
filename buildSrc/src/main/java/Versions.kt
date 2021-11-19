@@ -2,14 +2,11 @@ object Versions {
 
     // Kotlin
     const val kotlinVersion = "1.5.31"
-    const val constraintLayoutVersion = "2.1.1"
     const val kotlinSerializationVersion = "1.3.0"
 
     // Support
     const val coreVersion = "1.6.0"
     const val appCompatVersion = "1.3.1"
-    const val materialDesignVersion = "1.4.0"
-    const val glideVersion = "4.12.0"
 
     // Retrofit
     const val retrofitVersion = "2.9.0"
@@ -32,4 +29,10 @@ object Versions {
     const val mockitoInlineVersion = "3.3.3"
     const val mockitoKotlinVersion = "3.2.0"
     const val androidCoreVersion = "2.1.0"
+
+    // Layout
+    const val viewPager2Version = "1.0.0"
+    const val materialDesignVersion = "1.4.0"
+    const val glideVersion = "4.12.0"
+    const val constraintLayoutVersion = "2.1.1"
 }
