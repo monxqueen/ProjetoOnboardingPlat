@@ -10,18 +10,20 @@
         android:id="@+id/txtViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/header_title"
+        android:layout_marginTop="@dimen/medium_dp"
+        android:textSize="@dimen/medium_sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="PicPay Projeto Onboarding" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vwpFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtViewTitle"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav" />
+        app:layout_constraintTop_toBottomOf="@id/txtViewTitle" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

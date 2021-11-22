@@ -2,9 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/favorite"
         android:enabled="true"
-        android:title="@string/favoritas" />
+        android:title="@string/favoritas"
+        android:icon="@drawable/favorite_icon"/>
 
     <item android:id="@+id/nearby"
         android:enabled="true"
-        android:title="@string/proximas" />
+        android:title="@string/proximas"
+        android:icon="@drawable/pin_nearby_icon"/>
 </menu>
