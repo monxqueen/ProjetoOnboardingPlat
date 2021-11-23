@@ -10,7 +10,7 @@
         android:id="@+id/txtViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/header_title"
+        android:text="@string/title"
         android:layout_marginTop="@dimen/medium_dp"
         android:textSize="@dimen/medium_sp"
         app:layout_constraintStart_toStartOf="parent"

@@ -46,7 +46,6 @@ dependencies {
     implementation Libs.constraintLayout
     implementation Libs.materialDesign
     implementation Libs.glide
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid

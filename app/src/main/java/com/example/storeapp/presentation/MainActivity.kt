@@ -7,27 +7,36 @@ import com.example.storeapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewPagerFragmentAdapter: ViewPagerFragmentAdapter
+    //TODO: adicionar progress bar
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    private val viewPagerFragmentAdapter: ViewPagerFragmentAdapter by lazy {
+        ViewPagerFragmentAdapter(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        viewPagerFragmentAdapter = ViewPagerFragmentAdapter(this)
+        setupViewPagerAdapter()
+        setupBottomNav()
+    }
 
-        binding.apply {
-            vwpFragmentContainer.adapter = viewPagerFragmentAdapter
-
-            bottomNav.setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.favorite -> vwpFragmentContainer.currentItem = FIRST_FRAGMENT_POSITION
-                    R.id.nearby -> true //TODO: Vincular à fragment nearby
-                }
-                false
+    private fun setupBottomNav() {
+        binding.bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.favorite -> binding.vwpFragmentContainer.currentItem =
+                    FragmentPosition.FIRST_FRAGMENT_POSITION.position
+                R.id.nearby -> true //TODO: Vincular à fragment nearby
             }
+            false
         }
+    }
+
+    private fun setupViewPagerAdapter() {
+        binding.vwpFragmentContainer.adapter = viewPagerFragmentAdapter
     }
 }
