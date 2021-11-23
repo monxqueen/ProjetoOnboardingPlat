@@ -13,7 +13,7 @@ class ViewPagerFragmentAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             FragmentPosition.FIRST_FRAGMENT_POSITION.position -> FavoriteFragment()
-            else -> FavoriteFragment()
+            else -> FavoriteFragment() //TODO: encontrar maneira de retornar uma exception (a função necessariamente retorna uma fragment).
         }
     }
 }

@@ -6,6 +6,8 @@
     <dimen name="large_dp">32dp</dimen>
     <dimen name="xlarge_dp">40dp</dimen>
     <dimen name="xxlarge_dp">48dp</dimen>
+    <dimen name="spclarge_dp">130dp</dimen>
+    <dimen name="xspclarge_dp">150dp</dimen>
     <dimen name="xxsmall_sp">5sp</dimen>
     <dimen name="xsmall_sp">8sp</dimen>
     <dimen name="spcsmall_sp">12sp</dimen>

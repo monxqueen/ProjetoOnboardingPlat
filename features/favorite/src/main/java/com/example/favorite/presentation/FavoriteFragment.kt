@@ -17,7 +17,13 @@ import com.example.favorite.presentation.adapter.FavoriteStoresAdapter
 
 class FavoriteFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavoriteBinding
+    private val binding: FragmentFavoriteBinding by lazy {
+        FragmentFavoriteBinding.inflate(layoutInflater)
+    }
+
+    private val rvAdapter: FavoriteStoresAdapter by lazy {
+        FavoriteStoresAdapter(requireActivity())
+    }
 
     private val viewModel = FavoriteViewModel(
         GetFavoriteListUseCaseImpl(
@@ -27,14 +33,11 @@ class FavoriteFragment : Fragment() {
         )
     )
 
-    private lateinit var rvAdapter: FavoriteStoresAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoriteBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -49,7 +52,6 @@ class FavoriteFragment : Fragment() {
 
     private fun setupRecyclerView() {
         val rvFavoriteStores = binding.rvFavoriteStoresList
-        rvAdapter = FavoriteStoresAdapter(requireActivity())
         rvFavoriteStores.adapter = rvAdapter
         rvFavoriteStores.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
     }
