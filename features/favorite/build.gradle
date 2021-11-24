@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdk 31
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         minSdk 23
         targetSdk 31
@@ -39,12 +43,9 @@ dependencies {
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
+    implementation Libs.constraintLayout
     implementation Libs.materialDesign
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation Libs.glide
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid

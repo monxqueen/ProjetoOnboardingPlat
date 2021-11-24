@@ -53,9 +53,4 @@ dependencies {
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
     testImplementation Libs.arcCore
-
-
-    //    implementation Libs.coreKtx
-    //    implementation Libs.appCompat
-    //    implementation Libs.materialDesign
 }
