@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         setupViewPagerAdapter()
         setupBottomNav()
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.favorite -> binding.vwpFragmentContainer.currentItem =
-                    FragmentPosition.FIRST_FRAGMENT_POSITION.position
+                    FragmentPosition.FAVORITE.ordinal
                 R.id.nearby -> true //TODO: Vincular à fragment nearby
             }
             false

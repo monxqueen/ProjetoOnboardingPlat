@@ -22,7 +22,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private val rvAdapter: FavoriteStoresAdapter by lazy {
-        FavoriteStoresAdapter(requireActivity())
+        FavoriteStoresAdapter()
     }
 
     private val viewModel = FavoriteViewModel(
@@ -53,11 +53,11 @@ class FavoriteFragment : Fragment() {
     private fun setupRecyclerView() {
         val rvFavoriteStores = binding.rvFavoriteStoresList
         rvFavoriteStores.adapter = rvAdapter
-        rvFavoriteStores.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        rvFavoriteStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     private fun observeFavoriteList() {
-        viewModel.storeLiveData.observe(requireActivity(), { list ->
+        viewModel.storeLiveData.observe(viewLifecycleOwner, { list ->
             list?.let {
                 rvAdapter.dataSet.clear()
                 rvAdapter.dataSet.addAll(list)
@@ -67,9 +67,9 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observeErrorState() {
-        viewModel.errorStateLiveData.observe(requireActivity(), { throwable ->
+        viewModel.errorStateLiveData.observe(viewLifecycleOwner, { throwable ->
             throwable?.let {
-                Toast.makeText(requireActivity(), "Algo deu errado :(", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Algo deu errado :(", Toast.LENGTH_SHORT).show()
             }
         })
     }
