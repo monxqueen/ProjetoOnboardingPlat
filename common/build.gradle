@@ -6,10 +6,6 @@ plugins {
 android {
     compileSdk 31
 
-    buildFeatures {
-        viewBinding true
-    }
-
     defaultConfig {
         minSdk 23
         targetSdk 31
@@ -36,23 +32,5 @@ android {
 }
 
 dependencies {
-    implementation project(':data')
-    implementation project(':common')
-
-    implementation Libs.rxJava
-    implementation Libs.rxAndroid
-
-    implementation Libs.coreKtx
-    implementation Libs.appCompat
-    implementation Libs.constraintLayout
-    implementation Libs.materialDesign
     implementation Libs.glide
-
-    testImplementation Libs.jUnit
-    androidTestImplementation Libs.jUnitAndroid
-    androidTestImplementation Libs.espresso
-    testImplementation Libs.mockito
-    testImplementation Libs.mockitoInline
-    testImplementation Libs.mockitoKotlin
-    testImplementation Libs.arcCore
 }
