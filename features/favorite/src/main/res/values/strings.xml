@@ -1,2 +1,4 @@
 <resources>
+    <string name="Erro">Ocorreu um erro!</string>
+    <string name="Tentar_novamente">Tentar novamente</string>
 </resources>
