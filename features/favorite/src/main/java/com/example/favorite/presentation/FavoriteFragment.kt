@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.data.data.remote.mapper.StoresMapper
@@ -45,9 +45,9 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        viewModel.getFavoriteList()
         observeFavoriteList()
         observeErrorState()
+        viewModel.getFavoriteList()
     }
 
     private fun setupRecyclerView() {
@@ -59,6 +59,7 @@ class FavoriteFragment : Fragment() {
     private fun observeFavoriteList() {
         viewModel.storeLiveData.observe(viewLifecycleOwner, { list ->
             list?.let {
+                binding.rvFavoriteStoresList.isVisible = true
                 rvAdapter.dataSet.clear()
                 rvAdapter.dataSet.addAll(list)
                 rvAdapter.notifyDataSetChanged()
@@ -69,8 +70,20 @@ class FavoriteFragment : Fragment() {
     private fun observeErrorState() {
         viewModel.errorStateLiveData.observe(viewLifecycleOwner, { throwable ->
             throwable?.let {
-                Toast.makeText(requireContext(), "Algo deu errado :(", Toast.LENGTH_SHORT).show()
+                binding.apply {
+                    rvFavoriteStoresList.isVisible = false
+                    includeLayoutError.root.isVisible = true
+                    includeLayoutError.btnError.setOnClickListener {
+                        onClickBtnTryAgain()
+                    }
+                }
+
             }
         })
     }
+    private fun onClickBtnTryAgain() {
+        binding.includeLayoutError.root.isVisible = false
+        viewModel.getFavoriteList()
+    }
 }
+    
