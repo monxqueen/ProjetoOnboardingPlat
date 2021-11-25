@@ -8,7 +8,7 @@
     <include
         android:id="@+id/include_layout_error"
         layout="@layout/fragment_error"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavoriteStoresList"
