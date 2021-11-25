@@ -35,4 +35,5 @@ object Libs {
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesignVersion}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
 }

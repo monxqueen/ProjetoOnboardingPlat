@@ -46,6 +46,7 @@ dependencies {
     implementation Libs.constraintLayout
     implementation Libs.materialDesign
     implementation Libs.glide
+    implementation Libs.lottie
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid

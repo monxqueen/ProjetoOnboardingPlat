@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.data.data.remote.mapper.StoresMapper
@@ -48,6 +49,7 @@ class FavoriteFragment : Fragment() {
         viewModel.getFavoriteList()
         observeFavoriteList()
         observeErrorState()
+        setProgressBarVisibility(true)
     }
 
     private fun setupRecyclerView() {
@@ -59,6 +61,7 @@ class FavoriteFragment : Fragment() {
     private fun observeFavoriteList() {
         viewModel.storeLiveData.observe(viewLifecycleOwner, { list ->
             list?.let {
+                setProgressBarVisibility(false)
                 rvAdapter.dataSet.clear()
                 rvAdapter.dataSet.addAll(list)
                 rvAdapter.notifyDataSetChanged()
@@ -72,5 +75,9 @@ class FavoriteFragment : Fragment() {
                 Toast.makeText(requireContext(), "Algo deu errado :(", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setProgressBarVisibility(visibility: Boolean){
+        binding.progBar.isVisible = visibility
     }
 }
