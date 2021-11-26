@@ -3,14 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../layout/custom_preview.xml" value="0.30416666666666664" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.42618162407319254" />
-        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/drawable/favorite_icon.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2677083333333333" />
+        <entry key="features/favorite/src/main/res/drawable/icon_error.xml" value="0.34791666666666665" />
         <entry key="features/favorite/src/main/res/layout/activity_favorite.xml" value="0.26666666666666666" />
         <entry key="features/favorite/src/main/res/layout/activity_main.xml" value="0.12968591691995948" />
-        <entry key="features/favorite/src/main/res/layout/fragment_favorite.xml" value="0.28894927536231885" />
-        <entry key="features/favorite/src/main/res/layout/fragment_teste.xml" value="0.2755208333333333" />
-        <entry key="features/favorite/src/main/res/layout/item_favorite_stores.xml" value="0.4014563882521566" />
+        <entry key="features/favorite/src/main/res/layout/error_fragment.xml" value="0.33177083333333335" />
+        <entry key="features/favorite/src/main/res/layout/fragment_error.xml" value="0.33" />
+        <entry key="features/favorite/src/main/res/layout/fragment_favorite.xml" value="0.33177083333333335" />
+        <entry key="features/favorite/src/main/res/layout/item_favorite_stores.xml" value="0.25" />
         <entry key="features/favorite/src/main/res/layout/item_favorite_stores_list.xml" value="0.26666666666666666" />
         <entry key="store/src/main/res/layout/activity_main.xml" value="0.21197916666666666" />
         <entry key="store/src/main/res/layout/item_stores.xml" value="0.21197916666666666" />
