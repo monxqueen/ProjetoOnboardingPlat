@@ -45,15 +45,33 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        observeFavoriteList()
-        observeErrorState()
-        viewModel.getFavoriteList()
+       //observeFavoriteList()
+        //observeErrorState()
+        observeState()
+        viewModel.get()
     }
 
     private fun setupRecyclerView() {
         val rvFavoriteStores = binding.rvFavoriteStoresList
         rvFavoriteStores.adapter = rvAdapter
         rvFavoriteStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun observeState() {
+        viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
+
+            with(state){
+                binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty()?:false
+                binding.includeLayoutError.root.isVisible = isErrorVisible
+
+                favoriteList?.let {
+                    rvAdapter.dataSet.clear()
+                    rvAdapter.dataSet.addAll(it)
+                    rvAdapter.notifyDataSetChanged()
+                }
+            }
+
+        })
     }
 
     private fun observeFavoriteList() {

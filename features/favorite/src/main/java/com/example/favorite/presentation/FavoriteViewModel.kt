@@ -9,13 +9,16 @@ import com.example.favorite.presentation.utils.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) : DisposableViewModel() {
+internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) : DisposableViewModel() {
 
     private val _storeLiveData = MutableLiveData<List<FavoriteStore>>()
     val storeLiveData : LiveData<List<FavoriteStore>> = _storeLiveData
 
     private val _errorStateLiveData = MutableLiveData<Throwable>()
     val errorStateLiveData : LiveData<Throwable> = _errorStateLiveData
+
+    private val _viewStateLiveData = MutableLiveData<FavoriteViewState>()
+    val viewStateLiveData : LiveData<FavoriteViewState> = _viewStateLiveData
 
     fun getFavoriteList() {
         getFavoriteListUseCase.invoke()
@@ -31,4 +34,20 @@ class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCa
                 }
             ).handleDisposable()
     }
+
+    fun get() {
+        getFavoriteListUseCase.invoke()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                _viewStateLiveData.value = FavoriteViewState(favoriteList = it)
+                },
+                {
+                    Log.e("ErroReq", "erro: " + it.cause)
+                    _viewStateLiveData.value = FavoriteViewState(isErrorVisible = true)
+                }
+            ).handleDisposable()
+    }
+
 }
