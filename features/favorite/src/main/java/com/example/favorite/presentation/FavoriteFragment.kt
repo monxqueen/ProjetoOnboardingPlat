@@ -44,17 +44,22 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupListeners()
 
-       //observeFavoriteList()
-        //observeErrorState()
         observeState()
-        viewModel.get()
+        viewModel.getFavoriteList()
     }
 
     private fun setupRecyclerView() {
         val rvFavoriteStores = binding.rvFavoriteStoresList
         rvFavoriteStores.adapter = rvAdapter
         rvFavoriteStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun setupListeners() {
+        binding.includeLayoutError.btnError.setOnClickListener {
+            onClickBtnTryAgain()
+        }
     }
 
     private fun observeState() {
@@ -74,31 +79,6 @@ class FavoriteFragment : Fragment() {
         })
     }
 
-    private fun observeFavoriteList() {
-        viewModel.storeLiveData.observe(viewLifecycleOwner, { list ->
-            list?.let {
-                binding.rvFavoriteStoresList.isVisible = true
-                rvAdapter.dataSet.clear()
-                rvAdapter.dataSet.addAll(list)
-                rvAdapter.notifyDataSetChanged()
-            }
-        })
-    }
-
-    private fun observeErrorState() {
-        viewModel.errorStateLiveData.observe(viewLifecycleOwner, { throwable ->
-            throwable?.let {
-                binding.apply {
-                    rvFavoriteStoresList.isVisible = false
-                    includeLayoutError.root.isVisible = true
-                    includeLayoutError.btnError.setOnClickListener {
-                        onClickBtnTryAgain()
-                    }
-                }
-
-            }
-        })
-    }
     private fun onClickBtnTryAgain() {
         binding.includeLayoutError.root.isVisible = false
         viewModel.getFavoriteList()
