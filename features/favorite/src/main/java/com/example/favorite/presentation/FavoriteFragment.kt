@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,11 +44,10 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupListeners()
 
+        observeState()
         viewModel.getFavoriteList()
-        observeFavoriteList()
-        observeErrorState()
-        setProgressBarVisibility(true)
     }
 
     private fun setupRecyclerView() {
@@ -58,26 +56,31 @@ class FavoriteFragment : Fragment() {
         rvFavoriteStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun observeFavoriteList() {
-        viewModel.storeLiveData.observe(viewLifecycleOwner, { list ->
-            list?.let {
-                setProgressBarVisibility(false)
-                rvAdapter.dataSet.clear()
-                rvAdapter.dataSet.addAll(list)
-                rvAdapter.notifyDataSetChanged()
+    private fun setupListeners() {
+        binding.includeLayoutError.btnError.setOnClickListener {
+            onClickBtnTryAgain()
+        }
+    }
+
+    private fun observeState() {
+        viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
+
+            with(state) {
+                binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty()?:false
+                binding.includeLayoutError.root.isVisible = isErrorVisible
+
+                favoriteList?.let {
+                    rvAdapter.dataSet.clear()
+                    rvAdapter.dataSet.addAll(it)
+                    rvAdapter.notifyDataSetChanged()
+                }
             }
+
         })
     }
 
-    private fun observeErrorState() {
-        viewModel.errorStateLiveData.observe(viewLifecycleOwner, { throwable ->
-            throwable?.let {
-                Toast.makeText(requireContext(), "Algo deu errado :(", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun setProgressBarVisibility(visibility: Boolean){
-        binding.progBar.isVisible = visibility
+    private fun onClickBtnTryAgain() {
+        viewModel.getFavoriteList()
     }
 }
+    

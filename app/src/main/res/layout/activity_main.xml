@@ -21,8 +21,7 @@
         android:id="@+id/vwpFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        android:layout_marginTop="@dimen/medium_dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtViewTitle" />
 
