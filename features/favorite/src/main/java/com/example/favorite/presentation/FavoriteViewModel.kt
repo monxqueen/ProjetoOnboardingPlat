@@ -4,15 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.favorite.domain.GetFavoriteListUseCase
-import com.example.favorite.domain.entity.FavoriteStore
 import com.example.favorite.presentation.utils.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) : DisposableViewModel() {
+internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) :
+    DisposableViewModel() {
 
     private val _viewStateLiveData = MutableLiveData<FavoriteViewState>()
-    val viewStateLiveData : LiveData<FavoriteViewState> = _viewStateLiveData
+    val viewStateLiveData: LiveData<FavoriteViewState> = _viewStateLiveData
 
     fun getFavoriteList() {
         getFavoriteListUseCase.invoke()
@@ -20,7 +20,7 @@ internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavorite
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                _viewStateLiveData.value = FavoriteViewState(favoriteList = it)
+                    _viewStateLiveData.value = FavoriteViewState(favoriteList = it)
                 },
                 {
                     Log.e("ErroReq", "erro: " + it.cause)

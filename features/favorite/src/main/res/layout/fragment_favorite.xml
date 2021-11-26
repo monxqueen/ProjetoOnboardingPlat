@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <include
-        android:id="@+id/include_layout_error"
+        android:id="@+id/includeLayoutError"
         layout="@layout/fragment_error"
         android:visibility="invisible" />
 

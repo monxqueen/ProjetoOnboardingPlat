@@ -65,7 +65,7 @@ class FavoriteFragment : Fragment() {
     private fun observeState() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
 
-            with(state){
+            with(state) {
                 binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty()?:false
                 binding.includeLayoutError.root.isVisible = isErrorVisible
 
@@ -80,7 +80,6 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun onClickBtnTryAgain() {
-        binding.includeLayoutError.root.isVisible = false
         viewModel.getFavoriteList()
     }
 }
