@@ -8,8 +8,7 @@ import com.example.favorite.presentation.utils.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) :
-    DisposableViewModel() {
+internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavoriteListUseCase) : DisposableViewModel() {
 
     private val _viewStateLiveData = MutableLiveData<FavoriteViewState>()
     val viewStateLiveData: LiveData<FavoriteViewState> = _viewStateLiveData
@@ -18,6 +17,9 @@ internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavorite
         getFavoriteListUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                _viewStateLiveData.value = FavoriteViewState(isLoadingVisible = true)
+            }
             .subscribe(
                 {
                     _viewStateLiveData.value = FavoriteViewState(favoriteList = it)
