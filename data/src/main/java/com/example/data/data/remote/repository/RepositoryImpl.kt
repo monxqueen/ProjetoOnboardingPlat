@@ -13,4 +13,3 @@ class RepositoryImpl(private val storesMapper: StoresMapper, private val service
             storesMapper.mapStoresListToDomain(storesListResponse) }
     }
 }
-
