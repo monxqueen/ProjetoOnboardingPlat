@@ -7,8 +7,8 @@ import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.inOrder
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class FavoriteViewModelTest {
@@ -22,31 +22,46 @@ class FavoriteViewModelTest {
     private val getFavoriteListUseCase: GetFavoriteListUseCase = mock()
     private val viewModel = FavoriteViewModel(getFavoriteListUseCase)
 
-    private val storeLiveData : Observer<List<FavoriteStore>> = mock()
+    private val viewStateLiveData : Observer<FavoriteViewState> = mock()
 
     @Test
     fun `when call getFavoriteList should return an expected list`() {
-        //given
+        //Given
         val favoriteList = fetchFavoriteList()
-
         whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.just(favoriteList))
 
-        val expected = listOf(
+        val loadingState = FavoriteViewState(isLoadingVisible = true)
+
+        val expectedFavoriteList = listOf(
             FavoriteStore(
                 2,
                 "Lojas Americanas",
                 "icone.jpg"
             )
         )
+        val expected = FavoriteViewState(expectedFavoriteList)
 
-        viewModel.storeLiveData.observeForever(storeLiveData)
+        viewModel.viewStateLiveData.observeForever(viewStateLiveData)
 
-        //when
+        //When
         viewModel.getFavoriteList()
 
-        //then
-        verify(storeLiveData).onChanged(expected)
+        //Then
+        inOrder(viewStateLiveData) {
+            verify(viewStateLiveData).onChanged(loadingState)
+            verify(viewStateLiveData).onChanged(expected)
+        }
     }
+
+//    @Test
+//    fun `when call getFavoriteList should return an error`() {
+//
+//    }
+//
+//    @Test
+//    fun `when call getFavoriteList should change loading state`() {
+//
+//    }
 
     private fun fetchFavoriteList() =
         listOf(
