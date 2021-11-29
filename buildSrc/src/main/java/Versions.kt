@@ -35,4 +35,5 @@ object Versions {
     const val materialDesignVersion = "1.4.0"
     const val glideVersion = "4.12.0"
     const val constraintLayoutVersion = "2.1.1"
+    const val lottieVersion = "4.2.1"
 }

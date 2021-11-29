@@ -66,8 +66,9 @@ class FavoriteFragment : Fragment() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
 
             with(state) {
-                binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty()?:false
+                binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty() ?: false
                 binding.includeLayoutError.root.isVisible = isErrorVisible
+                binding.progBar.isVisible = isLoadingVisible
 
                 favoriteList?.let {
                     rvAdapter.dataSet.clear()
