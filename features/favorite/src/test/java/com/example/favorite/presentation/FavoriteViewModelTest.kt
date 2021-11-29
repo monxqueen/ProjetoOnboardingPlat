@@ -5,11 +5,14 @@ import androidx.lifecycle.Observer
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
+import net.bytebuddy.implementation.bytecode.Throw
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.inOrder
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.reset
 import org.mockito.kotlin.whenever
+import java.net.ConnectException
 
 class FavoriteViewModelTest {
 
@@ -53,15 +56,27 @@ class FavoriteViewModelTest {
         }
     }
 
-//    @Test
-//    fun `when call getFavoriteList should return an error`() {
-//
-//    }
-//
-//    @Test
-//    fun `when call getFavoriteList should change loading state`() {
-//
-//    }
+    @Test
+    fun `when call getFavoriteList should return an error`() {
+        //Given
+        val error = Throwable()
+        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.error(error))
+
+        val loadingState = FavoriteViewState(isLoadingVisible = true)
+
+        val expected = FavoriteViewState(isErrorVisible = true)
+
+        viewModel.viewStateLiveData.observeForever(viewStateLiveData)
+
+        //When
+        viewModel.getFavoriteList()
+
+        //Then
+        inOrder(viewStateLiveData) {
+            verify(viewStateLiveData).onChanged(loadingState)
+            verify(viewStateLiveData).onChanged(expected)
+        }
+    }
 
     private fun fetchFavoriteList() =
         listOf(
@@ -71,6 +86,4 @@ class FavoriteViewModelTest {
                 "icone.jpg"
             )
         )
-
-    private fun getEmptyList() = emptyList<FavoriteStore>()
 }
