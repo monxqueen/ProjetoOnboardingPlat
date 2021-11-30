@@ -1,6 +1,5 @@
 package com.example.favorite.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.favorite.domain.GetFavoriteListUseCase
@@ -25,10 +24,8 @@ internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavorite
                     _viewStateLiveData.value = FavoriteViewState(favoriteList = it)
                 },
                 {
-                    Log.e("ErroReq", "erro: " + it.cause)
                     _viewStateLiveData.value = FavoriteViewState(isErrorVisible = true)
                 }
             ).handleDisposable()
     }
-
 }
