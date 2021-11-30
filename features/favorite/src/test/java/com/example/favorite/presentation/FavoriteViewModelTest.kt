@@ -5,14 +5,11 @@ import androidx.lifecycle.Observer
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
-import net.bytebuddy.implementation.bytecode.Throw
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.inOrder
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.reset
 import org.mockito.kotlin.whenever
-import java.net.ConnectException
 
 class FavoriteViewModelTest {
 

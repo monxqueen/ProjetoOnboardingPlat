@@ -1,6 +1,5 @@
 package com.example.favorite.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.favorite.domain.GetFavoriteListUseCase
