@@ -7,9 +7,7 @@ import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.inOrder
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.*
 
 class FavoriteViewModelTest {
 
@@ -67,6 +65,54 @@ class FavoriteViewModelTest {
 
         //When
         viewModel.getFavoriteList()
+
+        //Then
+        inOrder(viewStateLiveData) {
+            verify(viewStateLiveData).onChanged(loadingState)
+            verify(viewStateLiveData).onChanged(expected)
+        }
+    }
+
+    fun `when retrying to call getFavoriteList for the second time should return an expected list`() {
+        //Given
+        val favoriteList = fetchFavoriteList()
+        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.just(favoriteList))
+
+        val expectedFavoriteList = listOf(
+            FavoriteStore(
+                2,
+                "Lojas Americanas",
+                "icone.jpg"
+            )
+        )
+        val loadingState = FavoriteViewState(isLoadingVisible = true)
+        val expectedSuccess = FavoriteViewState(expectedFavoriteList)
+
+        viewModel.viewStateLiveData.observeForever(viewStateLiveData)
+
+        //When
+        viewModel.tryAgain()
+
+        //Then
+        inOrder(viewStateLiveData) {
+            verify(viewStateLiveData).onChanged(loadingState)
+            verify(viewStateLiveData).onChanged(expectedSuccess)
+        }
+    }
+
+    @Test
+    fun `when retrying to call getFavoriteList for the second time should return an error`() {
+        //Given
+        val error = Throwable()
+        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.error(error))
+
+        val loadingState = FavoriteViewState(isLoadingVisible = true)
+        val expected = FavoriteViewState(isErrorVisible = true)
+
+        viewModel.viewStateLiveData.observeForever(viewStateLiveData)
+
+        //When
+        viewModel.tryAgain()
 
         //Then
         inOrder(viewStateLiveData) {

@@ -81,7 +81,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun onClickBtnTryAgain() {
-        viewModel.getFavoriteList()
+        viewModel.tryAgain()
     }
 }
     
