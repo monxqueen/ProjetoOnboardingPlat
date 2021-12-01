@@ -73,12 +73,10 @@ class FavoriteViewModelTest {
         }
     }
 
-    @Test
     fun `when retrying to call getFavoriteList for the second time should return an expected list`() {
         //Given
-        val error = Throwable()
         val favoriteList = fetchFavoriteList()
-        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.error(error)).thenReturn(Single.just(favoriteList))
+        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.just(favoriteList))
 
         val expectedFavoriteList = listOf(
             FavoriteStore(
@@ -88,24 +86,39 @@ class FavoriteViewModelTest {
             )
         )
         val loadingState = FavoriteViewState(isLoadingVisible = true)
-        val expectedError = FavoriteViewState(isErrorVisible = true)
         val expectedSuccess = FavoriteViewState(expectedFavoriteList)
 
         viewModel.viewStateLiveData.observeForever(viewStateLiveData)
 
         //When
-        repeat(2) {
-            viewModel.getFavoriteList()
-        }
+        viewModel.tryAgain()
 
         //Then
         inOrder(viewStateLiveData) {
             verify(viewStateLiveData).onChanged(loadingState)
-            verify(viewStateLiveData).onChanged(expectedError)
-            verify(viewStateLiveData).onChanged(loadingState)
             verify(viewStateLiveData).onChanged(expectedSuccess)
         }
-        verify(getFavoriteListUseCase, times(2)).invoke()
+    }
+
+    @Test
+    fun `when retrying to call getFavoriteList for the second time should return an error`() {
+        //Given
+        val error = Throwable()
+        whenever(getFavoriteListUseCase.invoke()).thenReturn(Single.error(error))
+
+        val loadingState = FavoriteViewState(isLoadingVisible = true)
+        val expected = FavoriteViewState(isErrorVisible = true)
+
+        viewModel.viewStateLiveData.observeForever(viewStateLiveData)
+
+        //When
+        viewModel.tryAgain()
+
+        //Then
+        inOrder(viewStateLiveData) {
+            verify(viewStateLiveData).onChanged(loadingState)
+            verify(viewStateLiveData).onChanged(expected)
+        }
     }
 
     private fun fetchFavoriteList() =

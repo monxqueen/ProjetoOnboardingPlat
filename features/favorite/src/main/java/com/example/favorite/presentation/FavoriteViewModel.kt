@@ -28,4 +28,8 @@ internal class FavoriteViewModel(private val getFavoriteListUseCase: GetFavorite
                 }
             ).handleDisposable()
     }
+
+    fun tryAgain() {
+        getFavoriteList()
+    }
 }
