@@ -1,4 +1,5 @@
 <resources>
     <string name="error">Ocorreu um erro!</string>
     <string name="try_again">Tentar novamente</string>
+    <string name="empty_list_message">Ops, não encontramos\nnada aqui :(</string>
 </resources>
