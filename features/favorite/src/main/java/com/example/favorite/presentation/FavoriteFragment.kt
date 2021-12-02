@@ -67,6 +67,7 @@ class FavoriteFragment : Fragment() {
 
             with(state) {
                 binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty() ?: false
+                binding.txtEmptyResult.isVisible = favoriteList?.isEmpty() ?: false
                 binding.includeLayoutError.root.isVisible = isErrorVisible
                 binding.progBar.isVisible = isLoadingVisible
 
