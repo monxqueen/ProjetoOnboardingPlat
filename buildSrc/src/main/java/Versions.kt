@@ -21,6 +21,9 @@ object Versions {
     const val rxJavaVersion = "2.2.19"
     const val rxAndroidVersion = "2.1.1"
 
+    // Koin
+    const val koinVersion = "2.2.3"
+
     // Tests
     const val jUnitVersion = "4.13.2"
     const val jUnitAndroidVersion = "1.1.3"

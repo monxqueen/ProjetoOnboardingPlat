@@ -21,6 +21,11 @@ object Libs {
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJavaVersion}"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}"
 
+    // Koin
+    const val koinCore = "io.insert-koin:koin-core:${Versions.koinVersion}"
+    const val koinAndroid = "io.insert-koin:koin-android:${Versions.koinVersion}"
+    const val koinViewModel = "io.insert-koin:koin-androidx-viewmodel:${Versions.koinVersion}"
+
     // Tests
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroidVersion}"
