@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
+    implementation project(':data')
 
     implementation Libs.koinCore
     implementation Libs.koinAndroid

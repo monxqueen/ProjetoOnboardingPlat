@@ -1,7 +1,7 @@
 package com.example.storeapp
 
 import android.app.Application
-import com.example.favorite.di.FavoriteFeatureModule
+import com.example.data.di.DataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,7 +10,8 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            FavoriteFeatureModule().load()
+
+            DataModule().load()
         }
     }
 }
