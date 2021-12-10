@@ -34,6 +34,7 @@ object Libs {
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
     const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val arcCore = "androidx.arch.core:core-testing:${Versions.androidCoreVersion}"
+    const val koinTest = "org.koin:koin-test:${Versions.koinVersion}"
 
     // Layout
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2Version}"
