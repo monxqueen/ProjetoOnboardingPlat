@@ -39,6 +39,10 @@ dependencies {
     implementation project(':data')
     implementation project(':common')
 
+    implementation Libs.koinCore
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+
     implementation Libs.rxJava
     implementation Libs.rxAndroid
 
@@ -56,4 +60,6 @@ dependencies {
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
     testImplementation Libs.arcCore
+
+
 }

@@ -40,6 +40,10 @@ dependencies {
     implementation project(':features:favorite')
     implementation project(':features:nearby')
 
+    implementation Libs.koinCore
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+
     implementation Libs.kotlinSerialization
     implementation Libs.kotlinSerializationConverter
 
