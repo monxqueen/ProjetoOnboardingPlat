@@ -18,7 +18,7 @@ class DataModule {
 
         // DOMAIN
         factory { GetStoreListUseCaseImpl(
-            repository = get()) }
+            repository = get<RepositoryImpl>()) }
     }
 
     fun load() = loadKoinModules(modules)
