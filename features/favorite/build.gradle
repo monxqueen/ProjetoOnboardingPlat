@@ -60,6 +60,4 @@ dependencies {
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
     testImplementation Libs.arcCore
-    androidTestImplementation Libs.koinTest
-
 }

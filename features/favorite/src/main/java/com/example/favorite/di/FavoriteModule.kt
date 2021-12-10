@@ -1,7 +1,6 @@
 package com.example.favorite.di
 
 import com.example.data.domain.GetStoreListUseCaseImpl
-import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.GetFavoriteListUseCaseImpl
 import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import com.example.favorite.presentation.FavoriteViewModel
