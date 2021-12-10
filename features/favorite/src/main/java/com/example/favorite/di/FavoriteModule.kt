@@ -1,6 +1,9 @@
 package com.example.favorite.di
 
 import com.example.data.domain.GetStoreListUseCaseImpl
+import com.example.favorite.presentation.FavoriteViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
 class FavoriteModule() {
@@ -8,24 +11,15 @@ class FavoriteModule() {
     private val modules = module {
         // DOMAIN
         factory { GetStoreListUseCaseImpl(
-            repository = get()) }
+            repository = get())
+        }
 
         // PRESENTATION
-
+        viewModel {
+            FavoriteViewModel(
+                getFavoriteListUseCase = get())
+        }
     }
 
-//    val domainModule = module {
-//        factory {
-//            GetFavoriteListUseCaseImpl(
-//                GetStoreListUseCaseImpl(RepositoryImpl(StoresMapper())),
-//                FavoriteStoresMapper()
-//            )
-//        }
-//    }
-//
-//    val presentationModule = module {
-//        viewModel {
-//            FavoriteViewModel(getFavoriteListUseCase = get())
-//        }
-//    }
+    fun load() = loadKoinModules(modules)
 }
