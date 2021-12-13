@@ -35,6 +35,7 @@ object Libs {
     const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     const val arcCore = "androidx.arch.core:core-testing:${Versions.androidCoreVersion}"
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTestingVersion}"
+    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espressoContribVersion}"
 
     // Layout
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2Version}"

@@ -56,6 +56,7 @@ dependencies {
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    implementation Libs.espressoContrib
     testImplementation Libs.mockito
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
