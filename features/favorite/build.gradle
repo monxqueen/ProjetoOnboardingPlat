@@ -36,8 +36,8 @@ android {
 }
 
 dependencies {
-    implementation project(':data')
-    implementation project(':common')
+    implementation project(LocalLibs.data)
+    implementation project(LocalLibs.common)
 
     implementation Libs.koinCore
     implementation Libs.koinAndroid
@@ -60,4 +60,5 @@ dependencies {
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
     testImplementation Libs.arcCore
+    debugImplementation Libs.fragmentTesting
 }
