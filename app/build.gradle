@@ -37,8 +37,13 @@ android {
 }
 
 dependencies {
-    implementation project(':features:favorite')
-    implementation project(':features:nearby')
+    implementation project(LocalLibs.favorite)
+    implementation project(LocalLibs.nearby)
+    implementation project(LocalLibs.data)
+
+    implementation Libs.koinCore
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
 
     implementation Libs.kotlinSerialization
     implementation Libs.kotlinSerializationConverter

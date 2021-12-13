@@ -34,6 +34,10 @@ android {
 
 dependencies {
 
+    implementation Libs.koinCore
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+
     implementation Libs.retrofit
     implementation Libs.retrofitRxJava2Adapter
 

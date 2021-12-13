@@ -14,6 +14,8 @@ import com.example.favorite.databinding.FragmentFavoriteBinding
 import com.example.favorite.domain.GetFavoriteListUseCaseImpl
 import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import com.example.favorite.presentation.adapter.FavoriteStoresAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class FavoriteFragment : Fragment() {
 
@@ -25,13 +27,7 @@ class FavoriteFragment : Fragment() {
         FavoriteStoresAdapter()
     }
 
-    private val viewModel = FavoriteViewModel(
-        GetFavoriteListUseCaseImpl(
-            GetStoreListUseCaseImpl(
-                RepositoryImpl(StoresMapper())
-            ), FavoriteStoresMapper()
-        )
-    )
+    private val viewModel: FavoriteViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.StoreApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="n"
-        android:allowBackup="false">
+        android:allowBackup="false"
+        android:name=".App">
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
