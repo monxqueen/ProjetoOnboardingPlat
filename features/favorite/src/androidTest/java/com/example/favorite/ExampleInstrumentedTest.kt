@@ -2,11 +2,17 @@ package com.example.favorite
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.data.domain.GetStoreListUseCaseImpl
+import com.example.favorite.di.FavoriteModule
+import com.example.favorite.domain.GetFavoriteListUseCaseImpl
+import com.example.favorite.domain.mapper.FavoriteStoresMapper
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,6 +21,7 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
