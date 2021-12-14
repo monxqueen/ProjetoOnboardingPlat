@@ -22,6 +22,7 @@ import org.koin.dsl.module
 
 @RunWith(AndroidJUnit4::class)
 class FavoriteFragmentTest {
+    private val robot = FavoriteFragmentRobot()
 
     @Before
     fun setupKoin() {
@@ -40,27 +41,16 @@ class FavoriteFragmentTest {
     }
 
     @Test
-    fun whenFragmentIsStarted_shouldDisplayRecycerView() {
-        launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
-        onView(withId(R.id.rvFavoriteStoresList)).check(matches(isDisplayed()))
+    fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
+        robot.launchFragment()
+        robot.checkListVisibility(R.id.rvFavoriteStoresList)
     }
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
-        launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
+        robot.launchFragment()
 
-        onView(withId(R.id.rvFavoriteStoresList))
-            .perform(
-                RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(
-                    hasDescendant(withText("Lojas Americanas"))
-                )
-            )
-
-        onView(withId(R.id.rvFavoriteStoresList))
-            .perform(
-                RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(
-                    hasDescendant(withText("Magalu"))
-                )
-            )
+        robot.scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+        robot.scrollToItem("Magalu",  R.id.rvFavoriteStoresList)
     }
 }
