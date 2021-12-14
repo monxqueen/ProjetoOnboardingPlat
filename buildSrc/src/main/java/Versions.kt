@@ -32,6 +32,8 @@ object Versions {
     const val mockitoInlineVersion = "3.3.3"
     const val mockitoKotlinVersion = "3.2.0"
     const val androidCoreVersion = "2.1.0"
+    const val fragmentTestingVersion = "1.4.0"
+    const val espressoContribVersion = "3.4.0"
 
     // Layout
     const val viewPager2Version = "1.0.0"
