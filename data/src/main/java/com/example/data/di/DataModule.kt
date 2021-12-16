@@ -1,9 +1,9 @@
 package com.example.data.di
 
-import com.example.data.data.remote.RetrofitBuilderImpl
+import com.example.data.data.remote.RetrofitBuilder
+import com.example.data.data.remote.StoreService
 import com.example.data.data.remote.mapper.StoresMapper
 import com.example.data.data.remote.repository.RepositoryImpl
-import com.example.data.data.remote.retrofit.RetrofitBuilder
 import com.example.data.domain.GetStoreListUseCase
 import com.example.data.domain.GetStoreListUseCaseImpl
 import org.koin.core.context.loadKoinModules
@@ -14,17 +14,13 @@ class DataModule {
 
     private val modules = module {
         // DATA
-        single<RetrofitBuilder> {
-            RetrofitBuilderImpl()
-        }
-
-        factory { get<RetrofitBuilder>().buildRetrofit() }
-
+        single { RetrofitBuilder().buildRetrofit() }
 
         // DOMAIN
         factory<GetStoreListUseCase> { GetStoreListUseCaseImpl(
             repository = RepositoryImpl(
-                storesMapper = StoresMapper()
+                storesMapper = StoresMapper(),
+                service = get<Retrofit>().create(StoreService::class.java)
             )) }
     }
 
