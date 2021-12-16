@@ -1,6 +1,7 @@
 package com.example.data.data.remote
 
 import com.example.data.data.remote.model.Constants
+import com.example.data.data.remote.retrofit.RetrofitBuilder
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -11,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
 
-object Network {
+class RetrofitBuilderImpl : RetrofitBuilder {
 
     private val LOCAL_IP = Constants.LOCAL_IP.value
     private val BASE_URL = "http://$LOCAL_IP:8080/"
@@ -27,7 +28,7 @@ object Network {
     }
 
     @Suppress("EXPERIMENTAL_API_USAGE")
-    private fun buildRetrofit(): Retrofit {
+    override fun buildRetrofit(): Retrofit {
         val contentType = JSON_MEDIA_TYPE.toMediaType()
 
         return Retrofit.Builder()
@@ -38,8 +39,8 @@ object Network {
             .build()
     }
 
-    val retrofitService : StoreService by lazy {
-        buildRetrofit().create(StoreService::class.java)
-    }
+//    val retrofitService : StoreService by lazy {
+//        buildRetrofit().create(StoreService::class.java)
+//    }
 }
 
