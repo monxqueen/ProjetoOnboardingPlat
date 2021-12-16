@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
 
-class RetrofitBuilderImpl {
+class RetrofitBuilder {
 
     private val LOCAL_IP = Constants.LOCAL_IP.value
     private val BASE_URL = "http://$LOCAL_IP:8080/"
@@ -38,4 +38,3 @@ class RetrofitBuilderImpl {
             .build()
     }
 }
-
