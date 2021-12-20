@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val JSON_MEDIA_TYPE = "application/json"
 
-object Network {
+class RetrofitBuilder {
 
     private val LOCAL_IP = Constants.LOCAL_IP.value
     private val BASE_URL = "http://$LOCAL_IP:8080/"
@@ -27,7 +27,7 @@ object Network {
     }
 
     @Suppress("EXPERIMENTAL_API_USAGE")
-    private fun buildRetrofit(): Retrofit {
+    fun buildRetrofit(): Retrofit {
         val contentType = JSON_MEDIA_TYPE.toMediaType()
 
         return Retrofit.Builder()
@@ -37,9 +37,4 @@ object Network {
             .client(getLoggingInterceptor().build())
             .build()
     }
-
-    val retrofitService : StoreService by lazy {
-        buildRetrofit().create(StoreService::class.java)
-    }
 }
-
