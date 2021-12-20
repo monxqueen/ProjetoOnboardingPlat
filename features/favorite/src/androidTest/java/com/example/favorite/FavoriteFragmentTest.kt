@@ -30,7 +30,7 @@ class FavoriteFragmentTest {
     fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
         robot.loadModulesOfSuccessfulScenario()
         robot.launchFragment()
-        robot.checkListVisibility(R.id.rvFavoriteStoresList)
+        robot.checkVisibility(R.id.rvFavoriteStoresList)
     }
 
     @Test
@@ -45,6 +45,13 @@ class FavoriteFragmentTest {
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
         robot.loadModulesOfEmptyListScenario()
         robot.launchFragment()
-        robot.checkListVisibility(R.id.txtEmptyResult)
+        robot.checkVisibility(R.id.txtEmptyResult)
+    }
+
+    @Test
+    fun whenFragmentIsStarted_shouldDisplayError() {
+        robot.loadModulesOfErrorScenario()
+        robot.launchFragment()
+        robot.checkVisibility(R.id.includeLayoutError)
     }
 }

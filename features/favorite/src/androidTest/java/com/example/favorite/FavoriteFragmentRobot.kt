@@ -17,7 +17,7 @@ class FavoriteFragmentRobot {
         launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
     }
 
-    fun checkListVisibility(id: Int) {
+    fun checkVisibility(id: Int) {
         getView(id)
             .check(ViewAssertions.matches(isDisplayed()))
     }
@@ -43,6 +43,14 @@ class FavoriteFragmentRobot {
         loadKoinModules(
             module(override = true) {
                 factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseEmptyListScenario }
+            }
+        )
+    }
+
+    fun loadModulesOfErrorScenario() {
+        loadKoinModules(
+            module(override = true) {
+                factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseErrorScenario }
             }
         )
     }

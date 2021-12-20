@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/includeLayoutError"
-        layout="@layout/fragment_error"
+        layout="@layout/layout_error"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
