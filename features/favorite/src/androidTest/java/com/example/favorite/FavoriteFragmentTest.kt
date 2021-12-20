@@ -28,42 +28,50 @@ class FavoriteFragmentTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
-        robot.loadModulesOfSuccessfulScenario()
-        robot.launchFragment()
-        robot.checkVisibility(R.id.rvFavoriteStoresList)
+        robot.apply {
+            loadModulesOfSuccessfulScenario()
+            launchFragment()
+            checkVisibility(R.id.rvFavoriteStoresList)
+        }
     }
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
-        robot.loadModulesOfSuccessfulScenario()
-        robot.launchFragment()
-        robot.scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
-        robot.scrollToItem("Magalu",  R.id.rvFavoriteStoresList)
+        robot.apply {
+            loadModulesOfSuccessfulScenario()
+            launchFragment()
+            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+            scrollToItem("Magalu",  R.id.rvFavoriteStoresList)
+        }
     }
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
-        robot.loadModulesOfEmptyListScenario()
-        robot.launchFragment()
-        robot.checkVisibility(R.id.txtEmptyResult)
+        robot.apply {
+            loadModulesOfEmptyListScenario()
+            launchFragment()
+            checkVisibility(R.id.txtEmptyResult)
+        }
     }
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayError() {
-        robot.loadModulesOfErrorScenario()
-        robot.launchFragment()
-        robot.checkVisibility(R.id.includeLayoutError)
+        robot.apply {
+            loadModulesOfErrorScenario()
+            launchFragment()
+            checkVisibility(R.id.includeLayoutError)
+        }
     }
 
     @Test
     fun whenTryAgainButtonIsPressed_shouldDisplayRecyclerView() {
-        robot.loadModulesOfErrorScenario()
-        robot.launchFragment()
-        robot.clickOnButton(R.id.btn_error)
-        robot.loadModulesOfSuccessfulScenario()
-        robot.launchFragment()
-        robot.checkVisibility(R.id.rvFavoriteStoresList)
+        robot.apply {
+            loadModulesOfErrorScenario()
+            launchFragment()
+            clickOnButton(R.id.btn_error)
+            loadModulesOfSuccessfulScenario()
+            launchFragment()
+            checkVisibility(R.id.rvFavoriteStoresList)
+        }
     }
-
-
 }
