@@ -54,4 +54,16 @@ class FavoriteFragmentTest {
         robot.launchFragment()
         robot.checkVisibility(R.id.includeLayoutError)
     }
+
+    @Test
+    fun whenTryAgainButtonIsPressed_shouldDisplayRecyclerView() {
+        robot.loadModulesOfErrorScenario()
+        robot.launchFragment()
+        robot.clickOnButton(R.id.btn_error)
+        robot.loadModulesOfSuccessfulScenario()
+        robot.launchFragment()
+        robot.checkVisibility(R.id.rvFavoriteStoresList)
+    }
+
+
 }

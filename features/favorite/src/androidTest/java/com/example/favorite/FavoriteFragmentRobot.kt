@@ -4,6 +4,7 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -53,5 +54,9 @@ class FavoriteFragmentRobot {
                 factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseErrorScenario }
             }
         )
+    }
+
+    fun clickOnButton(id: Int) {
+        getView(id).perform(click())
     }
 }
