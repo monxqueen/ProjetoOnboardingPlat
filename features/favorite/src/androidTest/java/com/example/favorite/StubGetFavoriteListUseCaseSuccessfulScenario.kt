@@ -4,7 +4,7 @@ import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
 
-object StubGetFavoriteListUseCase : GetFavoriteListUseCase {
+object StubGetFavoriteListUseCaseSuccessfulScenario : GetFavoriteListUseCase {
     override fun invoke() = Single.just(
         listOf(
             FavoriteStore(
