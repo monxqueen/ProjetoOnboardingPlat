@@ -26,12 +26,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        test {
+            resources.srcDirs += ['androidTest/remote/resources']
+        }
     }
 }
 
@@ -42,6 +50,12 @@ dependencies {
     implementation Libs.koinCore
     implementation Libs.koinAndroid
     implementation Libs.koinViewModel
+
+    implementation Libs.retrofit
+    implementation Libs.retrofitRxJava2Adapter
+
+    implementation Libs.kotlinSerialization
+    implementation Libs.kotlinSerializationConverter
 
     implementation Libs.rxJava
     implementation Libs.rxAndroid
@@ -60,6 +74,7 @@ dependencies {
     testImplementation Libs.mockito
     testImplementation Libs.mockitoInline
     testImplementation Libs.mockitoKotlin
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation Libs.arcCore
     debugImplementation Libs.fragmentTesting
 }

@@ -1,4 +1,4 @@
-package com.example.favorite
+package com.example.favorite.remote
 
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore

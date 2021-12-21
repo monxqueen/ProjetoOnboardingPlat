@@ -8,6 +8,9 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.example.favorite.remote.StubGetFavoriteListUseCaseEmptyListScenario
+import com.example.favorite.remote.StubGetFavoriteListUseCaseErrorScenario
+import com.example.favorite.remote.StubGetFavoriteListUseCaseSuccessfulScenario
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.presentation.FavoriteFragment
 import org.koin.core.context.loadKoinModules
