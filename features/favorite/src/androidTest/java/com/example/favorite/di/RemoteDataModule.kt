@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.favorite.di
 
 import com.example.favorite.remote.StubRetrofitBuilder
 import org.koin.core.context.loadKoinModules
