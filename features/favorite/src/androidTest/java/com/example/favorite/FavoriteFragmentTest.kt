@@ -1,7 +1,9 @@
 package com.example.favorite
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.data.di.RemoteDataModule
+import com.example.data.di.DataModule
+import com.example.favorite.di.FavoriteModule
+import com.example.favorite.di.RemoteDataModule
 import com.example.favorite.remote.utils.FileReader
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -38,11 +40,15 @@ class FavoriteFragmentTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly1() {
 
-        val content = FileReader("favoriteListEmptyResponse.json").content
+//        val content = FileReader("favoriteListEmptyResponse.json").content
+        val fileReader = FileReader()
+        val content = fileReader("favoriteListEmptyResponse.json")
 
-        val response = MockResponse().setBody(content).setResponseCode(HttpURLConnection.HTTP_OK)
+        val response = content?.let { MockResponse().setBody(it).setResponseCode(HttpURLConnection.HTTP_OK) }
 
-        mockWebServer.enqueue(response)
+        if (response != null) {
+            mockWebServer.enqueue(response)
+        }
 
         robot.apply {
             launchFragment()
