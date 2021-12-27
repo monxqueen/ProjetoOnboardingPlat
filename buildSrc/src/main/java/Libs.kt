@@ -25,6 +25,7 @@ object Libs {
     const val koinCore = "io.insert-koin:koin-core:${Versions.koinVersion}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koinVersion}"
     const val koinViewModel = "io.insert-koin:koin-androidx-viewmodel:${Versions.koinVersion}"
+    const val koinTest = "io.insert-koin:koin-test:${Versions.koinVersion}"
 
     // Tests
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
@@ -36,6 +37,7 @@ object Libs {
     const val arcCore = "androidx.arch.core:core-testing:${Versions.androidCoreVersion}"
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTestingVersion}"
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espressoContribVersion}"
+    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServerVersion}"
 
     // Layout
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2Version}"

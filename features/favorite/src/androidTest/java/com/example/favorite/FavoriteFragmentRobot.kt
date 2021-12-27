@@ -4,9 +4,13 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.example.favorite.remote.StubGetFavoriteListUseCaseEmptyListScenario
+import com.example.favorite.remote.StubGetFavoriteListUseCaseErrorScenario
+import com.example.favorite.remote.StubGetFavoriteListUseCaseSuccessfulScenario
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.presentation.FavoriteFragment
 import org.koin.core.context.loadKoinModules
@@ -17,7 +21,7 @@ class FavoriteFragmentRobot {
         launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
     }
 
-    fun checkListVisibility(id: Int) {
+    fun checkVisibility(id: Int) {
         getView(id)
             .check(ViewAssertions.matches(isDisplayed()))
     }
@@ -45,5 +49,17 @@ class FavoriteFragmentRobot {
                 factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseEmptyListScenario }
             }
         )
+    }
+
+    fun loadModulesOfErrorScenario() {
+        loadKoinModules(
+            module(override = true) {
+                factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseErrorScenario }
+            }
+        )
+    }
+
+    fun clickOnButton(id: Int) {
+        getView(id).perform(click())
     }
 }

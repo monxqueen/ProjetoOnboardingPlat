@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 class DataModule {
 
     private val modules = module {
+
         // DATA
         single { RetrofitBuilder().buildRetrofit() }
 

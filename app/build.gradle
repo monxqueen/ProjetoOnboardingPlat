@@ -57,6 +57,4 @@ dependencies {
     testImplementation Libs.jUnit
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
-
-
 }
