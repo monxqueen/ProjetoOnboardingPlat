@@ -9,7 +9,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.net.HttpCookie
 import java.net.HttpURLConnection
 
 @RunWith(AndroidJUnit4::class)
@@ -35,8 +34,11 @@ class FavoriteFragmentTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
+
+        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
+        response?.let { mockWebServer.enqueue(it) }
+
         robot.apply {
-            loadModulesOfSuccessfulScenario()
             launchFragment()
             checkVisibility(R.id.rvFavoriteStoresList)
         }
@@ -45,9 +47,7 @@ class FavoriteFragmentTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
 
-        val content = fileReader("assets/favoriteListSuccessResponse.json")
-
-        val response = content?.let { MockResponse().setBody(it).setResponseCode(HttpURLConnection.HTTP_OK) }
+        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
@@ -60,9 +60,7 @@ class FavoriteFragmentTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
 
-        val content = fileReader("assets/favoriteListEmptyResponse.json")
-
-        val response = content?.let { MockResponse().setBody(it).setResponseCode(HttpURLConnection.HTTP_OK) }
+        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListEmptyResponse.json")
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
@@ -82,15 +80,26 @@ class FavoriteFragmentTest {
 
     @Test
     fun whenTryAgainButtonIsPressed_shouldDisplayRecyclerView() {
+
+        val errorResponse = setHttpCode(HttpURLConnection.HTTP_BAD_REQUEST)
+        mockWebServer.enqueue(errorResponse)
+
+        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
+        response?.let { mockWebServer.enqueue(it) }
+
         robot.apply {
-            loadModulesOfErrorScenario()
             launchFragment()
             clickOnButton(R.id.btn_error)
-            loadModulesOfSuccessfulScenario()
-            launchFragment()
             checkVisibility(R.id.rvFavoriteStoresList)
         }
     }
+
+    private fun getResponse(statusCode: Int, file: String): MockResponse? {
+        val content = fileReader(file)
+        return content?.let { setHttpCode(statusCode).setBody(it) }
+    }
+
+    private fun setHttpCode(statusCode: Int) = MockResponse().setResponseCode(statusCode)
 
     private fun setupKoin() {
         RemoteDataModule().load()

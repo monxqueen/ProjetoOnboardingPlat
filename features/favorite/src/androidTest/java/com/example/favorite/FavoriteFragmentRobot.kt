@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.example.favorite.remote.StubGetFavoriteListUseCaseEmptyListScenario
 import com.example.favorite.remote.StubGetFavoriteListUseCaseErrorScenario
-import com.example.favorite.remote.StubGetFavoriteListUseCaseSuccessfulScenario
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.presentation.FavoriteFragment
 import org.koin.core.context.loadKoinModules
@@ -23,7 +22,7 @@ class FavoriteFragmentRobot {
 
     fun checkVisibility(id: Int) {
         getView(id)
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
     }
 
     fun scrollToItem(name: String, idList: Int) {
@@ -34,22 +33,6 @@ class FavoriteFragmentRobot {
     }
 
     private fun getView(id: Int) = onView(withId(id))
-
-    fun loadModulesOfSuccessfulScenario() {
-        loadKoinModules(
-            module(override = true) {
-                factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseSuccessfulScenario }
-            }
-        )
-    }
-
-    fun loadModulesOfEmptyListScenario() {
-        loadKoinModules(
-            module(override = true) {
-                factory<GetFavoriteListUseCase> { StubGetFavoriteListUseCaseEmptyListScenario }
-            }
-        )
-    }
 
     fun loadModulesOfErrorScenario() {
         loadKoinModules(
