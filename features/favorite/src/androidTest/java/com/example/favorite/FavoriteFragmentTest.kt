@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.data.di.DataModule
 import com.example.favorite.di.FavoriteModule
 import com.example.favorite.di.RemoteDataModule
+import com.example.favorite.remote.StubRetrofitBuilder
 import com.example.favorite.remote.utils.FileReader
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -11,44 +12,39 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
+import org.koin.core.context.*
+import org.koin.dsl.module
+import org.koin.test.KoinTest
 import java.net.HttpURLConnection
 
 @RunWith(AndroidJUnit4::class)
-class FavoriteFragmentTest {
+class FavoriteFragmentTest : KoinTest {
 
     private val robot = FavoriteFragmentRobot()
-    private lateinit var mockWebServer : MockWebServer
+    private val fileReader = FileReader()
+    private val mockWebServer: MockWebServer by lazy {
+        MockWebServer()
+    }
 
     @Before
     fun setup() {
-        startKoin {
-            RemoteDataModule().load()
-        }
-
-        mockWebServer = MockWebServer()
-        mockWebServer.start(8080)
+        setupKoin()
+        setupMockWebServer()
     }
 
     @After
     fun tearDown() {
-        stopKoin()
-        mockWebServer.shutdown()
+        tearDownKoin()
+        tearDownMockWebServer()
     }
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly1() {
 
-//        val content = FileReader("favoriteListEmptyResponse.json").content
-        val fileReader = FileReader()
-        val content = fileReader("favoriteListEmptyResponse.json")
+        val content = fileReader("assets/favoriteListSuccessResponse.json")
 
         val response = content?.let { MockResponse().setBody(it).setResponseCode(HttpURLConnection.HTTP_OK) }
-
-        if (response != null) {
-            mockWebServer.enqueue(response)
-        }
+        response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
             launchFragment()
@@ -104,5 +100,34 @@ class FavoriteFragmentTest {
             launchFragment()
             checkVisibility(R.id.rvFavoriteStoresList)
         }
+    }
+
+    private fun getOverriddenModules() = module(override = true) {
+        single { StubRetrofitBuilder().buildRetrofit()}
+    }
+
+    private fun setupKoin() {
+        if (GlobalContext.getOrNull() == null) {
+            startKoin {
+                DataModule().load()
+                RemoteDataModule().load()
+                FavoriteModule().load()
+            }
+        }
+
+//        loadKoinModules(getOverriddenModules())
+    }
+
+    private fun setupMockWebServer() {
+        mockWebServer.start(8080)
+    }
+
+    private fun tearDownKoin() {
+        stopKoin()
+//        unloadKoinModules(getOverriddenModules())
+    }
+
+    private fun tearDownMockWebServer() {
+        mockWebServer.shutdown()
     }
 }
