@@ -16,8 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-//        testInstrumentationRunner "com.example.favorite.TestRunner"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.favorite.TestRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -36,19 +36,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-//    sourceSets {
-//        androidTest {
-//            assets.srcDirs = ['src/main/assets', 'src/androidTest/assets/', 'src/debug/assets/']
-//            java.srcDirs = ['src/main/java', 'src/androidTest/java', 'src/debug/java']
-//        }
-//    }
-
-//    sourceSets {
-//        test {
-//            resources.srcDirs += ['src/androidTest/java/com/example/favorite/remote/resources']
-//        }
-//    }
 }
 
 dependencies {

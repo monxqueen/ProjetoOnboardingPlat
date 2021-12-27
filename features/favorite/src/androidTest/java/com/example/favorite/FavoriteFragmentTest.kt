@@ -1,10 +1,7 @@
 package com.example.favorite
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.data.di.DataModule
-import com.example.favorite.di.FavoriteModule
 import com.example.favorite.di.RemoteDataModule
-import com.example.favorite.remote.StubRetrofitBuilder
 import com.example.favorite.remote.utils.FileReader
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -12,13 +9,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.core.context.*
-import org.koin.dsl.module
-import org.koin.test.KoinTest
+import java.net.HttpCookie
 import java.net.HttpURLConnection
 
 @RunWith(AndroidJUnit4::class)
-class FavoriteFragmentTest : KoinTest {
+class FavoriteFragmentTest {
 
     private val robot = FavoriteFragmentRobot()
     private val fileReader = FileReader()
@@ -39,7 +34,16 @@ class FavoriteFragmentTest : KoinTest {
     }
 
     @Test
-    fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly1() {
+    fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
+        robot.apply {
+            loadModulesOfSuccessfulScenario()
+            launchFragment()
+            checkVisibility(R.id.rvFavoriteStoresList)
+        }
+    }
+
+    @Test
+    fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
 
         val content = fileReader("assets/favoriteListSuccessResponse.json")
 
@@ -54,28 +58,14 @@ class FavoriteFragmentTest : KoinTest {
     }
 
     @Test
-    fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
-        robot.apply {
-            loadModulesOfSuccessfulScenario()
-            launchFragment()
-            checkVisibility(R.id.rvFavoriteStoresList)
-        }
-    }
-
-    @Test
-    fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
-        robot.apply {
-            loadModulesOfSuccessfulScenario()
-            launchFragment()
-            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
-            scrollToItem("Magalu",  R.id.rvFavoriteStoresList)
-        }
-    }
-
-    @Test
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
+
+        val content = fileReader("assets/favoriteListEmptyResponse.json")
+
+        val response = content?.let { MockResponse().setBody(it).setResponseCode(HttpURLConnection.HTTP_OK) }
+        response?.let { mockWebServer.enqueue(it) }
+
         robot.apply {
-            loadModulesOfEmptyListScenario()
             launchFragment()
             checkVisibility(R.id.txtEmptyResult)
         }
@@ -102,20 +92,8 @@ class FavoriteFragmentTest : KoinTest {
         }
     }
 
-    private fun getOverriddenModules() = module(override = true) {
-        single { StubRetrofitBuilder().buildRetrofit()}
-    }
-
     private fun setupKoin() {
-        if (GlobalContext.getOrNull() == null) {
-            startKoin {
-                DataModule().load()
-                RemoteDataModule().load()
-                FavoriteModule().load()
-            }
-        }
-
-//        loadKoinModules(getOverriddenModules())
+        RemoteDataModule().load()
     }
 
     private fun setupMockWebServer() {
@@ -123,8 +101,7 @@ class FavoriteFragmentTest : KoinTest {
     }
 
     private fun tearDownKoin() {
-        stopKoin()
-//        unloadKoinModules(getOverriddenModules())
+        RemoteDataModule().unload()
     }
 
     private fun tearDownMockWebServer() {

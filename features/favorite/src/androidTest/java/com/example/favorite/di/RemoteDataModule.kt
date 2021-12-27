@@ -2,6 +2,7 @@ package com.example.favorite.di
 
 import com.example.favorite.remote.StubRetrofitBuilder
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 import org.koin.dsl.module
 
 class RemoteDataModule {
@@ -13,4 +14,5 @@ class RemoteDataModule {
     }
 
     fun load() = loadKoinModules(modules)
+    fun unload() = unloadKoinModules(modules)
 }
