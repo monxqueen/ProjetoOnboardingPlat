@@ -1,6 +1,5 @@
 package com.example.favorite
 
-import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.favorite.di.RemoteDataModule
 import com.example.favorite.remote.utils.FileReader
@@ -46,7 +45,6 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment().apply {
-                moveToState(Lifecycle.State.RESUMED)
                 Thread.sleep(1000)
                 checkVisibility(R.id.rvFavoriteStoresList)
             }
@@ -61,7 +59,6 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment().apply {
-                moveToState(Lifecycle.State.RESUMED)
                 Thread.sleep(1000)
                 scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
                 scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
@@ -77,7 +74,6 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment().apply {
-                moveToState(Lifecycle.State.RESUMED)
                 Thread.sleep(1000)
                 checkVisibility(R.id.txtEmptyResult)
             }
@@ -92,7 +88,6 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment().apply {
-                moveToState(Lifecycle.State.RESUMED)
                 Thread.sleep(1000)
                 checkVisibility(R.id.includeLayoutError)
             }
@@ -110,7 +105,6 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment().apply {
-                moveToState(Lifecycle.State.RESUMED)
                 Thread.sleep(1000)
                 clickOnButton(R.id.btn_error)
                 checkVisibility(R.id.rvFavoriteStoresList)
