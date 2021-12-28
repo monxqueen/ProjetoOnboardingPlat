@@ -1,5 +1,6 @@
 package com.example.favorite
 
+import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +12,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.favorite.presentation.FavoriteFragment
 
 class FavoriteFragmentRobot {
-    fun launchFragment() {
-        launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
+    fun launchFragment() : FragmentScenario<FavoriteFragment> {
+        return launchFragmentInContainer(initialState = Lifecycle.State.STARTED)
     }
 
     fun checkVisibility(id: Int) {

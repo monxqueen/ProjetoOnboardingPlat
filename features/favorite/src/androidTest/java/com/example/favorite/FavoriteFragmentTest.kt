@@ -1,5 +1,6 @@
 package com.example.favorite
 
+import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.favorite.di.RemoteDataModule
 import com.example.favorite.remote.utils.FileReader
@@ -39,8 +40,11 @@ class FavoriteFragmentTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment()
-            checkVisibility(R.id.rvFavoriteStoresList)
+            launchFragment().apply {
+                moveToState(Lifecycle.State.RESUMED)
+                Thread.sleep(1000)
+                checkVisibility(R.id.rvFavoriteStoresList)
+            }
         }
     }
 
@@ -51,9 +55,12 @@ class FavoriteFragmentTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment()
-            scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
-            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+            launchFragment().apply {
+                moveToState(Lifecycle.State.RESUMED)
+                Thread.sleep(1000)
+                scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
+                scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+            }
         }
     }
 
@@ -64,8 +71,11 @@ class FavoriteFragmentTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment()
-            checkVisibility(R.id.txtEmptyResult)
+            launchFragment().apply {
+                moveToState(Lifecycle.State.RESUMED)
+                Thread.sleep(1000)
+                checkVisibility(R.id.txtEmptyResult)
+            }
         }
     }
 
@@ -76,8 +86,11 @@ class FavoriteFragmentTest {
         mockWebServer.enqueue(errorResponse)
 
         robot.apply {
-            launchFragment()
-            checkVisibility(R.id.includeLayoutError)
+            launchFragment().apply {
+                moveToState(Lifecycle.State.RESUMED)
+                Thread.sleep(1000)
+                checkVisibility(R.id.includeLayoutError)
+            }
         }
     }
 
@@ -91,9 +104,12 @@ class FavoriteFragmentTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment()
-            clickOnButton(R.id.btn_error)
-            checkVisibility(R.id.rvFavoriteStoresList)
+            launchFragment().apply {
+                moveToState(Lifecycle.State.RESUMED)
+                Thread.sleep(1000)
+                clickOnButton(R.id.btn_error)
+                checkVisibility(R.id.rvFavoriteStoresList)
+            }
         }
     }
 
