@@ -10,13 +10,15 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.test.KoinTest
+import org.koin.test.inject
 import java.net.HttpURLConnection
 
 @RunWith(AndroidJUnit4::class)
-class FavoriteFragmentTest {
+class FavoriteFragmentTest : KoinTest {
 
-    private val robot = FavoriteFragmentRobot()
-    private val fileReader = FileReader()
+    private val robot: FavoriteFragmentRobot by inject()
+    private val fileReader: FileReader by inject()
     private val mockWebServer: MockWebServer by lazy {
         MockWebServer()
     }
