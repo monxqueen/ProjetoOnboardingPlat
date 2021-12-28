@@ -71,8 +71,11 @@ class FavoriteFragmentTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayError() {
+
+        val errorResponse = setHttpCode(HttpURLConnection.HTTP_BAD_REQUEST)
+        mockWebServer.enqueue(errorResponse)
+
         robot.apply {
-            loadModulesOfErrorScenario()
             launchFragment()
             checkVisibility(R.id.includeLayoutError)
         }
