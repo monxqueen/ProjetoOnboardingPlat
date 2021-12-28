@@ -14,6 +14,9 @@ import org.koin.test.KoinTest
 import org.koin.test.inject
 import java.net.HttpURLConnection
 
+private const val SUCCESS_RESPONSE_PATH = "assets/favoriteListSuccessResponse.json"
+private const val EMPTY_RESPONSE_PATH = "assets/favoriteListEmptyResponse.json"
+
 @RunWith(AndroidJUnit4::class)
 class FavoriteFragmentTest : KoinTest {
 
@@ -38,7 +41,7 @@ class FavoriteFragmentTest : KoinTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
 
-        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
+        val response = getResponse(HttpURLConnection.HTTP_OK, SUCCESS_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
@@ -53,7 +56,7 @@ class FavoriteFragmentTest : KoinTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
 
-        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
+        val response = getResponse(HttpURLConnection.HTTP_OK, SUCCESS_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
@@ -69,7 +72,7 @@ class FavoriteFragmentTest : KoinTest {
     @Test
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
 
-        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListEmptyResponse.json")
+        val response = getResponse(HttpURLConnection.HTTP_OK, EMPTY_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
@@ -102,7 +105,7 @@ class FavoriteFragmentTest : KoinTest {
         val errorResponse = setHttpCode(HttpURLConnection.HTTP_BAD_REQUEST)
         mockWebServer.enqueue(errorResponse)
 
-        val response = getResponse(HttpURLConnection.HTTP_OK, "assets/favoriteListSuccessResponse.json")
+        val response = getResponse(HttpURLConnection.HTTP_OK, SUCCESS_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
