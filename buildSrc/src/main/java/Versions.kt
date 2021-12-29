@@ -35,6 +35,7 @@ object Versions {
     const val fragmentTestingVersion = "1.4.0"
     const val espressoContribVersion = "3.4.0"
     const val mockWebServerVersion = "4.9.3"
+    const val rxIdlerVersion = "0.11.0"
 
     // Layout
     const val viewPager2Version = "1.0.0"

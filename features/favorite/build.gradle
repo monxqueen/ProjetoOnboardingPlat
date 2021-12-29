@@ -17,7 +17,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "com.example.favorite.TestRunner"
-//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -73,4 +72,5 @@ dependencies {
     androidTestImplementation Libs.mockWebServer
     testImplementation Libs.arcCore
     debugImplementation Libs.fragmentTesting
+    androidTestImplementation Libs.rxIdler
 }

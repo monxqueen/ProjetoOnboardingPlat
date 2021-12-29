@@ -1,6 +1,5 @@
 package com.example.favorite
 
-import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +11,12 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.favorite.presentation.FavoriteFragment
 
 class FavoriteFragmentRobot {
-    fun launchFragment() : FragmentScenario<FavoriteFragment> {
-        return launchFragmentInContainer(initialState = Lifecycle.State.STARTED)
+
+    fun launchFragment() {
+        launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
     }
+
+    private fun getView(id: Int) = onView(withId(id))
 
     fun checkVisibility(id: Int) {
         getView(id)
@@ -27,8 +29,6 @@ class FavoriteFragmentRobot {
                 hasDescendant(withText(name)))
             )
     }
-
-    private fun getView(id: Int) = onView(withId(id))
 
     fun clickOnButton(id: Int) {
         getView(id).perform(click())

@@ -44,10 +44,8 @@ class FavoriteFragmentTest : KoinTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment().apply {
-                Thread.sleep(1000)
-                checkVisibility(R.id.rvFavoriteStoresList)
-            }
+            launchFragment()
+            checkVisibility(R.id.rvFavoriteStoresList)
         }
     }
 
@@ -58,11 +56,9 @@ class FavoriteFragmentTest : KoinTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment().apply {
-                Thread.sleep(1000)
-                scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
-                scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
-            }
+            launchFragment()
+            scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
+            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
         }
     }
 
@@ -73,10 +69,8 @@ class FavoriteFragmentTest : KoinTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment().apply {
-                Thread.sleep(1000)
-                checkVisibility(R.id.txtEmptyResult)
-            }
+            launchFragment()
+            checkVisibility(R.id.txtEmptyResult)
         }
     }
 
@@ -87,10 +81,8 @@ class FavoriteFragmentTest : KoinTest {
         mockWebServer.enqueue(errorResponse)
 
         robot.apply {
-            launchFragment().apply {
-                Thread.sleep(1000)
-                checkVisibility(R.id.includeLayoutError)
-            }
+            launchFragment()
+            checkVisibility(R.id.includeLayoutError)
         }
     }
 
@@ -104,11 +96,9 @@ class FavoriteFragmentTest : KoinTest {
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
-            launchFragment().apply {
-                Thread.sleep(1000)
-                clickOnButton(R.id.btn_error)
-                checkVisibility(R.id.rvFavoriteStoresList)
-            }
+            launchFragment()
+            clickOnButton(R.id.btn_error)
+            checkVisibility(R.id.rvFavoriteStoresList)
         }
     }
 
@@ -123,12 +113,12 @@ class FavoriteFragmentTest : KoinTest {
         RemoteDataModule().load()
     }
 
-    private fun setupMockWebServer() {
-        mockWebServer.start(8080)
-    }
-
     private fun tearDownKoin() {
         RemoteDataModule().unload()
+    }
+
+    private fun setupMockWebServer() {
+        mockWebServer.start(8080)
     }
 
     private fun tearDownMockWebServer() {
