@@ -38,6 +38,7 @@ object Libs {
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTestingVersion}"
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espressoContribVersion}"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServerVersion}"
+    const val rxIdler = "com.squareup.rx.idler:rx2-idler:${Versions.rxIdlerVersion}"
 
     // Layout
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2Version}"

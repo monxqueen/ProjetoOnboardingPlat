@@ -7,15 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.data.data.remote.mapper.StoresMapper
-import com.example.data.data.remote.repository.RepositoryImpl
-import com.example.data.domain.GetStoreListUseCaseImpl
 import com.example.favorite.databinding.FragmentFavoriteBinding
-import com.example.favorite.domain.GetFavoriteListUseCaseImpl
-import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import com.example.favorite.presentation.adapter.FavoriteStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
 class FavoriteFragment : Fragment() {
 
@@ -73,7 +67,6 @@ class FavoriteFragment : Fragment() {
                     rvAdapter.notifyDataSetChanged()
                 }
             }
-
         })
     }
 
