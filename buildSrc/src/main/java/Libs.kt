@@ -27,6 +27,9 @@ object Libs {
     const val koinViewModel = "io.insert-koin:koin-androidx-viewmodel:${Versions.koinVersion}"
     const val koinTest = "io.insert-koin:koin-test:${Versions.koinVersion}"
 
+    // Location Services
+    const val playServicesLocation = "com.google.android.gms:play-services-location:${Versions.playServicesLocationVersion}"
+
     // Tests
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val jUnitAndroid = "androidx.test.ext:junit:${Versions.jUnitAndroidVersion}"
