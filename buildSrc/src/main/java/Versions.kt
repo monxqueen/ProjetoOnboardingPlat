@@ -1,5 +1,6 @@
 object Versions {
 
+
     // Kotlin
     const val kotlinVersion = "1.5.31"
     const val kotlinSerializationVersion = "1.3.0"
@@ -23,6 +24,9 @@ object Versions {
 
     // Koin
     const val koinVersion = "2.2.3"
+
+    // Location Services
+    const val playServicesLocationVersion = "19.0.0"
 
     // Tests
     const val jUnitVersion = "4.13.2"
