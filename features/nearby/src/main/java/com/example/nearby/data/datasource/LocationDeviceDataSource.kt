@@ -1,4 +1,4 @@
-package com.example.nearby.data
+package com.example.nearby.data.datasource
 
 import com.example.nearby.data.model.UserLocationResponse
 import io.reactivex.Single

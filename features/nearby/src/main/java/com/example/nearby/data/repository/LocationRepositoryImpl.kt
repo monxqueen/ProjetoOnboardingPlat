@@ -1,6 +1,6 @@
 package com.example.nearby.data.repository
 
-import com.example.nearby.data.LocationDeviceDataSource
+import com.example.nearby.data.datasource.LocationDeviceDataSource
 import com.example.nearby.domain.LocationRepository
 
 class LocationRepositoryImpl(private val locationDeviceDataSource: LocationDeviceDataSource) : LocationRepository {

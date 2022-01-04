@@ -1,4 +1,4 @@
-package com.example.nearby.data
+package com.example.nearby.data.datasource
 
 import android.annotation.SuppressLint
 import android.content.Context
