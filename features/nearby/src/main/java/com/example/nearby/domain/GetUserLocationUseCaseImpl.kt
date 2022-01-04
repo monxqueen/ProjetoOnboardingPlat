@@ -16,6 +16,3 @@ class GetUserLocationUseCaseImpl(private val locationRepository: LocationReposit
         )
     }
 }
-
-
-
