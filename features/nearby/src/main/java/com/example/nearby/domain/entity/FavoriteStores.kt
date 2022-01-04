@@ -1,6 +1,6 @@
 package com.example.nearby.domain.entity
 
-data class FavoriteStores(
+internal data class FavoriteStores(
     val id: Int,
     val name: String? = "",
     val iconUrl: String? = "",

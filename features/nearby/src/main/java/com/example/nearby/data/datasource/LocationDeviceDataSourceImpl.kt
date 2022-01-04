@@ -6,7 +6,7 @@ import com.example.nearby.data.model.UserLocationResponse
 import com.google.android.gms.location.LocationServices
 import io.reactivex.Single
 
-class LocationDeviceDataSourceImpl(private val context: Context) : LocationDeviceDataSource {
+internal class LocationDeviceDataSourceImpl(private val context: Context) : LocationDeviceDataSource {
 
     //TODO: Levar o tratamento de permissões pra ViewModel
     @SuppressLint("MissingPermission")

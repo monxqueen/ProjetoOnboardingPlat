@@ -3,7 +3,7 @@ package com.example.nearby.domain.mapper
 import com.example.data.domain.entity.Store
 import com.example.nearby.domain.entity.FavoriteStores
 
-class FavoriteStoresMapper {
+internal class FavoriteStoresMapper {
 
     fun mapStoresListToDomain(storesList: List<Store>) : List<FavoriteStores> {
         return storesList.map { it.mapToDomain() }
