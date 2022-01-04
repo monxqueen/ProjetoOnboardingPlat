@@ -37,6 +37,19 @@ class NearbyFragment : Fragment() {
         viewModel.getUserLocation()
     }
 
+    private fun observeState() {
+        viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
+
+            with(state) {
+                userLocation?.let {
+                    binding.txtLatitude.text =  it.latitude.toString()
+                    binding.txtLongitude.text = it.longitude.toString()
+                }
+            }
+        })
+    }
+
+    //TODO: Mover pra ViewModel
     private fun checkPermissions() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -51,6 +64,7 @@ class NearbyFragment : Fragment() {
         }
     }
 
+    //TODO: Mover pra ViewModel
     private fun requestPermissions() {
         ActivityCompat.requestPermissions(
             requireActivity(),
@@ -60,17 +74,5 @@ class NearbyFragment : Fragment() {
             ),
             REQUEST_LOCATION_PERMISSIONS
         )
-    }
-
-    private fun observeState() {
-        viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
-
-            with(state) {
-                userLocation?.let {
-                    binding.txtLatitude.text =  it.latitude.toString()
-                    binding.txtLongitude.text = it.longitude.toString()
-                }
-            }
-        })
     }
 }

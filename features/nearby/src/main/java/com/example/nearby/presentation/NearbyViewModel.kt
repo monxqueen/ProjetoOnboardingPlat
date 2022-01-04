@@ -1,10 +1,12 @@
 package com.example.nearby.presentation
 
 import android.util.Log
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nearby.domain.GetUserLocationUseCase
 import com.example.nearby.presentation.utils.DisposableViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 internal class NearbyViewModel(private val getUserLocationUseCase: GetUserLocationUseCase) : DisposableViewModel() {
@@ -15,6 +17,7 @@ internal class NearbyViewModel(private val getUserLocationUseCase: GetUserLocati
     fun getUserLocation() {
         getUserLocationUseCase()
             .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
                     _viewStateLiveData.value = NearbyViewState(userLocation = it)
