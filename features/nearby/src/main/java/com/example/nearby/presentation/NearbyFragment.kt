@@ -1,7 +1,6 @@
 package com.example.nearby.presentation
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
-import com.example.nearby.data.model.UserLocation
 import com.example.nearby.databinding.FragmentNearbyBinding
-import com.google.android.gms.location.LocationServices
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val REQUEST_LOCATION_PERMISSIONS = 1
@@ -37,6 +34,7 @@ class NearbyFragment : Fragment() {
 
         checkPermissions()
         observeState()
+        viewModel.getUserLocation()
     }
 
     private fun checkPermissions() {
@@ -51,25 +49,6 @@ class NearbyFragment : Fragment() {
             requestPermissions()
             return
         }
-
-        getUserLocation()
-    }
-
-    //TODO: mover para o LocationDeviceDataSourceImpl (qual seria o trigger pra executar essa função lá?!)
-    @SuppressLint("MissingPermission")
-    private fun getUserLocation() {
-        LocationServices.getFusedLocationProviderClient(requireContext()).lastLocation.addOnSuccessListener { apiLocation ->
-            apiLocation?.let {
-                val userLocation = UserLocation(
-                    latitude = apiLocation.latitude,
-                    longitude = apiLocation.longitude
-                )
-
-                //TODO: isso sairia daqui e ficaria dentro do observeState()
-                binding.txtLatitude.text = userLocation.latitude.toString()
-                binding.txtLongitude.text = userLocation.longitude.toString()
-            }
-        }
     }
 
     private fun requestPermissions() {
@@ -82,7 +61,6 @@ class NearbyFragment : Fragment() {
             REQUEST_LOCATION_PERMISSIONS
         )
     }
-
 
     private fun observeState() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
