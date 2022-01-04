@@ -1,7 +1,6 @@
 package com.example.nearby.presentation
 
 import android.util.Log
-import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nearby.domain.GetUserLocationUseCase
