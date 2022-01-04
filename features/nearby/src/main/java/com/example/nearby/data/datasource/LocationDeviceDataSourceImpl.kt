@@ -10,9 +10,9 @@ class LocationDeviceDataSourceImpl(private val context: Context) : LocationDevic
 
     //TODO: Levar o tratamento de permissões pra ViewModel
     @SuppressLint("MissingPermission")
-    override fun getLocation(): Single<UserLocationResponse?> {
+    override fun getLocation(): Single<UserLocationResponse> {
 
-        var userLocation: UserLocationResponse? = null
+        lateinit var userLocation : UserLocationResponse
 
         return Single.create { emmiter ->
             LocationServices.getFusedLocationProviderClient(context).lastLocation.addOnSuccessListener { apiLocation ->
@@ -22,7 +22,7 @@ class LocationDeviceDataSourceImpl(private val context: Context) : LocationDevic
                         longitude = apiLocation.longitude
                     )
                 }
-                userLocation?.let { emmiter.onSuccess(it) }
+                emmiter.onSuccess(userLocation)
             }
         }
     }
