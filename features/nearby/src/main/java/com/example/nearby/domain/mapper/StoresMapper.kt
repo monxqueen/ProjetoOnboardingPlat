@@ -1,16 +1,16 @@
 package com.example.nearby.domain.mapper
 
 import com.example.data.domain.entity.Store
-import com.example.nearby.domain.entity.FavoriteStores
+import com.example.nearby.domain.entity.Stores
 
-internal class FavoriteStoresMapper {
+internal class StoresMapper {
 
-    fun mapStoresListToDomain(storesList: List<Store>) : List<FavoriteStores> {
+    fun mapStoresListToDomain(storesList: List<Store>) : List<Stores> {
         return storesList.map { it.mapToDomain() }
     }
 
-    private fun Store.mapToDomain() : FavoriteStores {
-        return FavoriteStores(
+    private fun Store.mapToDomain() : Stores {
+        return Stores(
             id = id,
             name = name,
             iconUrl = iconUrl,
