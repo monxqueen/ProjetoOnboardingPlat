@@ -5,6 +5,7 @@ import com.example.nearby.domain.entity.NearbyStores
 import com.example.nearby.domain.entity.Stores
 import com.example.nearby.domain.entity.UserLocation
 import io.reactivex.Single
+import kotlin.math.roundToInt
 
 internal class GetNearbyStoresUseCaseImpl(private val getStoresListUseCase: GetStoresListUseCase,
                                           private val getUserLocationUseCase: GetUserLocationUseCase) : GetNearbyStoresUseCase {
@@ -23,16 +24,15 @@ internal class GetNearbyStoresUseCaseImpl(private val getStoresListUseCase: GetS
     private fun evaluateDistance(storesList: List<Stores>, userLocation: UserLocation) : List<NearbyStores> {
 
         val distanceArray = FloatArray(1)
-        val distance by lazy { distanceArray[0] }
 
-        storesList.forEach { store ->
+        return storesList.map { store ->
             distanceBetween(userLocation.latitude, userLocation.longitude,
                 store.latitude, store.longitude, distanceArray)
+            store.mapToNearbyStoreWithDistance(distanceArray[0].convertToKilometers())
         }
-        return storesList.map { it.mapToNearbyStoreWithDistance(distance.convertToKilometers()) }
     }
 
-    private fun Stores.mapToNearbyStoreWithDistance(distance: Float) =
+    private fun Stores.mapToNearbyStoreWithDistance(distance: Int) =
         NearbyStores(
             id = id,
             name = name,
@@ -40,5 +40,5 @@ internal class GetNearbyStoresUseCaseImpl(private val getStoresListUseCase: GetS
             distance = distance
         )
 
-    private fun Float.convertToKilometers() = this/1000
+    private fun Float.convertToKilometers() = (this/1000).roundToInt()
 }
