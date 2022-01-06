@@ -37,13 +37,18 @@ android {
 
 dependencies {
     implementation project(':data')
+    implementation project(':common')
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.materialDesign
 
+    implementation Libs.rxJava
+    implementation Libs.rxAndroid
+
     implementation Libs.koinCore
     implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
 
     implementation Libs.playServicesLocation
 

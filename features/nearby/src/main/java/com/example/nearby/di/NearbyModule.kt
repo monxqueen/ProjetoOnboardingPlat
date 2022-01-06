@@ -1,18 +1,30 @@
 package com.example.nearby.di
 
+import com.example.nearby.data.datasource.LocationDeviceDataSourceImpl
+import com.example.nearby.data.repository.LocationRepositoryImpl
+import com.example.nearby.domain.GetUserLocationUseCaseImpl
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 class NearbyModule {
 
     private val modules = module {
 
-        // DATA
+//        viewModel {
+//            NearbyViewModel(
+//                getUserLocationUseCase = GetUserLocationUseCaseImpl(
+//                    locationRepository = LocationRepositoryImpl(
+//                        locationDeviceDataSource = LocationDeviceDataSourceImpl(
+//                            context = androidContext() //TODO: Faz sentido?
+//                        )
+//                    )
+//                )
+//            )
+//        }
+//    }
 
-        // DOMAIN
-
-        // PRESENTATION
+//    fun load() = loadKoinModules(modules)
     }
-
-    fun load() = loadKoinModules(modules)
 }

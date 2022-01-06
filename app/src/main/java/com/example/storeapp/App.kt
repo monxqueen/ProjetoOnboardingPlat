@@ -3,6 +3,7 @@ package com.example.storeapp
 import android.app.Application
 import com.example.data.di.DataModule
 import com.example.favorite.di.FavoriteModule
+import com.example.nearby.di.NearbyModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,6 +16,7 @@ class App : Application() {
 
             DataModule().load()
             FavoriteModule().load()
+            NearbyModule().load()
         }
     }
 }
