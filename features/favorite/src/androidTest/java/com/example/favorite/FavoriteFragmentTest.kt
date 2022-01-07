@@ -97,7 +97,7 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            clickOnButton(R.id.btn_error)
+            clickOnButton(R.id.btnError)
             checkVisibility(R.id.rvFavoriteStoresList)
         }
     }
