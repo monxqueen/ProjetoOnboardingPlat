@@ -55,10 +55,8 @@ dependencies {
     implementation Libs.rxAndroid
 
     implementation Libs.coreKtx
-    implementation Libs.appCompat
-    implementation Libs.constraintLayout
     implementation Libs.materialDesign
-    implementation Libs.glide
+    implementation Libs.constraintLayout
     implementation Libs.lottie
 
     testImplementation Libs.jUnit

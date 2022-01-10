@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/icon_error"
+        android:id="@+id/imgError"
         android:layout_width="@dimen/xspclarge_dp"
         android:layout_height="@dimen/xspclarge_dp"
         android:layout_marginTop="@dimen/xxlarge_dp"
@@ -15,26 +15,26 @@
         app:srcCompat="@drawable/error_icon" />
 
     <TextView
-        android:id="@+id/txt_error"
+        android:id="@+id/txtError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/error"
         android:textSize="@dimen/medium_sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/icon_error"
+        app:layout_constraintEnd_toEndOf="@id/imgError"
         android:layout_marginTop="@dimen/large_dp"
-        app:layout_constraintStart_toStartOf="@id/icon_error"
-        app:layout_constraintTop_toBottomOf="@id/icon_error" />
+        app:layout_constraintStart_toStartOf="@id/imgError"
+        app:layout_constraintTop_toBottomOf="@id/imgError" />
 
     <Button
-        android:id="@+id/btn_error"
+        android:id="@+id/btnError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_dp"
         android:text="@string/try_again"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/txt_error"
-        app:layout_constraintStart_toStartOf="@id/txt_error"
-        app:layout_constraintTop_toBottomOf="@id/txt_error" />
+        app:layout_constraintEnd_toEndOf="@id/txtError"
+        app:layout_constraintStart_toStartOf="@id/txtError"
+        app:layout_constraintTop_toBottomOf="@id/txtError" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

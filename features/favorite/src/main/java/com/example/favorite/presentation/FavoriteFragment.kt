@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.favorite.databinding.FragmentFavoriteBinding
+import com.example.common.databinding.FragmentStandardBinding
 import com.example.favorite.presentation.adapter.FavoriteStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class FavoriteFragment : Fragment() {
 
-    private val binding: FragmentFavoriteBinding by lazy {
-        FragmentFavoriteBinding.inflate(layoutInflater)
+    private val binding: FragmentStandardBinding by lazy {
+        FragmentStandardBinding.inflate(layoutInflater)
     }
 
     private val rvAdapter: FavoriteStoresAdapter by lazy {
@@ -41,13 +41,13 @@ internal class FavoriteFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val rvFavoriteStores = binding.rvFavoriteStoresList
+        val rvFavoriteStores = binding.rvStoresList
         rvFavoriteStores.adapter = rvAdapter
         rvFavoriteStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     private fun setupListeners() {
-        binding.includeLayoutError.btnError.setOnClickListener {
+        binding.layoutError.btnError.setOnClickListener {
             onClickBtnTryAgain()
         }
     }
@@ -56,10 +56,10 @@ internal class FavoriteFragment : Fragment() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
 
             with(state) {
-                binding.rvFavoriteStoresList.isVisible = favoriteList?.isNotEmpty() ?: false
+                binding.rvStoresList.isVisible = favoriteList?.isNotEmpty() ?: false
                 binding.txtEmptyResult.isVisible = favoriteList?.isEmpty() ?: false
-                binding.includeLayoutError.root.isVisible = isErrorVisible
-                binding.progBar.isVisible = isLoadingVisible
+                binding.layoutError.root.isVisible = isErrorVisible
+                binding.progressBar.isVisible = isLoadingVisible
 
                 favoriteList?.let {
                     rvAdapter.dataSet.clear()
