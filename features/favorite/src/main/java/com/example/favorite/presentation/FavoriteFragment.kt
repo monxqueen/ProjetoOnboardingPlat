@@ -11,7 +11,7 @@ import com.example.common.databinding.FragmentStandardBinding
 import com.example.favorite.presentation.adapter.FavoriteStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
     private val binding: FragmentStandardBinding by lazy {
         FragmentStandardBinding.inflate(layoutInflater)

@@ -42,6 +42,7 @@ dependencies {
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.materialDesign
+    implementation Libs.lottie
 
     implementation Libs.rxJava
     implementation Libs.rxAndroid
