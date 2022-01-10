@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common.databinding.FragmentStandardBinding
+import com.example.nearby.presentation.adapter.NearbyStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val REQUEST_LOCATION_PERMISSIONS = 1
@@ -20,9 +21,9 @@ class NearbyFragment : Fragment() {
         FragmentStandardBinding.inflate(layoutInflater)
     }
 
-    /*private val rvAdapter: NearbyStoresAdapter by lazy {
+    private val rvAdapter: NearbyStoresAdapter by lazy {
         NearbyStoresAdapter()
-    }*/
+    }
 
     private val viewModel: NearbyViewModel by viewModel()
 
@@ -45,7 +46,7 @@ class NearbyFragment : Fragment() {
 
     private fun setupRecyclerView() {
         val rvNearbyStores = binding.rvStoresList
-        //rvNearbyStores.adapter = rvAdapter
+        rvNearbyStores.adapter = rvAdapter
         rvNearbyStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
@@ -69,9 +70,9 @@ class NearbyFragment : Fragment() {
                 binding.progressBar.isVisible = isLoadingVisible
 
                 nearbyList?.let {
-                    /*rvAdapter.dataSet.clear()
+                    rvAdapter.dataSet.clear()
                     rvAdapter.dataSet.addAll(it)
-                    rvAdapter.notifyDataSetChanged()*/
+                    rvAdapter.notifyDataSetChanged()
                 }
             }
         })
