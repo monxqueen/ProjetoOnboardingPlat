@@ -3,7 +3,7 @@ package com.example.data.data.remote.mapper
 import com.example.data.data.remote.model.StoreResponse
 import com.example.data.domain.entity.Store
 
-class StoresMapper {
+internal class StoresMapper {
 
     fun mapStoresListToDomain(storesResponseList: List<StoreResponse>) : List<Store> {
         return storesResponseList.map { it.mapToDomain() }

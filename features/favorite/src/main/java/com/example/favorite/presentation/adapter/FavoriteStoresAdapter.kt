@@ -7,7 +7,7 @@ import com.example.common.utils.loadImage
 import com.example.favorite.databinding.ItemFavoriteStoresBinding
 import com.example.favorite.domain.entity.FavoriteStore
 
-class FavoriteStoresAdapter(var dataSet: MutableList<FavoriteStore> = mutableListOf()) : RecyclerView.Adapter<FavoriteStoreViewHolder>() {
+internal class FavoriteStoresAdapter(var dataSet: MutableList<FavoriteStore> = mutableListOf()) : RecyclerView.Adapter<FavoriteStoreViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoriteStoreViewHolder {
         val binding = ItemFavoriteStoresBinding
@@ -21,7 +21,7 @@ class FavoriteStoresAdapter(var dataSet: MutableList<FavoriteStore> = mutableLis
     override fun getItemCount() = dataSet.size
 }
 
-class FavoriteStoreViewHolder(private val binding: ItemFavoriteStoresBinding) : RecyclerView.ViewHolder(binding.root) {
+internal class FavoriteStoreViewHolder(private val binding: ItemFavoriteStoresBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(dataSet: MutableList<FavoriteStore>, position: Int) {
         binding.storeName.text = dataSet[position].name
