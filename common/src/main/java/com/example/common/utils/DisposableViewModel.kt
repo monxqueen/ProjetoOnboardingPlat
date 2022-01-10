@@ -1,4 +1,4 @@
-package com.example.nearby.presentation.utils
+package com.example.common.utils
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
