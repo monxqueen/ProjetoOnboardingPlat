@@ -3,8 +3,8 @@ package com.example.nearby.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.common.utils.DisposableViewModel
 import com.example.nearby.domain.GetNearbyStoresUseCase
-import com.example.nearby.presentation.utils.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -12,6 +12,10 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
 
     private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
     val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
+
+    init {
+        getNearbyStores()
+    }
 
     fun getNearbyStores() {
         getNearbyStoresUseCase()

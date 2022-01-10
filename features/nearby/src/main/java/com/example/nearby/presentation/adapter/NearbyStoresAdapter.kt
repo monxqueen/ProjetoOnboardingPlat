@@ -7,7 +7,7 @@ import com.example.common.utils.loadImage
 import com.example.nearby.databinding.ItemNearbyStoresBinding
 import com.example.nearby.domain.entity.NearbyStores
 
-internal class NearbyStoresAdapter(var dataSet: MutableList<NearbyStores> = mutableListOf()) : RecyclerView.Adapter<NearbyStoresViewHolder>() {
+internal class NearbyStoresAdapter(private var dataSet: MutableList<NearbyStores> = mutableListOf()) : RecyclerView.Adapter<NearbyStoresViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): NearbyStoresViewHolder {
         val binding = ItemNearbyStoresBinding
@@ -16,18 +16,23 @@ internal class NearbyStoresAdapter(var dataSet: MutableList<NearbyStores> = muta
     }
 
     override fun onBindViewHolder(viewHolder: NearbyStoresViewHolder, position: Int) =
-        viewHolder.bind(dataSet, position)
+        viewHolder.bind(dataSet[position])
 
     override fun getItemCount() = dataSet.size
+
+    fun updateList(list: List<NearbyStores>) {
+        dataSet.clear()
+        dataSet.addAll(list)
+        notifyDataSetChanged()
+    }
 }
 
 internal class NearbyStoresViewHolder(private val binding: ItemNearbyStoresBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(dataSet: MutableList<NearbyStores>, position: Int) {
-        binding.storeName.text = dataSet[position].name
-        binding.distanceBetweenDeviceAndStore.text = dataSet[position].distance.toString()
+    fun bind(item: NearbyStores) {
+        binding.storeName.text = item.name
+        binding.distanceBetweenDeviceAndStore.text = item.distance.toString()
 
         val storeIcon = binding.storeIconUrl
-        dataSet[position].iconUrl?.let { storeIcon.loadImage(it) }
+        item.iconUrl?.let { storeIcon.loadImage(it) }
     }
 }

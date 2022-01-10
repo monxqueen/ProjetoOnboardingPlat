@@ -41,13 +41,13 @@ class NearbyFragment : Fragment() {
 
         checkPermissions()
         observeState()
-        viewModel.getNearbyStores()
     }
 
     private fun setupRecyclerView() {
-        val rvNearbyStores = binding.rvStoresList
-        rvNearbyStores.adapter = rvAdapter
-        rvNearbyStores.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvStoresList.let {
+            it.adapter = rvAdapter
+            it.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        }
     }
 
     private fun setupListeners() {
@@ -70,9 +70,7 @@ class NearbyFragment : Fragment() {
                 binding.progressBar.isVisible = isLoadingVisible
 
                 nearbyList?.let {
-                    rvAdapter.dataSet.clear()
-                    rvAdapter.dataSet.addAll(it)
-                    rvAdapter.notifyDataSetChanged()
+                    rvAdapter.updateList(it)
                 }
             }
         })
