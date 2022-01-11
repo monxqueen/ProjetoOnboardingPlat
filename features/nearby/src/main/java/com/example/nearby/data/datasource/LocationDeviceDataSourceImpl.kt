@@ -22,7 +22,7 @@ internal class LocationDeviceDataSourceImpl(private val context: Context) :
                     )
                     emmiter.onSuccess(userLocation)
                 } else {
-                    emmiter.tryOnError(Exception("Não consegui pegar localização"))
+                    emmiter.tryOnError(Exception("Não foi possível pegar a localização do dispositivo."))
                 }
             }
         }
