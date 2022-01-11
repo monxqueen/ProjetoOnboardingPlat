@@ -2,8 +2,8 @@ package com.example.favorite.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.common.utils.DisposableViewModel
 import com.example.favorite.domain.GetFavoriteListUseCase
-import com.example.favorite.presentation.utils.DisposableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

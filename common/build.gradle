@@ -40,4 +40,5 @@ dependencies {
     implementation Libs.materialDesign
     implementation Libs.lottie
     implementation Libs.glide
+    implementation Libs.rxJava
 }
