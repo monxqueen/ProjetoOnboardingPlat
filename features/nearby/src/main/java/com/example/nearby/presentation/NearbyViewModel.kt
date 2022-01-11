@@ -17,7 +17,7 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
         getNearbyStores()
     }
 
-    fun getNearbyStores() {
+    private fun getNearbyStores() {
         getNearbyStoresUseCase()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
