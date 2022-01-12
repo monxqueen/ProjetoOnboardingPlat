@@ -12,7 +12,7 @@ import org.koin.test.inject
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-class GetUserLocationUseCaseTest : KoinTest {
+internal class GetUserLocationUseCaseTest : KoinTest {
 
     private val locationRepository: LocationRepository = mock()
     private val getUserLocationoUseCase : GetUserLocationUseCase by inject()
