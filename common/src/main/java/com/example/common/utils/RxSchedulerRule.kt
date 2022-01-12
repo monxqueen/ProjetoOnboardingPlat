@@ -1,4 +1,4 @@
-package com.example.favorite.presentation
+package com.example.common.utils
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
