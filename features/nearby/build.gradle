@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdk 31
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -50,10 +54,16 @@ dependencies {
     implementation Libs.koinCore
     implementation Libs.koinAndroid
     implementation Libs.koinViewModel
+    implementation Libs.koinTest
 
     implementation Libs.playServicesLocation
 
     testImplementation Libs.jUnit
+    testImplementation Libs.mockito
+    testImplementation Libs.mockitoInline
+    testImplementation Libs.mockitoKotlin
+    testImplementation Libs.arcCore
+
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
 }
