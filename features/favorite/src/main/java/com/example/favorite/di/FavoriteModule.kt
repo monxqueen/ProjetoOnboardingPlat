@@ -14,7 +14,7 @@ class FavoriteModule {
 
         // DOMAIN
         factory<GetFavoriteListUseCase> { GetFavoriteListUseCaseImpl(
-            storeListUseCase = get(),
+            getStoresListDataSourceUseCase = get(),
             favoriteStoresMapper = FavoriteStoresMapper())
         }
 

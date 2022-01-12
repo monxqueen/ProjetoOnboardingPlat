@@ -1,7 +1,7 @@
 package com.example.favorite.domain
 
-import com.example.data.domain.GetStoreListUseCase
-import com.example.data.domain.entity.Store
+import com.example.data.domain.GetStoresListDataSourceUseCase
+import com.example.data.domain.entity.StoreDataSource
 import com.example.favorite.domain.entity.FavoriteStore
 import com.example.favorite.domain.mapper.FavoriteStoresMapper
 import io.reactivex.Single
@@ -11,18 +11,18 @@ import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-class FavoriteDomainTest {
+internal class GetFavoriteListUseCaseTest {
 
     private val favoriteStoresMapper = FavoriteStoresMapper()
-    private val getStoreListUseCase : GetStoreListUseCase = mock()
-    private val getFavoriteListUseCase = GetFavoriteListUseCaseImpl(getStoreListUseCase, favoriteStoresMapper)
+    private val getStoresListDataSourceUseCase : GetStoresListDataSourceUseCase = mock()
+    private val getFavoriteListUseCase = GetFavoriteListUseCaseImpl(getStoresListDataSourceUseCase, favoriteStoresMapper)
 
     @Test
     fun `when call getFavoriteList should return an expected list`() {
         //given
         val storeList = fetchStoreList()
 
-        whenever(getStoreListUseCase.getList()).thenReturn(Single.just(storeList))
+        whenever(getStoresListDataSourceUseCase()).thenReturn(Single.just(storeList))
 
         val expected = listOf(
             FavoriteStore(
@@ -44,7 +44,7 @@ class FavoriteDomainTest {
         //given
         val emptyStoreList = fetchEmptyList()
 
-        whenever(getStoreListUseCase.getList()).thenReturn(Single.just(emptyStoreList))
+        whenever(getStoresListDataSourceUseCase()).thenReturn(Single.just(emptyStoreList))
 
         val expected = emptyList<FavoriteStore>()
 
@@ -60,7 +60,7 @@ class FavoriteDomainTest {
         //given
         val differentStoreList = fetchDifferentStoreList()
 
-        whenever(getStoreListUseCase.getList()).thenReturn(Single.just(differentStoreList))
+        whenever(getStoresListDataSourceUseCase()).thenReturn(Single.just(differentStoreList))
 
         val expected = listOf(
             FavoriteStore(
@@ -89,7 +89,7 @@ class FavoriteDomainTest {
         )
 
         val storeList = listOf(
-            Store(
+            StoreDataSource(
                 2,
                 "Lojas Americanas",
                 "icone.jpg",
@@ -107,7 +107,7 @@ class FavoriteDomainTest {
 
     private fun fetchStoreList() =
         listOf(
-        Store(
+        StoreDataSource(
             2,
             "Lojas Americanas",
             "icone.jpg",
@@ -116,11 +116,11 @@ class FavoriteDomainTest {
         )
     )
 
-    private fun fetchEmptyList() = emptyList<Store>()
+    private fun fetchEmptyList() = emptyList<StoreDataSource>()
 
     private fun fetchDifferentStoreList() =
         listOf(
-            Store(
+            StoreDataSource(
                 2,
                 "Magalu",
                 "icone.jpg",

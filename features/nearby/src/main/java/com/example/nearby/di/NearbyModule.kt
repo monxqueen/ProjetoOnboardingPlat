@@ -20,7 +20,7 @@ class NearbyModule {
             NearbyViewModel(
                 getNearbyStoresUseCase = GetNearbyStoresUseCaseImpl(
                     getStoresListUseCase = GetStoresListUseCaseImpl(
-                        storeListUseCase = get(),
+                        getStoresListDataSourceUseCase = get(),
                         storesMapper = StoresMapper()
                     ),
                     getUserLocationUseCase = GetUserLocationUseCaseImpl(
