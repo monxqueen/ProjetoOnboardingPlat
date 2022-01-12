@@ -8,7 +8,6 @@ import com.example.nearby.domain.entity.NearbyStores
 import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
-import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
