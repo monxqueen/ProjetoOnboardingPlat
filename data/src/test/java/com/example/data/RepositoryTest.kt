@@ -110,6 +110,4 @@ internal class RepositoryTest {
                 -2545875.56450
             )
         )
-
-
 }
