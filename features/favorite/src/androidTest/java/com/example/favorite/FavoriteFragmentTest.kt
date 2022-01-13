@@ -45,7 +45,7 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.rvFavoriteStoresList)
+            checkVisibility(R.id.rvStoresList)
         }
     }
 
@@ -57,8 +57,8 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
-            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+            scrollToItem("Magazine Luiza",  R.id.rvStoresList)
+            scrollToItem("Lojas Americanas",  R.id.rvStoresList)
         }
     }
 
@@ -82,7 +82,7 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.includeLayoutError)
+            checkVisibility(R.id.layoutError)
         }
     }
 
@@ -98,7 +98,7 @@ class FavoriteFragmentTest : KoinTest {
         robot.apply {
             launchFragment()
             clickOnButton(R.id.btnError)
-            checkVisibility(R.id.rvFavoriteStoresList)
+            checkVisibility(R.id.rvStoresList)
         }
     }
 

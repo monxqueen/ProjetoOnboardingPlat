@@ -10,7 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.*
 
-class FavoriteViewModelTest {
+internal class FavoriteViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -74,6 +74,7 @@ class FavoriteViewModelTest {
         }
     }
 
+    @Test
     fun `when retrying to call getFavoriteList for the second time should return an expected list`() {
         //Given
         val favoriteList = fetchFavoriteList()

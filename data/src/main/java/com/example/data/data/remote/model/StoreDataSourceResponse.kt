@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class StoreResponse(
+internal data class StoreDataSourceResponse(
 
     @SerialName("id")
     val id: Int,
