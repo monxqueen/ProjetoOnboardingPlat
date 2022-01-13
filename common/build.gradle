@@ -41,4 +41,6 @@ dependencies {
     implementation Libs.lottie
     implementation Libs.glide
     implementation Libs.rxJava
+    implementation Libs.rxAndroid
+    implementation Libs.jUnit
 }

@@ -2,6 +2,7 @@ package com.example.favorite.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.example.common.utils.RxSchedulerRule
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
