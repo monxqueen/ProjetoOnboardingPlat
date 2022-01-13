@@ -10,6 +10,10 @@ android {
         viewBinding true
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         minSdk 23
         targetSdk 31
@@ -26,18 +30,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation project(':data')
-    implementation project(':common')
+    implementation project(LocalLibs.data)
+    implementation project(LocalLibs.common)
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
@@ -50,10 +56,15 @@ dependencies {
     implementation Libs.koinCore
     implementation Libs.koinAndroid
     implementation Libs.koinViewModel
+    implementation Libs.koinTest
 
     implementation Libs.playServicesLocation
 
     testImplementation Libs.jUnit
+    testImplementation Libs.mockito
+    testImplementation Libs.mockitoInline
+    testImplementation Libs.mockitoKotlin
+
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
 }
