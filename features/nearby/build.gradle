@@ -6,12 +6,12 @@ plugins {
 android {
     compileSdk 31
 
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
     buildFeatures {
         viewBinding true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     defaultConfig {
@@ -30,18 +30,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation project(':data')
-    implementation project(':common')
+    implementation project(LocalLibs.data)
+    implementation project(LocalLibs.common)
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
