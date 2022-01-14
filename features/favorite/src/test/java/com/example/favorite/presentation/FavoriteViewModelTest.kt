@@ -2,6 +2,7 @@ package com.example.favorite.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.example.common.utils.RxSchedulerRule
 import com.example.favorite.domain.GetFavoriteListUseCase
 import com.example.favorite.domain.entity.FavoriteStore
 import io.reactivex.Single
@@ -9,7 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.*
 
-class FavoriteViewModelTest {
+internal class FavoriteViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -73,6 +74,7 @@ class FavoriteViewModelTest {
         }
     }
 
+    @Test
     fun `when retrying to call getFavoriteList for the second time should return an expected list`() {
         //Given
         val favoriteList = fetchFavoriteList()

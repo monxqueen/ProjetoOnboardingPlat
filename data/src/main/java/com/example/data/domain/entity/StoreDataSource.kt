@@ -1,6 +1,6 @@
 package com.example.data.domain.entity
 
-data class Store(
+data class StoreDataSource(
     val id: Int,
     val name: String? = "",
     val iconUrl: String? = "",
