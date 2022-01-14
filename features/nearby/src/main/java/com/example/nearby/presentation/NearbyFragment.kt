@@ -38,8 +38,6 @@ class NearbyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupListeners()
-
-        checkPermissions()
         observeState()
     }
 
@@ -61,6 +59,9 @@ class NearbyFragment : Fragment() {
     }
 
     private fun observeState() {
+        viewModel._viewStatePermission.observe(viewLifecycleOwner, {
+        })
+
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
 
             with(state) {
@@ -68,7 +69,6 @@ class NearbyFragment : Fragment() {
                 binding.txtEmptyResult.isVisible = nearbyList?.isEmpty() ?: false
                 binding.layoutError.root.isVisible = isErrorVisible
                 binding.progressBar.isVisible = isLoadingVisible
-
                 nearbyList?.let {
                     rvAdapter.updateList(it)
                 }
@@ -77,19 +77,7 @@ class NearbyFragment : Fragment() {
     }
 
     //TODO: Mover pra ViewModel
-    private fun checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissions()
-            return
-        }
-    }
+
 
     //TODO: Mover pra ViewModel
     private fun requestPermissions() {
