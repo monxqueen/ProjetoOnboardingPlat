@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,12 @@ class NearbyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupListeners()
+
+        viewModel.updatePermissionStatus(isPermissionGranted())
+
+
+
+        observePermission()
         observeState()
     }
 
@@ -58,17 +65,37 @@ class NearbyFragment : Fragment() {
         viewModel.tryAgain()
     }
 
-    private fun observeState() {
-        viewModel._viewStatePermission.observe(viewLifecycleOwner, {
+    private fun observePermission() {
+        viewModel.isLocationPermissionGrantedLiveData.observe(viewLifecycleOwner, { permission ->
+            if (!permission) {
+                requestPermissions()
+//                viewModel.onPermissionResult(isPermissionGranted())
+            }
+            viewModel.updatePermissionStatus(isPermissionGranted())
         })
+    }
 
+    private fun observeState() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
 
             with(state) {
-                binding.rvStoresList.isVisible = nearbyList?.isNotEmpty() ?: false
-                binding.txtEmptyResult.isVisible = nearbyList?.isEmpty() ?: false
-                binding.layoutError.root.isVisible = isErrorVisible
-                binding.progressBar.isVisible = isLoadingVisible
+                binding.apply {
+                    rvStoresList.isVisible = nearbyList?.isNotEmpty() ?: false
+                    txtEmptyResult.isVisible = nearbyList?.isEmpty() ?: false
+                    layoutError.root.isVisible = isErrorVisible
+                    progressBar.isVisible = isLoadingVisible
+                }
+
+//                if (!isLocationPermissionGranted) {
+//                    requestPermissions()
+//                    viewModel.updatePermissionStatus(isPermissionGranted())
+////                    viewModel.onPermissionResult(isPermissionGranted())
+//                }
+//
+////                else {
+////                    viewModel.onPermissionResult(isPermissionGranted())
+////                }
+
                 nearbyList?.let {
                     rvAdapter.updateList(it)
                 }
@@ -76,10 +103,20 @@ class NearbyFragment : Fragment() {
         })
     }
 
-    //TODO: Mover pra ViewModel
+    private fun isPermissionGranted(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return false
+        }
+        return true
+    }
 
-
-    //TODO: Mover pra ViewModel
     private fun requestPermissions() {
         ActivityCompat.requestPermissions(
             requireActivity(),

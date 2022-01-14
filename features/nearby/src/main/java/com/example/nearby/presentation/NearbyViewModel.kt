@@ -10,24 +10,11 @@ import io.reactivex.schedulers.Schedulers
 
 internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStoresUseCase) : DisposableViewModel() {
 
-      private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
-      val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
+    private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
+    val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
 
-      private val _viewStatePermissions = MutableLiveData<NearbyViewState>()
-      val _viewStatePermission: LiveData<NearbyViewState> = _viewStatePermissions
-
-
-      //precisa criar outro LiveData?
-      // o que preciso fazer pra colocar em Rx(n vai precisar de rx)
-      //vou ter que criar algum  state?
-
-      //quando abrir o app eu vou validar a permissao
-      //tirar o init, colocar no onviewCreate
-      init {
-      //getNearbyStores()
-      //aqui eu vou chamar a permissao
-      }
-
+    private val _isLocationPermissionGrantedLiveData = MutableLiveData<Boolean>()
+    val isLocationPermissionGrantedLiveData: LiveData<Boolean> = _isLocationPermissionGrantedLiveData
 
     fun getNearbyStores() {
         getNearbyStoresUseCase()
@@ -50,4 +37,25 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
     fun tryAgain() {
         getNearbyStores()
     }
+
+    fun updatePermissionStatus(granted: Boolean) {
+        _isLocationPermissionGrantedLiveData.value = granted
+
+        if (granted) {
+            getNearbyStores()
+            Log.i("updatePermissionStatus", "ACEITA")
+        }
+        else {
+            //algo deve acontecer aqui
+
+            Log.i("updatePermissionStatus", "RECUSADA")
+        }
+    }
+
+//    fun onPermissionResult(granted: Boolean) {
+//        if (granted) {
+//            Log.i("onPermissionResult", "ACEITA")
+//            getNearbyStores()
+//        }
+//    }
 }
