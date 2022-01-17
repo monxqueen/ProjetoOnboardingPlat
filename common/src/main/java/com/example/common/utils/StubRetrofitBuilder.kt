@@ -1,4 +1,4 @@
-package com.example.favorite.remote
+package com.example.common.utils
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json

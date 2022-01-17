@@ -36,11 +36,22 @@ android {
 }
 
 dependencies {
+    implementation Libs.koinCore
+
+    implementation Libs.retrofit
+    implementation Libs.retrofitRxJava2Adapter
+    implementation Libs.okhttp
+
     implementation Libs.constraintLayout
     implementation Libs.materialDesign
     implementation Libs.lottie
     implementation Libs.glide
+
     implementation Libs.rxJava
     implementation Libs.rxAndroid
+
+    implementation Libs.kotlinSerialization
+    implementation Libs.kotlinSerializationConverter
+
     implementation Libs.jUnit
 }
