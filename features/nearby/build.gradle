@@ -68,5 +68,7 @@ dependencies {
 
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    implementation Libs.espressoContrib
+    debugImplementation Libs.fragmentTesting
     androidTestImplementation Libs.rxIdler
 }
