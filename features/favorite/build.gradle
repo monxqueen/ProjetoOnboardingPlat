@@ -45,12 +45,6 @@ dependencies {
     implementation Libs.koinAndroid
     implementation Libs.koinViewModel
 
-    implementation Libs.retrofit
-    implementation Libs.retrofitRxJava2Adapter
-
-    implementation Libs.kotlinSerialization
-    implementation Libs.kotlinSerializationConverter
-
     implementation Libs.rxJava
     implementation Libs.rxAndroid
 
