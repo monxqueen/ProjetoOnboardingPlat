@@ -1,28 +1,26 @@
 package com.example.nearby.presentation
 
-import android.Manifest
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common.databinding.FragmentStandardBinding
+import com.example.nearby.R
 import com.example.nearby.presentation.adapter.NearbyStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val REQUEST_LOCATION_PERMISSIONS = 1
+private const val coarseLocationPermission = "android.permission.ACCESS_COARSE_LOCATION"
+private const val fineLocationPermission = "android.permission.ACCESS_FINE_LOCATION"
 
 class NearbyFragment : Fragment() {
+
     private val binding: FragmentStandardBinding by lazy {
         FragmentStandardBinding.inflate(layoutInflater)
     }
@@ -32,13 +30,32 @@ class NearbyFragment : Fragment() {
     }
 
     private val viewModel: NearbyViewModel by viewModel()
-    //objeto de pedir permissao
+
     private val requestPermissionLauncher =
         registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-           viewModel.updatePermissionStatus(isGranted)
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            val isGranted =
+                permissions[coarseLocationPermission] ?: false && permissions[fineLocationPermission] ?: false
+
+            viewModel.updatePermissionStatus(isGranted)
+            if (!isGranted) {
+                showLocationPermissionRequestToast()
+            }
         }
+
+    private fun showLocationPermissionRequestToast() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.request_location_permission_toast),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun requestPermissions() {
+        requestPermissionLauncher.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,11 +68,7 @@ class NearbyFragment : Fragment() {
         setupRecyclerView()
         setupListeners()
 
-       // viewModel.updatePermissionStatus(isPermissionGranted())
-
-        checkPermissions()
-
-        observePermission()
+        requestPermissions()
         observeState()
     }
 
@@ -76,20 +89,8 @@ class NearbyFragment : Fragment() {
         viewModel.tryAgain()
     }
 
-    private fun observePermission() {
-        viewModel.isLocationPermissionGrantedLiveData.observe(viewLifecycleOwner, { permission ->
-            if (!permission) {
-                requestPermissions()
-//                viewModel.onPermissionResult(isPermissionGranted())
-            }
-            // criava loop
-            //viewModel.updatePermissionStatus(isPermissionGranted())
-        })
-    }
-
     private fun observeState() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
-
             with(state) {
                 binding.apply {
                     rvStoresList.isVisible = nearbyList?.isNotEmpty() ?: false
@@ -97,59 +98,10 @@ class NearbyFragment : Fragment() {
                     layoutError.root.isVisible = isErrorVisible
                     progressBar.isVisible = isLoadingVisible
                 }
-
-//                if (!isLocationPermissionGranted) {
-//                    requestPermissions()
-//                    viewModel.updatePermissionStatus(isPermissionGranted())
-////                    viewModel.onPermissionResult(isPermissionGranted())
-//                }
-//
-////                else {
-////                    viewModel.onPermissionResult(isPermissionGranted())
-////                }
-
                 nearbyList?.let {
                     rvAdapter.updateList(it)
                 }
             }
         })
-    }
-
-    fun checkPermissions(){
-        when {
-            ContextCompat.checkSelfPermission(
-                requireContext(),
-                        ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                viewModel.getNearbyStores()
-
-            }
-            shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION) -> {
-                Toast.makeText( requireContext(),"Voce deve aceitar a permissao", Toast.LENGTH_SHORT).show()
-
-            }
-            else -> {
-                //primeiro chamar viewModel pro viewModel chamar a função abaixo
-              viewModel.updatePermissionStatus(false)
-            }
-        }
-    }
-
-//    private fun isPermissionGranted(): Boolean {
-//        if (ActivityCompat.checkSelfPermission(
-//                requireContext(),
-//                Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-//                requireContext(),
-//                Manifest.permission.ACCESS_COARSE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            return false
-//        }
-//        return true
-//    }
-
-    private fun requestPermissions() {
-      requestPermissionLauncher.launch(ACCESS_COARSE_LOCATION)
     }
 }

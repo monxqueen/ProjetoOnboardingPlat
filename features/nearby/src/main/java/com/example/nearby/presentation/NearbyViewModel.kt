@@ -15,8 +15,6 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
     val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
 
     private val _isLocationPermissionGrantedLiveData = MutableLiveData<Boolean>()
-    val isLocationPermissionGrantedLiveData: LiveData<Boolean> =
-        _isLocationPermissionGrantedLiveData
 
     fun getNearbyStores() {
         getNearbyStoresUseCase()
@@ -43,20 +41,8 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
     fun updatePermissionStatus(granted: Boolean) {
         _isLocationPermissionGrantedLiveData.value = granted
 
-        if (granted) {
+        if (_isLocationPermissionGrantedLiveData.value == true) {
             getNearbyStores()
-            Log.i("updatePermissionStatus", "ACEITA")
-
-        } else {
-
-            //algo deve acontecer aqui
-           // Log.i("updatePermissionStatus", "RECUSADA")
         }
     }
-//    fun onPermissionResult(granted: Boolean) {
-//        if (granted) {
-//            Log.i("onPermissionResult", "ACEITA")
-//            getNearbyStores()
-//        }
-//    }
 }
