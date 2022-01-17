@@ -8,13 +8,15 @@ import com.example.nearby.domain.GetNearbyStoresUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStoresUseCase) : DisposableViewModel() {
+internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStoresUseCase) :
+    DisposableViewModel() {
 
     private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
     val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
 
     private val _isLocationPermissionGrantedLiveData = MutableLiveData<Boolean>()
-    val isLocationPermissionGrantedLiveData: LiveData<Boolean> = _isLocationPermissionGrantedLiveData
+    val isLocationPermissionGrantedLiveData: LiveData<Boolean> =
+        _isLocationPermissionGrantedLiveData
 
     fun getNearbyStores() {
         getNearbyStoresUseCase()
@@ -44,14 +46,13 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
         if (granted) {
             getNearbyStores()
             Log.i("updatePermissionStatus", "ACEITA")
-        }
-        else {
-            //algo deve acontecer aqui
 
-            Log.i("updatePermissionStatus", "RECUSADA")
+        } else {
+
+            //algo deve acontecer aqui
+           // Log.i("updatePermissionStatus", "RECUSADA")
         }
     }
-
 //    fun onPermissionResult(granted: Boolean) {
 //        if (granted) {
 //            Log.i("onPermissionResult", "ACEITA")

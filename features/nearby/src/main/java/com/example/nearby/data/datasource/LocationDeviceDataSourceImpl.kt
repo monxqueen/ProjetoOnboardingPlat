@@ -15,15 +15,20 @@ internal class LocationDeviceDataSourceImpl(private val context: Context) :
 
         return Single.create { emmiter ->
             LocationServices.getFusedLocationProviderClient(context).lastLocation.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userLocation = UserLocationResponse(
-                        latitude = task.result.latitude,
-                        longitude = task.result.longitude
-                    )
-                    emmiter.onSuccess(userLocation)
-                } else {
-                    emmiter.tryOnError(Exception("Não foi possível pegar a localização do dispositivo."))
-                }
+               try {
+                   if (task.isSuccessful) {
+                       val userLocation = UserLocationResponse(
+                           latitude = task.result.latitude,
+                           longitude = task.result.longitude
+                       // ou result ou latitude tava vindo nulo, so pra parar de quebrar
+                       )
+                       emmiter.onSuccess(userLocation)
+                   } else {
+                       emmiter.tryOnError(Exception("Não foi possível pegar a localização do dispositivo."))
+                   }
+               } catch (e: Exception){
+                   emmiter.tryOnError(Exception("Não foi possível pegar a localização do dispositivo."))
+               }
             }
         }
     }

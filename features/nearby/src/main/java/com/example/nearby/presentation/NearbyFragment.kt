@@ -1,13 +1,18 @@
 package com.example.nearby.presentation
 
 import android.Manifest
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +32,13 @@ class NearbyFragment : Fragment() {
     }
 
     private val viewModel: NearbyViewModel by viewModel()
-
+    //objeto de pedir permissao
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+           viewModel.updatePermissionStatus(isGranted)
+        }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +51,9 @@ class NearbyFragment : Fragment() {
         setupRecyclerView()
         setupListeners()
 
-        viewModel.updatePermissionStatus(isPermissionGranted())
+       // viewModel.updatePermissionStatus(isPermissionGranted())
 
-
+        checkPermissions()
 
         observePermission()
         observeState()
@@ -71,7 +82,8 @@ class NearbyFragment : Fragment() {
                 requestPermissions()
 //                viewModel.onPermissionResult(isPermissionGranted())
             }
-            viewModel.updatePermissionStatus(isPermissionGranted())
+            // criava loop
+            //viewModel.updatePermissionStatus(isPermissionGranted())
         })
     }
 
@@ -103,28 +115,41 @@ class NearbyFragment : Fragment() {
         })
     }
 
-    private fun isPermissionGranted(): Boolean {
-        if (ActivityCompat.checkSelfPermission(
+    fun checkPermissions(){
+        when {
+            ContextCompat.checkSelfPermission(
                 requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return false
+                        ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                viewModel.getNearbyStores()
+
+            }
+            shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION) -> {
+                Toast.makeText( requireContext(),"Voce deve aceitar a permissao", Toast.LENGTH_SHORT).show()
+
+            }
+            else -> {
+                //primeiro chamar viewModel pro viewModel chamar a função abaixo
+              viewModel.updatePermissionStatus(false)
+            }
         }
-        return true
     }
 
+//    private fun isPermissionGranted(): Boolean {
+//        if (ActivityCompat.checkSelfPermission(
+//                requireContext(),
+//                Manifest.permission.ACCESS_FINE_LOCATION
+//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                requireContext(),
+//                Manifest.permission.ACCESS_COARSE_LOCATION
+//            ) != PackageManager.PERMISSION_GRANTED
+//        ) {
+//            return false
+//        }
+//        return true
+//    }
+
     private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
-            REQUEST_LOCATION_PERMISSIONS
-        )
+      requestPermissionLauncher.launch(ACCESS_COARSE_LOCATION)
     }
 }
