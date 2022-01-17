@@ -11,7 +11,7 @@ import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class TestRunner : AndroidJUnitRunner() {
+internal class TestRunner : AndroidJUnitRunner() {
 
     override fun newApplication(
         cl: ClassLoader?,
@@ -24,13 +24,13 @@ class TestRunner : AndroidJUnitRunner() {
     override fun onStart() {
 
         RxJavaPlugins.setInitIoSchedulerHandler(
-            Rx2Idler.create("RxJava 2.x IO Scheduler"));
+            Rx2Idler.create("RxJava 2.x IO Scheduler"))
 
         super.onStart()
     }
 }
 
-class TestApplication : Application() {
+internal class TestApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
