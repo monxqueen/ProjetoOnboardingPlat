@@ -5,5 +5,6 @@ import com.example.nearby.domain.entity.NearbyStores
 internal data class NearbyViewState(
     val nearbyList: List<NearbyStores>? = null,
     val isErrorVisible : Boolean = false,
-    val isLoadingVisible: Boolean = false
+    val isLoadingVisible: Boolean = false,
+    val isPermissionErrorVisible: Boolean = false
 )

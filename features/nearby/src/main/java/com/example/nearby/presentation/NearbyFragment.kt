@@ -33,13 +33,7 @@ class NearbyFragment : Fragment() {
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
-            val isGranted =
-                permissions[coarseLocationPermission] ?: false && permissions[fineLocationPermission] ?: false
-
-            viewModel.updatePermissionStatus(isGranted)
-            if (!isGranted) {
-                showLocationPermissionRequestToast()
-            }
+            viewModel.validatePermission(permissions)
         }
 
     private fun showLocationPermissionRequestToast() {
@@ -98,6 +92,9 @@ class NearbyFragment : Fragment() {
                 }
                 nearbyList?.let {
                     rvAdapter.updateList(it)
+                }
+                if (isPermissionErrorVisible){
+                    showLocationPermissionRequestToast()
                 }
             }
         })
