@@ -16,8 +16,6 @@ import com.example.nearby.R
 import com.example.nearby.presentation.adapter.NearbyStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val coarseLocationPermission = "android.permission.ACCESS_COARSE_LOCATION"
-private const val fineLocationPermission = "android.permission.ACCESS_FINE_LOCATION"
 
 class NearbyFragment : Fragment() {
 
