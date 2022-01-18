@@ -39,7 +39,6 @@ class NearbyFragmentTest : KoinTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerView() {
-
         val response = getResponse(HttpURLConnection.HTTP_OK, SUCCESS_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
@@ -51,12 +50,12 @@ class NearbyFragmentTest : KoinTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayRecyclerViewItemsCorrectly() {
-
         val response = getResponse(HttpURLConnection.HTTP_OK, SUCCESS_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
         robot.apply {
             launchFragment()
+//            Thread.sleep(10000)
             scrollToItem("Magazine Luiza",  R.id.rvStoresList)
             scrollToItem("Lojas Americanas",  R.id.rvStoresList)
         }
@@ -64,7 +63,6 @@ class NearbyFragmentTest : KoinTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayEmptyListText() {
-
         val response = getResponse(HttpURLConnection.HTTP_OK, EMPTY_RESPONSE_PATH)
         response?.let { mockWebServer.enqueue(it) }
 
@@ -76,7 +74,6 @@ class NearbyFragmentTest : KoinTest {
 
     @Test
     fun whenFragmentIsStarted_shouldDisplayError() {
-
         val errorResponse = setHttpCode(HttpURLConnection.HTTP_BAD_REQUEST)
         mockWebServer.enqueue(errorResponse)
 
@@ -88,7 +85,6 @@ class NearbyFragmentTest : KoinTest {
 
     @Test
     fun whenTryAgainButtonIsPressed_shouldDisplayRecyclerView() {
-
         val errorResponse = setHttpCode(HttpURLConnection.HTTP_BAD_REQUEST)
         mockWebServer.enqueue(errorResponse)
 

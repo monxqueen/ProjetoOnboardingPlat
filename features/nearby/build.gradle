@@ -69,7 +69,7 @@ dependencies {
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
     androidTestImplementation Libs.mockWebServer
-    androidTestImplementation Libs.espressoContrib
+    implementation Libs.espressoContrib
     debugImplementation Libs.fragmentTesting
     androidTestImplementation Libs.rxIdler
 }

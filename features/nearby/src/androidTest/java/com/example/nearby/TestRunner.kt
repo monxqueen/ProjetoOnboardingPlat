@@ -3,13 +3,8 @@ package com.example.nearby
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
-import com.example.data.di.DataModule
-import com.example.nearby.di.NearbyModule
-import com.example.nearby.di.TestModule
 import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
 
 class TestRunner : AndroidJUnitRunner() {
     override fun newApplication(
