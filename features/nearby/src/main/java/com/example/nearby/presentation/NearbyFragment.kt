@@ -1,22 +1,24 @@
 package com.example.nearby.presentation
 
-import android.Manifest
-import android.content.pm.PackageManager
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common.databinding.FragmentStandardBinding
+import com.example.nearby.R
 import com.example.nearby.presentation.adapter.NearbyStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val REQUEST_LOCATION_PERMISSIONS = 1
 
 class NearbyFragment : Fragment() {
+
     private val binding: FragmentStandardBinding by lazy {
         FragmentStandardBinding.inflate(layoutInflater)
     }
@@ -26,6 +28,25 @@ class NearbyFragment : Fragment() {
     }
 
     private val viewModel: NearbyViewModel by viewModel()
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            viewModel.validatePermission(permissions)
+        }
+
+    private fun showLocationPermissionRequestToast() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.request_location_permission_toast),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun requestPermissions() {
+        requestPermissionLauncher.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +60,7 @@ class NearbyFragment : Fragment() {
         setupRecyclerView()
         setupListeners()
 
-        checkPermissions()
+        requestPermissions()
         observeState()
     }
 
@@ -62,44 +83,20 @@ class NearbyFragment : Fragment() {
 
     private fun observeState() {
         viewModel.viewStateLiveData.observe(viewLifecycleOwner, { state ->
-
             with(state) {
-                binding.rvStoresList.isVisible = nearbyList?.isNotEmpty() ?: false
-                binding.txtEmptyResult.isVisible = nearbyList?.isEmpty() ?: false
-                binding.layoutError.root.isVisible = isErrorVisible
-                binding.progressBar.isVisible = isLoadingVisible
-
+                binding.apply {
+                    rvStoresList.isVisible = nearbyList?.isNotEmpty() ?: false
+                    txtEmptyResult.isVisible = nearbyList?.isEmpty() ?: false
+                    layoutError.root.isVisible = isErrorVisible
+                    progressBar.isVisible = isLoadingVisible
+                }
                 nearbyList?.let {
                     rvAdapter.updateList(it)
                 }
+                if (isPermissionErrorVisible){
+                    showLocationPermissionRequestToast()
+                }
             }
         })
-    }
-
-    //TODO: Mover pra ViewModel
-    private fun checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissions()
-            return
-        }
-    }
-
-    //TODO: Mover pra ViewModel
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
-            REQUEST_LOCATION_PERMISSIONS
-        )
     }
 }

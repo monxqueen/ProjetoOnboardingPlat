@@ -1,7 +1,7 @@
 package com.example.nearby.domain
 
-import com.example.data.domain.GetStoreListUseCase
-import com.example.data.domain.entity.Store
+import com.example.data.domain.GetStoresListDataSourceUseCase
+import com.example.data.domain.entity.StoreDataSource
 import com.example.nearby.domain.entity.Stores
 import com.example.nearby.domain.mapper.StoresMapper
 import io.reactivex.Single
@@ -17,7 +17,7 @@ import org.mockito.kotlin.whenever
 
 internal class GetStoresListUseCaseTest : KoinTest {
 
-    private val getStoresDataSourceListUseCase: GetStoreListUseCase = mock()
+    private val getStoresDataSourceListUseCase: GetStoresListDataSourceUseCase = mock()
     private val getStoresListUseCase : GetStoresListUseCase by inject()
 
     private val koinModules = module {
@@ -31,7 +31,7 @@ internal class GetStoresListUseCaseTest : KoinTest {
     fun `When call getStoresListUseCase should return an expected list`() {
         // Given
         val storesDataSourceList = fetchStoresDataSourceList()
-        whenever(getStoresDataSourceListUseCase.getList()).thenReturn(Single.just(storesDataSourceList))
+        whenever(getStoresDataSourceListUseCase()).thenReturn(Single.just(storesDataSourceList))
 
         val expected = listOf(
             Stores(
@@ -56,7 +56,7 @@ internal class GetStoresListUseCaseTest : KoinTest {
     fun `When call getStoresListUseCase should return an empty list`() {
         // Given
         val emptyStoresDataSourceList = fetchStoresDataSourceEmptyList()
-        whenever(getStoresDataSourceListUseCase.getList()).thenReturn(Single.just(emptyStoresDataSourceList))
+        whenever(getStoresDataSourceListUseCase()).thenReturn(Single.just(emptyStoresDataSourceList))
 
         val expected = emptyList<Stores>()
 
@@ -73,7 +73,7 @@ internal class GetStoresListUseCaseTest : KoinTest {
     fun `When call getStoresListUseCase should return a different object than expected`() {
         // Given
         val storesDataSourceList = fetchDifferentStoresDataSourceList()
-        whenever(getStoresDataSourceListUseCase.getList()).thenReturn(Single.just(storesDataSourceList))
+        whenever(getStoresDataSourceListUseCase()).thenReturn(Single.just(storesDataSourceList))
 
         val expected = listOf(
             Stores(
@@ -93,7 +93,7 @@ internal class GetStoresListUseCaseTest : KoinTest {
     }
 
     private fun fetchStoresDataSourceList() = listOf(
-        Store(
+        StoreDataSource(
             id = 2,
             name = "Lojas Americanas",
             iconUrl = "icone.jpg",
@@ -102,11 +102,11 @@ internal class GetStoresListUseCaseTest : KoinTest {
         )
     )
 
-    private fun fetchStoresDataSourceEmptyList() = emptyList<Store>()
+    private fun fetchStoresDataSourceEmptyList() = emptyList<StoreDataSource>()
 
     private fun fetchDifferentStoresDataSourceList() =
         listOf(
-            Store(
+            StoreDataSource(
                 id = 2,
                 name = "Magazine Luiza",
                 iconUrl = "icone.jpg",

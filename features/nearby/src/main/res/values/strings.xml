@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="km">km</string>
+    <string name="request_location_permission_toast">Você precisa aceitar as permissões!</string>
 </resources>

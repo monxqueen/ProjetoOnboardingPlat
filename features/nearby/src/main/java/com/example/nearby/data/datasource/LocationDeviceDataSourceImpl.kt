@@ -9,7 +9,6 @@ import io.reactivex.Single
 internal class LocationDeviceDataSourceImpl(private val context: Context) :
     LocationDeviceDataSource {
 
-    //TODO: Levar o tratamento de permissões pra ViewModel
     @SuppressLint("MissingPermission")
     override fun getLocation(): Single<UserLocationResponse> {
 

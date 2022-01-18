@@ -8,14 +8,15 @@ import com.example.nearby.domain.GetNearbyStoresUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStoresUseCase) : DisposableViewModel() {
+ private const val coarseLocationPermission = "android.permission.ACCESS_COARSE_LOCATION"
+ private const val fineLocationPermission = "android.permission.ACCESS_FINE_LOCATION"
+
+internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStoresUseCase) :
+    DisposableViewModel() {
 
     private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
     val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
 
-    init {
-        getNearbyStores()
-    }
 
     fun getNearbyStores() {
         getNearbyStoresUseCase()
@@ -37,5 +38,16 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
 
     fun tryAgain() {
         getNearbyStores()
+    }
+
+    fun validatePermission(permissions: Map<String, Boolean>) {
+        val isGranted =
+            permissions[coarseLocationPermission] ?: false && permissions[fineLocationPermission] ?: false
+        if(isGranted){
+            getNearbyStores()
+        } else{
+            _viewStateLiveData.value = NearbyViewState(isPermissionErrorVisible = true)
+        }
+
     }
 }
