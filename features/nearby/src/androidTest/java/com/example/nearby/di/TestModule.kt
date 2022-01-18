@@ -6,12 +6,9 @@ import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
 internal class TestModule {
-
     private val modules = module {
-
         factory { NearbyFragmentRobot() }
         factory { FileReader() }
-
     }
 
     fun load() = loadKoinModules(modules)

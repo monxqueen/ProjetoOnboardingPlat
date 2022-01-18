@@ -29,17 +29,3 @@ internal class TestRunner : AndroidJUnitRunner() {
         super.onStart()
     }
 }
-
-internal class TestApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        startKoin {
-            androidContext(this@TestApplication)
-
-            DataModule().load()
-            FavoriteModule().load()
-            TestModule().load()
-        }
-    }
-}
