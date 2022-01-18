@@ -11,7 +11,7 @@ import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-internal class TestRunner : AndroidJUnitRunner() {
+class TestRunner : AndroidJUnitRunner() {
 
     override fun newApplication(
         cl: ClassLoader?,

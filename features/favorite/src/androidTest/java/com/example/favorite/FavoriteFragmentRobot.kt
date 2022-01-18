@@ -10,7 +10,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.favorite.presentation.FavoriteFragment
 
-class FavoriteFragmentRobot {
+internal class FavoriteFragmentRobot {
 
     fun launchFragment() {
         launchFragmentInContainer<FavoriteFragment>(initialState = Lifecycle.State.STARTED)
