@@ -1,8 +1,8 @@
 package com.example.favorite
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.favorite.di.RemoteDataModule
-import com.example.favorite.remote.utils.FileReader
+import com.example.common.utils.FileReader
+import com.example.common.utils.RemoteDataModule
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After

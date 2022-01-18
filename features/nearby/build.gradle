@@ -20,7 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.nearby.TestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -68,4 +68,7 @@ dependencies {
 
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    implementation Libs.espressoContrib
+    debugImplementation Libs.fragmentTesting
+    androidTestImplementation Libs.rxIdler
 }
