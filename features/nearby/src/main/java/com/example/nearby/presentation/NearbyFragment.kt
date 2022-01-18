@@ -16,7 +16,6 @@ import com.example.nearby.R
 import com.example.nearby.presentation.adapter.NearbyStoresAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class NearbyFragment : Fragment() {
 
     private val binding: FragmentStandardBinding by lazy {
@@ -91,7 +90,7 @@ class NearbyFragment : Fragment() {
                     progressBar.isVisible = isLoadingVisible
                 }
                 nearbyList?.let {
-                    rvAdapter.updateList(it)
+                    rvAdapter.submitList(it)
                 }
                 if (isPermissionErrorVisible){
                     showLocationPermissionRequestToast()
