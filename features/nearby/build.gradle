@@ -71,5 +71,4 @@ dependencies {
     androidTestImplementation Libs.mockWebServer
     implementation Libs.espressoContrib
     debugImplementation Libs.fragmentTesting
-    androidTestImplementation Libs.rxIdler
 }

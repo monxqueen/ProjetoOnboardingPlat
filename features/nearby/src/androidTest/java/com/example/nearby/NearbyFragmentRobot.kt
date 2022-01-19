@@ -1,6 +1,6 @@
 package com.example.nearby
 
-import android.widget.TextView
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
@@ -14,28 +14,9 @@ import com.example.nearby.presentation.NearbyFragment
 import org.koin.test.KoinTest
 import org.koin.test.get
 
-fun RecyclerView.waitForRecyclerViewData(block: () -> Unit) {
-    var shouldRepeat = false
-    do {
-        block.invoke()
-        if (shouldRepeat) Thread.sleep(100)
-        shouldRepeat = this.isVisible && this.adapter != null && this.adapter?.itemCount?: -1 > 0
-    } while (!shouldRepeat)
-}
+internal class NearbyFragmentRobot : KoinTest{
 
-fun TextView.waitForTextViewData(block: () -> Unit) {
-    var shouldRepeat = false
-    do {
-        block.invoke()
-        if (shouldRepeat) Thread.sleep(100)
-        shouldRepeat = this.isVisible
-    } while (!shouldRepeat)
-}
-
-
-class NearbyFragmentRobot : KoinTest{
-
-    val fragment = get<NearbyFragment>()
+    private val fragment = get<NearbyFragment>()
 
     fun launchFragment() {
         launchFragmentInContainer<NearbyFragment>(initialState = Lifecycle.State.STARTED)
@@ -43,7 +24,7 @@ class NearbyFragmentRobot : KoinTest{
 
     private fun getView(id: Int) = onView(withId(id))
 
-    fun checkVisibility(id: Int) {
+    private fun checkVisibility(id: Int) {
         getView(id)
             .check(matches(isDisplayed()))
     }
@@ -56,10 +37,10 @@ class NearbyFragmentRobot : KoinTest{
         }
     }
 
-    fun checkTextViewVisibility(id: Int) {
-        val textView = fragment.view?.findViewById<TextView>(id)
+    fun checkViewVisibility(id: Int) {
+        val view = fragment.view?.findViewById<View>(id)
 
-        textView?.waitForTextViewData {
+        view?.waitForViewData {
             checkVisibility(id)
         }
     }
@@ -78,6 +59,32 @@ class NearbyFragmentRobot : KoinTest{
     }
 
     fun clickOnButton(id: Int) {
-        getView(id).perform(click())
+        val view = fragment.view?.findViewById<View>(id)
+
+        view?.waitForViewData {
+            getView(id).perform(click())
+        }
+    }
+
+    private fun RecyclerView.waitForRecyclerViewData(block: () -> Unit) {
+        var shouldRepeat = false
+        var count = 0
+        do {
+            block.invoke()
+            if (shouldRepeat) Thread.sleep(100)
+            shouldRepeat = this.isVisible && this.adapter != null && this.adapter?.itemCount?: -1 > 0
+            count++
+        } while (!shouldRepeat || count < 5)
+    }
+
+    private fun View.waitForViewData(block: () -> Unit) {
+        var shouldRepeat = false
+        var count = 0
+        do {
+            block.invoke()
+            if (shouldRepeat) Thread.sleep(100)
+            shouldRepeat = this.isVisible
+            count++
+        } while (!shouldRepeat || count < 5)
     }
 }

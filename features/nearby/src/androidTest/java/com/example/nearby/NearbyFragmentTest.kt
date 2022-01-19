@@ -17,7 +17,7 @@ private const val SUCCESS_RESPONSE_PATH = "assets/nearbyListSuccessResponse.json
 private const val EMPTY_RESPONSE_PATH = "assets/nearbyListEmptyResponse.json"
 
 @RunWith(AndroidJUnit4::class)
-class NearbyFragmentTest : KoinTest {
+internal class NearbyFragmentTest : KoinTest {
 
     private val robot: NearbyFragmentRobot by inject()
     private val fileReader: FileReader by inject()
@@ -45,7 +45,6 @@ class NearbyFragmentTest : KoinTest {
         robot.apply {
             launchFragment()
             checkRecyclerViewVisibility(R.id.rvStoresList)
-//            checkVisibility(R.id.rvStoresList)
         }
     }
 
@@ -68,8 +67,7 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkTextViewVisibility(R.id.txtEmptyResult)
-//            checkVisibility(R.id.txtEmptyResult)
+            checkViewVisibility(R.id.txtEmptyResult)
         }
     }
 
@@ -80,7 +78,7 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.layoutError)
+            checkViewVisibility(R.id.layoutError)
         }
     }
 
@@ -95,7 +93,7 @@ class NearbyFragmentTest : KoinTest {
         robot.apply {
             launchFragment()
             clickOnButton(R.id.btnError)
-            checkVisibility(R.id.rvStoresList)
+            checkRecyclerViewVisibility(R.id.rvStoresList)
         }
     }
 
