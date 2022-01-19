@@ -16,10 +16,9 @@ class TestRunner : AndroidJUnitRunner() {
     }
 
     override fun onStart() {
-
+        //TODO: Idling Resources?
         RxJavaPlugins.setInitIoSchedulerHandler(
             Rx2Idler.create("RxJava 2.x IO Scheduler"))
-
         super.onStart()
     }
 }

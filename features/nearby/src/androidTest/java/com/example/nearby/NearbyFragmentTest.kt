@@ -55,9 +55,8 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-//            Thread.sleep(10000)
-            scrollToItem("Magazine Luiza",  R.id.rvStoresList)
-            scrollToItem("Lojas Americanas",  R.id.rvStoresList)
+            scrollToRecyclerViewItem("Magazine Luiza",  R.id.rvStoresList)
+            scrollToRecyclerViewItem("Lojas Americanas",  R.id.rvStoresList)
         }
     }
 
@@ -68,7 +67,8 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.txtEmptyResult)
+            waitForViewData(R.id.txtEmptyResult)
+//            checkVisibility(R.id.txtEmptyResult)
         }
     }
 

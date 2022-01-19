@@ -1,5 +1,8 @@
 package com.example.nearby
 
+import android.view.View
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +12,28 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.nearby.presentation.NearbyFragment
+import org.koin.test.KoinTest
+import org.koin.test.get
 
-class NearbyFragmentRobot {
+fun RecyclerView.waitForRecyclerViewData(block: () -> Unit) {
+    var shouldRepeat = false
+    do {
+        block.invoke()
+        if (shouldRepeat) Thread.sleep(100)
+        shouldRepeat = this.isVisible && this.adapter != null && this.adapter?.itemCount?: -1 > 0
+    } while (!shouldRepeat)
+}
+
+fun View.waitForViewData(block: () -> Unit) {
+    var shouldRepeat = false
+    do {
+        block.invoke()
+        if (shouldRepeat) Thread.sleep(100)
+        shouldRepeat = this.isVisible
+    } while (!shouldRepeat)
+}
+
+class NearbyFragmentRobot : KoinTest{
 
     fun launchFragment() {
         launchFragmentInContainer<NearbyFragment>(initialState = Lifecycle.State.STARTED)
@@ -23,11 +46,26 @@ class NearbyFragmentRobot {
             .check(matches(isDisplayed()))
     }
 
-    fun scrollToItem(name: String, idList: Int) {
-        getView(idList)
-            .perform(RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(
-                hasDescendant(withText(name)))
-            )
+    fun waitForViewData(id: Int) {
+        val fragment = get<NearbyFragment>()
+        val view = fragment.view?.findViewById<TextView>(id)
+        view?.waitForViewData {
+            checkVisibility(id)
+        }
+    }
+
+    fun scrollToRecyclerViewItem(name: String, idList: Int) {
+        val fragment = get<NearbyFragment>()
+        val recyclerView = fragment.view?.findViewById<RecyclerView>(R.id.rvStoresList)
+
+        recyclerView?.waitForRecyclerViewData {
+            getView(idList)
+                .perform(
+                    RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(
+                        hasDescendant(withText(name))
+                    )
+                )
+        }
     }
 
     fun clickOnButton(id: Int) {
