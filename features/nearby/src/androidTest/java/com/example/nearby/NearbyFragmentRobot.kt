@@ -1,6 +1,5 @@
 package com.example.nearby
 
-import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.testing.launchFragmentInContainer
@@ -24,7 +23,7 @@ fun RecyclerView.waitForRecyclerViewData(block: () -> Unit) {
     } while (!shouldRepeat)
 }
 
-fun View.waitForViewData(block: () -> Unit) {
+fun TextView.waitForTextViewData(block: () -> Unit) {
     var shouldRepeat = false
     do {
         block.invoke()
@@ -33,7 +32,10 @@ fun View.waitForViewData(block: () -> Unit) {
     } while (!shouldRepeat)
 }
 
+
 class NearbyFragmentRobot : KoinTest{
+
+    val fragment = get<NearbyFragment>()
 
     fun launchFragment() {
         launchFragmentInContainer<NearbyFragment>(initialState = Lifecycle.State.STARTED)
@@ -46,16 +48,23 @@ class NearbyFragmentRobot : KoinTest{
             .check(matches(isDisplayed()))
     }
 
-    fun waitForViewData(id: Int) {
-        val fragment = get<NearbyFragment>()
-        val view = fragment.view?.findViewById<TextView>(id)
-        view?.waitForViewData {
+    fun checkRecyclerViewVisibility(id: Int) {
+        val recyclerView = fragment.view?.findViewById<RecyclerView>(R.id.rvStoresList)
+
+        recyclerView?.waitForRecyclerViewData {
+            checkVisibility(id)
+        }
+    }
+
+    fun checkTextViewVisibility(id: Int) {
+        val textView = fragment.view?.findViewById<TextView>(id)
+
+        textView?.waitForTextViewData {
             checkVisibility(id)
         }
     }
 
     fun scrollToRecyclerViewItem(name: String, idList: Int) {
-        val fragment = get<NearbyFragment>()
         val recyclerView = fragment.view?.findViewById<RecyclerView>(R.id.rvStoresList)
 
         recyclerView?.waitForRecyclerViewData {

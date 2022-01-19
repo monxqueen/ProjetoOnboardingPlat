@@ -44,7 +44,8 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.rvStoresList)
+            checkRecyclerViewVisibility(R.id.rvStoresList)
+//            checkVisibility(R.id.rvStoresList)
         }
     }
 
@@ -67,7 +68,7 @@ class NearbyFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            waitForViewData(R.id.txtEmptyResult)
+            checkTextViewVisibility(R.id.txtEmptyResult)
 //            checkVisibility(R.id.txtEmptyResult)
         }
     }
