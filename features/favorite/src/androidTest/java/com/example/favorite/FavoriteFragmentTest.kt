@@ -1,8 +1,8 @@
 package com.example.favorite
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.favorite.di.RemoteDataModule
-import com.example.favorite.remote.utils.FileReader
+import com.example.common.utils.FileReader
+import com.example.common.utils.RemoteDataModule
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -45,7 +45,7 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.rvFavoriteStoresList)
+            checkVisibility(R.id.rvStoresList)
         }
     }
 
@@ -57,8 +57,8 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            scrollToItem("Magazine Luiza",  R.id.rvFavoriteStoresList)
-            scrollToItem("Lojas Americanas",  R.id.rvFavoriteStoresList)
+            scrollToItem("Magazine Luiza",  R.id.rvStoresList)
+            scrollToItem("Lojas Americanas",  R.id.rvStoresList)
         }
     }
 
@@ -82,7 +82,7 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            checkVisibility(R.id.includeLayoutError)
+            checkVisibility(R.id.layoutError)
         }
     }
 
@@ -97,8 +97,8 @@ class FavoriteFragmentTest : KoinTest {
 
         robot.apply {
             launchFragment()
-            clickOnButton(R.id.btn_error)
-            checkVisibility(R.id.rvFavoriteStoresList)
+            clickOnButton(R.id.btnError)
+            checkVisibility(R.id.rvStoresList)
         }
     }
 

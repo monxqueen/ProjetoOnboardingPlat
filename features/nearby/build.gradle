@@ -6,13 +6,21 @@ plugins {
 android {
     compileSdk 31
 
+    buildFeatures {
+        viewBinding true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.nearby.TestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -22,22 +30,45 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation project(':data')
+    implementation project(LocalLibs.data)
+    implementation project(LocalLibs.common)
 
     implementation Libs.coreKtx
     implementation Libs.appCompat
     implementation Libs.materialDesign
+    implementation Libs.lottie
+
+    implementation Libs.rxJava
+    implementation Libs.rxAndroid
+
+    implementation Libs.koinCore
+    implementation Libs.koinAndroid
+    implementation Libs.koinViewModel
+    implementation Libs.koinTest
+
+    implementation Libs.playServicesLocation
+
     testImplementation Libs.jUnit
+    testImplementation Libs.mockito
+    testImplementation Libs.mockitoInline
+    testImplementation Libs.mockitoKotlin
+    testImplementation Libs.arcCore
+
     androidTestImplementation Libs.jUnitAndroid
     androidTestImplementation Libs.espresso
+    androidTestImplementation Libs.mockWebServer
+    implementation Libs.espressoContrib
+    debugImplementation Libs.fragmentTesting
 }

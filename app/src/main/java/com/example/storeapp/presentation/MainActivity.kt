@@ -7,7 +7,6 @@ import com.example.storeapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    //TODO: adicionar progress bar
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -29,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.favorite -> binding.vwpFragmentContainer.currentItem =
                     FragmentPosition.FAVORITE.ordinal
-                R.id.nearby -> true //TODO: Vincular à fragment nearby
+                R.id.nearby -> binding.vwpFragmentContainer.currentItem =
+                    FragmentPosition.NEARBY.ordinal
             }
             false
         }

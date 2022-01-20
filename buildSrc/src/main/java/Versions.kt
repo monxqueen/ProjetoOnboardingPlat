@@ -24,6 +24,9 @@ object Versions {
     // Koin
     const val koinVersion = "2.2.3"
 
+    // Location Services
+    const val playServicesLocationVersion = "19.0.0"
+
     // Tests
     const val jUnitVersion = "4.13.2"
     const val jUnitAndroidVersion = "1.1.3"
