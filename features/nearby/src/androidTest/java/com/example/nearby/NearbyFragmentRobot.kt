@@ -30,7 +30,7 @@ internal class NearbyFragmentRobot : KoinTest{
     }
 
     fun checkRecyclerViewVisibility(id: Int) {
-        val recyclerView = fragment.view?.findViewById<RecyclerView>(R.id.rvStoresList)
+        val recyclerView = fragment.view?.findViewById<RecyclerView>(id)
 
         recyclerView?.waitForRecyclerViewData {
             checkVisibility(id)
@@ -46,7 +46,7 @@ internal class NearbyFragmentRobot : KoinTest{
     }
 
     fun scrollToRecyclerViewItem(name: String, idList: Int) {
-        val recyclerView = fragment.view?.findViewById<RecyclerView>(R.id.rvStoresList)
+        val recyclerView = fragment.view?.findViewById<RecyclerView>(idList)
 
         recyclerView?.waitForRecyclerViewData {
             getView(idList)
