@@ -17,7 +17,6 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
     private val _viewStateLiveData = MutableLiveData<NearbyViewState>()
     val viewStateLiveData: LiveData<NearbyViewState> = _viewStateLiveData
 
-
     fun getNearbyStores() {
         getNearbyStoresUseCase()
             .subscribeOn(Schedulers.io())
@@ -43,11 +42,11 @@ internal class NearbyViewModel(private val getNearbyStoresUseCase: GetNearbyStor
     fun validatePermission(permissions: Map<String, Boolean>) {
         val isGranted =
             permissions[coarseLocationPermission] ?: false && permissions[fineLocationPermission] ?: false
-        if(isGranted){
+
+        if (isGranted) {
             getNearbyStores()
-        } else{
+        } else {
             _viewStateLiveData.value = NearbyViewState(isPermissionErrorVisible = true)
         }
-
     }
 }
