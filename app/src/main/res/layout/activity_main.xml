@@ -9,8 +9,8 @@
     <View
         android:id="@+id/cardTitle"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#4F7550"
+        android:layout_height="@dimen/xxxxlarge_dp"
+        android:background="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
