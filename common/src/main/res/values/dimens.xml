@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="xxsmall_dp">5dp</dimen>
     <dimen name="xsmall_dp">8dp</dimen>
     <dimen name="small_dp">16dp</dimen>
     <dimen name="medium_dp">24dp</dimen>
@@ -7,6 +8,7 @@
     <dimen name="xlarge_dp">40dp</dimen>
     <dimen name="xxlarge_dp">48dp</dimen>
     <dimen name="xxxlarge_dp">70dp</dimen>
+    <dimen name="xxxxlarge_dp">100dp</dimen>
     <dimen name="spclarge_dp">130dp</dimen>
     <dimen name="xspclarge_dp">150dp</dimen>
     <dimen name="xxsmall_sp">5sp</dimen>

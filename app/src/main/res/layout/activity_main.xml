@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <View
+        android:id="@+id/cardTitle"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#4F7550"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title"
-        android:layout_marginTop="@dimen/medium_dp"
+        android:layout_marginTop="@dimen/large_dp"
         android:textSize="@dimen/medium_sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -21,9 +31,8 @@
         android:id="@+id/vwpFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtViewTitle" />
+        app:layout_constraintTop_toBottomOf="@id/cardTitle" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
