@@ -34,15 +34,13 @@
 
             <ImageView
                 android:id="@+id/storeIconUrl"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/spclarge_dp"
                 android:layout_marginTop="@dimen/xsmall_dp"
                 android:layout_marginEnd="@dimen/small_dp"
                 android:layout_marginBottom="@dimen/xsmall_dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/storeName"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

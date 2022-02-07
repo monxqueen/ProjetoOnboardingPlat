@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,18 +27,25 @@
                 android:ellipsize="end"
                 android:maxWidth="@dimen/xspclarge_dp"
                 android:maxLines="1"
+                android:paddingEnd="@dimen/large_dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Lojas Americanas" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="180dp"/>
+
             <TextView
                 android:id="@+id/distanceBetweenDeviceAndStore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/small_dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/storeName"
+                app:layout_constraintStart_toEndOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="20" />
 
@@ -54,15 +61,13 @@
 
             <ImageView
                 android:id="@+id/storeIconUrl"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/spclarge_dp"
                 android:layout_marginTop="@dimen/xsmall_dp"
                 android:layout_marginEnd="@dimen/small_dp"
                 android:layout_marginBottom="@dimen/xsmall_dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/storeName"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,4 +80,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardView" />
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
