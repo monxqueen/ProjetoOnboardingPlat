@@ -63,6 +63,11 @@ class NearbyFragment : Fragment() {
         observeState()
     }
 
+    override fun onResume() {
+        super.onResume()
+        requestPermissions()
+    }
+
     private fun setupRecyclerView() {
         binding.rvStoresList.let {
             it.adapter = rvAdapter

@@ -40,6 +40,11 @@ class FavoriteFragment : Fragment() {
         viewModel.getFavoriteList()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavoriteList()
+    }
+
     private fun setupRecyclerView() {
         val rvFavoriteStores = binding.rvStoresList
         rvFavoriteStores.adapter = rvAdapter

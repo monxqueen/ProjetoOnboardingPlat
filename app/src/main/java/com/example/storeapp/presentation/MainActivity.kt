@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nearby -> binding.vwpFragmentContainer.currentItem =
                     FragmentPosition.NEARBY.ordinal
             }
-            false
+            true
         }
     }
 
