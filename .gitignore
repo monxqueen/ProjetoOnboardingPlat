@@ -1,4 +1,5 @@
 # Built application files
+*.DS_Store
 *.apk
 *.aar
 *.ap_
@@ -61,9 +62,6 @@ captures/
 .externalNativeBuild
 .cxx/
 
-# Google Services (e.g. APIs or Firebase)
-# google-services.json
-
 # Freeline
 # freeline.py
 # freeline/
@@ -91,6 +89,10 @@ vcs.xml
 
 # Constants
 data/src/main/java/com/example/data/data/remote/model/Constants.kt
+
+# Firebase
+storeapp-8534d-c7a85f1b8ce6.json
+/app/src/google-services.json
 
 # BuildSrc Build
 /buildSrc/build/
